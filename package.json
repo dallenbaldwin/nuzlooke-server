@@ -1,0 +1,16 @@
+{
+   "name": "nuzlooke-server",
+   "version": "1.0.0",
+   "main": "server.js",
+   "scripts": {
+      "dev": "nodemon",
+      "serve": "node server.js"
+   },
+   "author": "Dallen Baldwin",
+   "license": "ISC",
+   "dependencies": {
+      "cors": "^2.8.5",
+      "express": "^4.17.1"
+   },
+   "type": "module"
+}
