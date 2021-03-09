@@ -9,6 +9,7 @@
    "author": "Dallen Baldwin",
    "license": "ISC",
    "dependencies": {
+      "aws-sdk": "^2.859.0",
       "cors": "^2.8.5",
       "express": "^4.17.1"
    },

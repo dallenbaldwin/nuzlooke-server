@@ -11,6 +11,9 @@ app.use(express.urlencoded({ extended: true }));
 
 // set routes
 
+// FIXME: import the database in the model files later
+import dynamodb from './app/models/db.js';
+
 app.get('/', (req, res) => {
    res.status(200).send({
       message: 'welcome to the nuzlooke-server',
