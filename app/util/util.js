@@ -7,9 +7,3 @@ export function toAWSItem(object) {
 export function fromAWSItem(object) {
    return AWS.DynamoDB.Converter.unmarshall(object);
 }
-
-export function toAWSAttribute(item) {
-   return AWS.DynamoDB.Converter.input(item, {
-      convertEmptyValues: true,
-   });
-}
