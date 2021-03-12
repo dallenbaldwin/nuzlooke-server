@@ -1,5 +1,5 @@
 import AWS from 'aws-sdk';
-import config from '../config/config.db.js';
+import config from '../config/db.js';
 
 const client = new AWS.DynamoDB(config);
 

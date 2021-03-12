@@ -1,16 +1,16 @@
 import express from 'express';
 import cors from 'cors';
-import { PORT, HOST } from './app/config/config.server.js';
+import { PORT, HOST } from './app/config/server.js';
 
 const app = express();
 
-// FIXME: customize cors
+// TODO: customize cors
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // set routes
-import gameRoutes from './app/routes/routes.Game.js';
+import gameRoutes from './app/routes/game.js';
 gameRoutes(app);
 
 app.get('/', (req, res) => {

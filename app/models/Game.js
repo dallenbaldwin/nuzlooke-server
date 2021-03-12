@@ -1,5 +1,6 @@
-import client from './models.db.js';
-import { fromAWSItem, toAWSItem } from '../util/util.js';
+import client from './Client.js';
+import { fromAWSItem, toAWSItem, isUndefined } from '../util/Util.js';
+import GameVersion from './constants/GameVersion.js';
 import uuid_pkg from 'uuid';
 const { v4: uuid } = uuid_pkg;
 
@@ -7,25 +8,12 @@ export default class Game {
    constructor(game) {
       this.id = uuid();
       this.game_name = game.game_name || null;
-      this.version = this.getGameVersion(game.version);
+      this.version = GameVersion(game.version);
       this.is_finished = game.is_finished || false;
       this.encounters = game.encounters || [];
       this.pokemons = game.pokemons || [];
       this.gyms = game.gyms || [];
       this.game_rules = game.game_rules || [];
-   }
-   getGameVersion(name) {
-      const artwork_urls = {
-         letsgopikachu: null,
-         letsgoeevee: 'a test value',
-         alpha: null,
-         sapphire: null,
-         emerald: null,
-      };
-      return {
-         version_name: name,
-         artwork_urls: artwork_urls[name],
-      };
    }
    static async create(game, result) {
       try {
@@ -50,36 +38,21 @@ export default class Game {
          result({ message: 'error reading game', error: err });
       }
    }
-   // FIXME: this needs to take an id and update what you pass it
-   static async update(game, result) {
+   static async update(gameId, attributes, result) {
       try {
-         const awsGame = toAWSItem(game);
-         const response = await client
+         const parsedResult = parseUpdateObject(attributes);
+         const updated = await client
             .updateItem({
                TableName: 'games',
-               Key: { id: { S: game.id } },
+               Key: { id: { S: gameId } },
                ReturnValues: 'ALL_NEW',
-               UpdateExpression: `set game_name = :game_name,
-                  version = :version,
-                  is_finished = :is_finished,
-                  encounters = :encounters,
-                  pokemons = :pokemons,
-                  gyms = :gyms,
-                  game_rules = :game_rules`,
-               ExpressionAttributeValues: {
-                  ':game_name': awsGame.game_name,
-                  ':version': awsGame.version,
-                  ':is_finished': awsGame.is_finished,
-                  ':encounters': awsGame.encounters,
-                  ':pokemons': awsGame.pokemons,
-                  ':gyms': awsGame.gyms,
-                  ':game_rules': awsGame.game_rules,
-               },
+               UpdateExpression: parsedResult.updateExpression,
+               ExpressionAttributeValues: parsedResult.expressionAttributeValues,
             })
             .promise();
          result({
             message: 'successfully updated game',
-            data: fromAWSItem(response.Attributes),
+            data: fromAWSItem(updated.Attributes),
          });
       } catch (err) {
          result({ message: 'error updating game', error: err });
@@ -115,4 +88,48 @@ export default class Game {
          // party_icon_urls: this.pokemons.L.filter(p => p.party_state ===)
       };
    }
+}
+
+function parseUpdateObject(object) {
+   const sets = [];
+   const values = {};
+   let awsObject = toAWSItem(object);
+   if (!isUndefined(object.game_name)) {
+      sets.push('game_name = :game_name');
+      values[':game_name'] = awsObject.game_name;
+   }
+   if (!isUndefined(object.version) || !isUndefined(object.version.version_name)) {
+      const versionData = GameVersion(
+         !isUndefined(object.version_name) ? object.version_name : object.version
+      );
+      object.version = versionData;
+      awsObject = toAWSItem(object);
+      sets.push('version = :version');
+      values[':version'] = awsObject.version;
+   }
+   if (!isUndefined(object.is_finished)) {
+      sets.push('is_finished = :is_finished');
+      values[':is_finished'] = awsObject.is_finished;
+   }
+   if (!isUndefined(object.encounters)) {
+      sets.push('encounters = :encounters');
+      values[':encounters'] = awsObject.encounters;
+   }
+   if (!isUndefined(object.pokemons)) {
+      sets.push('pokemons = :pokemons');
+      values[':pokemons'] = awsObject.pokemons;
+   }
+   if (!isUndefined(object.gyms)) {
+      sets.push('gyms = :gyms');
+      values[':gyms'] = awsObject.gyms;
+   }
+   if (!isUndefined(object.game_rules)) {
+      sets.push('game_rules = :game_rules');
+      values[':game_rules'] = awsObject.game_rules;
+   }
+   const hasUpdates = sets.length > 0;
+   return {
+      updateExpression: hasUpdates ? `set ${sets.join(', ')}` : undefined,
+      expressionAttributeValues: hasUpdates ? values : undefined,
+   };
 }

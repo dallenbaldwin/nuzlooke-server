@@ -1,4 +1,4 @@
-import Game from '../models/models.Game.js';
+import Game from '../models/Game.js';
 import APIResponse from './APIResponse.js';
 
 export function createGame(request, response) {
@@ -39,17 +39,27 @@ export function readGame(request, response) {
    });
 }
 
-// FIXME: this needs to take an id and update what you pass it
 export function updateGame(request, response) {
-   Game.update(request.body, res => {
-      if (res.error)
-         return response
-            .status(500)
-            .send(APIResponse.withError(500, res.error.message, res.error.stack));
+   Game.read(request.params.id, res => {
+      if (!res.data.id) {
+         return response.status(404).send(
+            APIResponse.withError(404, 'Game does not exist', {
+               id: request.params.id,
+            })
+         );
+      } else {
+         // want to make sure we don't accidentally call this, so explicit else
+         Game.update(request.params.id, request.body, res => {
+            if (res.error)
+               return response
+                  .status(500)
+                  .send(APIResponse.withError(500, res.error.message, res.error.stack));
 
-      return response
-         .status(200)
-         .send(APIResponse.withResponse(200, res.message, res.data));
+            return response
+               .status(200)
+               .send(APIResponse.withResponse(200, res.message, res.data));
+         });
+      }
    });
 }
 
