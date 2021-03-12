@@ -7,7 +7,7 @@ const { v4: uuid } = uuid_pkg;
 
 // TODO refactor to include Game Version and Version Family changes
 export default class Game {
-   // {label: String, version: GameVersion }
+   // {label: String, version: GameVersion (Dictionary label) }
    constructor(object) {
       this.id = uuid();
       this.label = object.label;
