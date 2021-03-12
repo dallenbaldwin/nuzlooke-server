@@ -8,9 +8,9 @@ export default versionFamily => {
       case VersionFamily.LETSGO:
          return Object(new LetsGo().gyms);
       case VersionFamily.RUBYSAPPHIRE:
-         return Object(new RubySapphire());
+         return Object(new RubySapphire().gyms);
       case VersionFamily.EMERALD:
-         return Object(new Emerald());
+         return Object(new Emerald().gyms);
       default:
          return null;
    }
