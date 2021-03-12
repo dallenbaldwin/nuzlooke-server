@@ -1,3 +1,9 @@
+export const VersionFamily = Object.freeze({
+   LETSGO: 'letsgo',
+   RUBYSAPPHIRE: 'rubysapphire',
+   EMERALD: 'emerald',
+});
+
 export const GameVersion = Object.freeze({
    LETSGOPIKACHU: {
       label: `Let's Go Pikachu`,
@@ -26,7 +32,6 @@ export const GameVersion = Object.freeze({
          'https://cdn.bulbagarden.net/upload/archive/6/65/20100729165716%21Emerald_EN_boxart.jpg',
       version_family: VersionFamily.EMERALD,
    },
-
 });
 
 export const getVersion = version => {
@@ -35,10 +40,4 @@ export const getVersion = version => {
       artwork_url: GameVersion[version].artwork_url,
       family: GameVersion[version].version_family,
    };
-},
-
-export const VersionFamily = Object.freeze({
-   LETSGO: 'letsgo',
-   RUBYSAPPHIRE: 'rubysapphire',
-   EMERALD: 'emerald',
-});
+};
