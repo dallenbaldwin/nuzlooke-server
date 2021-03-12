@@ -1,19 +1,16 @@
-import * as lets_go from './constants/lets-go.json';
-import * as ruby_sapphire from './constants/ruby-sapphire.json';
-import * as emerald from './constants/emerald.json';
+import { VersionFamily } from '../constants/GameVersion.js';
+import LetsGo from './games/LetsGo.js';
+import Emerald from './games/Emerald.js';
+import RubySapphire from './games/RubySapphire.js';
 
-export default version => {
-   switch (version) {
-      case 'letsgopikachu':
-         return lets_go;
-      case 'letsgoeevee':
-         return lets_go;
-      case 'ruby':
-         return ruby_sapphire;
-      case 'sapphire':
-         return ruby_sapphire;
-      case 'emerald':
-         return emerald;
+export default versionFamily => {
+   switch (versionFamily) {
+      case VersionFamily.LETSGO:
+         return Object(new LetsGo().gyms);
+      case VersionFamily.RUBYSAPPHIRE:
+         return Object(new RubySapphire());
+      case VersionFamily.EMERALD:
+         return Object(new Emerald());
       default:
          return null;
    }
