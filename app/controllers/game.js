@@ -1,5 +1,5 @@
 import Game from '../models/Game.js';
-import APIResponse from './APIResponse.js';
+import APIResponse from '../models/APIResponse.js';
 
 export function createGame(request, response) {
    const errors = getErrors(request.body);
