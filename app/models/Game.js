@@ -1,26 +1,30 @@
 import client from './Client.js';
 import { fromAWSItem, toAWSItem, isUndefined } from '../util/Util.js';
-import GameVersion from './constants/GameVersion.js';
+import { GameVersion, getVersion } from './constants/GameVersion.js';
+import GameGyms from './gyms/GameGyms.js';
 import uuid_pkg from 'uuid';
 const { v4: uuid } = uuid_pkg;
 
+// TODO refactor to include Game Version and Version Family changes
 export default class Game {
-   constructor(game) {
+   // {label: String, version: GameVersion }
+   constructor(object) {
       this.id = uuid();
-      this.game_name = game.game_name || null;
-      this.version = GameVersion(game.version);
-      this.is_finished = game.is_finished || false;
-      this.encounters = game.encounters || [];
-      this.pokemons = game.pokemons || [];
-      this.gyms = game.gyms || [];
-      this.game_rules = game.game_rules || [];
+      this.label = object.label;
+      // FIXME: this needs to be refactored
+      this.version = getVersion(object.version);
+      this.is_finished = false;
+      this.encounters = object.encounters || []; // Encounters(this.version.version_family);
+      this.pokemons = [];
+      this.gyms = object.gyms || []; // GameGyms(this.version.version_family);
+      this.game_rules = [];
    }
-   static async create(game, result) {
+   static async create(object, result) {
       try {
-         const g = new Game(game);
-         const item = toAWSItem(g);
+         const game = new Game(object);
+         const item = toAWSItem(game);
          await client.putItem({ TableName: 'games', Item: item }).promise();
-         result({ message: 'successfully created game', data: g });
+         result({ message: 'successfully created game', data: game });
       } catch (err) {
          result({ message: 'error creating game', error: err });
       }
