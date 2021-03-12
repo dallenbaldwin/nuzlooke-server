@@ -98,13 +98,13 @@ function parseUpdateObject(object) {
    const sets = [];
    const values = {};
    let awsObject = toAWSItem(object);
-   if (!isUndefined(object.game_name)) {
-      sets.push('game_name = :game_name');
-      values[':game_name'] = awsObject.game_name;
+   if (!isUndefined(object.label)) {
+      sets.push('label = :label');
+      values[':label'] = awsObject.label;
    }
-   if (!isUndefined(object.version) || !isUndefined(object.version.version_name)) {
-      const versionData = GameVersion(
-         !isUndefined(object.version_name) ? object.version_name : object.version
+   if (!isUndefined(object.version) || !isUndefined(object.version.label)) {
+      const versionData = getVersion(
+         !isUndefined(object.version.label) ? object.version.label : object.version
       );
       object.version = versionData;
       awsObject = toAWSItem(object);

@@ -1,7 +1,7 @@
 export default class Gym {
-   constructor(gymName, location, dominantType, badge, leader, pokemons) {
+   constructor(label, location, dominantType, badge, leader, pokemons) {
       this.is_defeated = false;
-      this.gym_name = gymName;
+      this.label = label;
       this.location = location;
       this.dominant_type = dominantType;
       this.badge = badge;

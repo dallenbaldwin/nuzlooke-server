@@ -1,6 +1,6 @@
 export default class GymBadge {
-   constructor(name, spriteUrl) {
-      this.badge_name = name;
+   constructor(label, spriteUrl) {
+      this.label = label;
       this.sprite_url = spriteUrl;
    }
 }

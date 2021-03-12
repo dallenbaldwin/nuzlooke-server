@@ -1,6 +1,6 @@
 export default class GymLeader {
-   constructor(name, flavorText, spriteUrl) {
-      this.leader_name = name;
+   constructor(label, flavorText, spriteUrl) {
+      this.label = label;
       this.flavor_text = flavorText;
       this.sprite_url = spriteUrl;
    }

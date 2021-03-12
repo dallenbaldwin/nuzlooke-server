@@ -1,16 +1,7 @@
 export default class GymPokemonMove {
-   constructor(
-      moveName,
-      moveDescription,
-      isPriority,
-      damageClass,
-      type,
-      pp,
-      power,
-      accuracy
-   ) {
-      this.move_name = moveName;
-      this.move_description = moveDescription;
+   constructor(label, description, isPriority, damageClass, type, pp, power, accuracy) {
+      this.label = label;
+      this.description = description;
       this.is_priority = isPriority;
       this.damage_class = damageClass;
       this.type = type;
