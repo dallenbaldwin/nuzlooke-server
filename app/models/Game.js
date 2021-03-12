@@ -2,6 +2,7 @@ import client from './Client.js';
 import { fromAWSItem, toAWSItem, isUndefined } from '../util/Util.js';
 import { GameVersion, getVersion } from './constants/GameVersion.js';
 import GameGyms from './gyms/GameGyms.js';
+import Encounters from './encounters/Encounters.js';
 import uuid_pkg from 'uuid';
 const { v4: uuid } = uuid_pkg;
 
