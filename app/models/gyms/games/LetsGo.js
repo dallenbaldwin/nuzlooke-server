@@ -28,170 +28,186 @@ export default class LetsGo {
    }
    getBrock() {
       const pokemons = [
-         new GymPokemon(
-            'Geodude',
-            'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/74.png',
-            'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/74.png',
-            [PokemonType.ROCK, PokemonType.GROUND],
-            11,
-            UtilConst.NONE,
-            UtilConst.NONE,
-            [
-               new GymPokemonMove(
-                  'Tackle',
-                  'A physical attack in which the user charges and slams into the target with its whole body.',
-                  false,
-                  DamageClass.PHYSICAL,
-                  PokemonType.NORMAL,
-                  35,
-                  40,
-                  100
-               ),
-            ]
-         ),
-         new GymPokemon(
-            'Onix',
-            'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/95.png',
-            'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/95.png',
-            [PokemonType.ROCK, PokemonType.GROUND],
-            12,
-            UtilConst.NONE,
-            UtilConst.NONE,
-            [
-               new GymPokemonMove(
-                  'Headbutt',
-                  'The user sticks out its head and attacks by charging straight into the target. This may also make the target flinch.',
-                  false,
-                  DamageClass.PHYSICAL,
-                  PokemonType.NORMAL,
-                  15,
-                  70,
-                  100
-               ),
+         GymPokemon.builder()
+            .withSpecies('Geodude')
+            .withIconUrl(
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/74.png'
+            )
+            .withSpriteUrl(
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/74.png'
+            )
+            .withTypes([PokemonType.ROCK, PokemonType.GROUND])
+            .withLevel(11)
+            .withMoves([
+               GymPokemonMove.builder()
+                  .withLabel('Tackle')
+                  .withDescription(
+                     'A physical attack in which the user charges and slams into the target with its whole body.'
+                  )
+                  .withDamageClass(DamageClass.PHYSICAL)
+                  .withType(PokemonType.NORMAL)
+                  .withPP(35)
+                  .withPower(40)
+                  .withAccuracy(100)
+                  .build(),
+            ])
+            .build(),
+         GymPokemon.builder()
+            .withSpecies('Onix')
+            .withIconUrl(
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/95.png'
+            )
+            .withSpriteUrl(
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/95.png'
+            )
+            .withTypes([PokemonType.ROCK, PokemonType.GROUND])
+            .withLevel(12)
+            .withMoves([
+               GymPokemonMove.builder()
+                  .withLabel('Headbutt')
+                  .withDescription(
+                     'The user sticks out its head and attacks by charging straight into the target. This may also make the target flinch.'
+                  )
+                  .withDamageClass(DamageClass.PHYSICAL)
+                  .withType(PokemonType.NORMAL)
+                  .withPP(15)
+                  .withPower(70)
+                  .withAccuracy(100)
+                  .build(),
                bindMove,
-               new GymPokemonMove(
-                  'Rock Throw',
-                  'The user picks up and throws a small rock at the target to attack.',
-                  false,
-                  DamageClass.PHYSICAL,
-                  PokemonType.ROCK,
-                  15,
-                  50,
-                  90
-               ),
-            ]
-         ),
+               GymPokemonMove.builder()
+                  .withLabel('Rock Throw')
+                  .withDescription(
+                     'The user picks up and throws a small rock at the target to attack.'
+                  )
+                  .withDamageClass(DamageClass.PHYSICAL)
+                  .withType(PokemonType.ROCK)
+                  .withPP(15)
+                  .withPower(50)
+                  .withAccuracy(90)
+                  .build(),
+            ])
+            .build(),
       ];
-      const leader = new GymLeader(
-         'Brock',
-         'The Rock-Solid Pokémon Trainer',
-         'https://cdn.bulbagarden.net/upload/e/e2/VSBrock_PE.png'
-      );
-      const badge = new GymBadge(
-         'Boulder Badge',
-         'https://cdn.bulbagarden.net/upload/archive/d/dd/20160212104017%21Boulder_Badge.png'
-      );
-      return new Gym(
-         'Pewter Gym',
-         'Pewter City',
-         PokemonType.ROCK,
-         badge,
-         leader,
-         pokemons
-      );
+      const leader = GymLeader.builder()
+         .withLabel('Brock')
+         .withFlavorText('The Rock-Solid Pokémon Trainer')
+         .withSpritUrl('https://cdn.bulbagarden.net/upload/e/e2/VSBrock_PE.png')
+         .build();
+      const badge = GymBadge.builder()
+         .withLabel('Boulder Badge')
+         .withSpriteUrl(
+            'https://cdn.bulbagarden.net/upload/archive/d/dd/20160212104017%21Boulder_Badge.png'
+         )
+         .build();
+      return Gym.builder()
+         .withLabel('Pewter Gym')
+         .withLocation('Pewter City')
+         .withDominantType(PokemonType.ROCK)
+         .withBadge(badge)
+         .withLeader(leader)
+         .withPokemons(pokemons)
+         .build();
    }
    getMisty() {
       const pokemons = [
-         new GymPokemon(
-            'Psyduck',
-            'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/54.png',
-            'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/54.png',
-            [PokemonType.WATER],
-            18,
-            UtilConst.NONE,
-            UtilConst.NONE,
-            [
-               new GymPokemonMove(
-                  'Confusion',
-                  'The target is hit by a weak telekinetic force. This may also confuse the target.',
-                  false,
-                  DamageClass.SPECIAL,
-                  PokemonType.PSYCHIC,
-                  25,
-                  50,
-                  100
-               ),
-               new GymPokemonMove(
-                  'Water Gun',
-                  'The target is blasted with a forceful shot of water.',
-                  false,
-                  DamageClass.SPECIAL,
-                  PokemonType.WATER,
-                  25,
-                  40,
-                  100
-               ),
-            ]
-         ),
-         new GymPokemon(
-            'Starmie',
-            'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/121.png',
-            'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/121.png',
-            [PokemonType.WATER, PokemonType.PSYCHIC],
-            19,
-            UtilConst.NONE,
-            UtilConst.NONE,
-            [
-               new GymPokemonMove(
-                  'Scald',
-                  'The user shoots boiling hot water at its target. This may also leave the target with a burn.',
-                  false,
-                  DamageClass.SPECIAL,
-                  PokemonType.WATER,
-                  15,
-                  80,
-                  100
-               ),
-               new GymPokemonMove(
-                  'Swift',
-                  'Star-shaped rays are shot at the opposing Pokémon. This attack never misses.',
-                  false,
-                  DamageClass.SPECIAL,
-                  PokemonType.NORMAL,
-                  20,
-                  60,
-                  null
-               ),
-               new GymPokemonMove(
-                  'Psywave',
-                  'The target is attacked with an odd psychic wave. The attack varies in intensity.',
-                  false,
-                  DamageClass.SPECIAL,
-                  PokemonType.PSYCHIC,
-                  15,
-                  null,
-                  100
-               ),
-            ]
-         ),
+         GymPokemon.builder()
+            .withSpecies('Psyduck')
+            .withIconUrl(
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/54.png'
+            )
+            .withSpriteUrl(
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/54.png'
+            )
+            .withTypes([PokemonType.WATER])
+            .withLevel(18)
+            .withMoves([
+               GymPokemonMove.builder()
+                  .withLabel('Confusion')
+                  .withDescription(
+                     'The target is hit by a weak telekinetic force. This may also confuse the target.'
+                  )
+                  .withDamageClass(DamageClass.SPECIAL)
+                  .withType(PokemonType.PSYCHIC)
+                  .withPP(25)
+                  .withPower(50)
+                  .withAccuracy(100)
+                  .build(),
+               GymPokemonMove.builder()
+                  .withLabel('Water Gun')
+                  .withDescription('The target is blasted with a forceful shot of water.')
+                  .withDamageClass(DamageClass.SPECIAL)
+                  .withType(PokemonType.WATER)
+                  .withPP(25)
+                  .withPower(40)
+                  .withAccuracy(100)
+                  .build(),
+            ])
+            .build(),
+         GymPokemon.builder()
+            .withSpecies('Starmie')
+            .withIconUrl(
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/121.png'
+            )
+            .withSpriteUrl(
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/121.png'
+            )
+            .withTypes([PokemonType.WATER, PokemonType.PSYCHIC])
+            .withLevel(19)
+            .withMoves([
+               GymPokemonMove.builder()
+                  .withLabel('Scald')
+                  .withDescription(
+                     'The user shoots boiling hot water at its target. This may also leave the target with a burn.'
+                  )
+                  .withDamageClass(DamageClass.SPECIAL)
+                  .withType(PokemonType.WATER)
+                  .withPP(15)
+                  .withPower(80)
+                  .withAccuracy(100)
+                  .build(),
+               GymPokemonMove.builder()
+                  .withLabel('Swift')
+                  .withDescription(
+                     'Star-shaped rays are shot at the opposing Pokémon. This attack never misses.'
+                  )
+                  .withDamageClass(DamageClass.SPECIAL)
+                  .withType(PokemonType.NORMAL)
+                  .withPP(20)
+                  .withPower(60)
+                  .build(),
+               GymPokemonMove.builder()
+                  .withLabel('Psywave')
+                  .withDescription(
+                     'The target is attacked with an odd psychic wave. The attack varies in intensity.'
+                  )
+                  .withDamageClass(DamageClass.SPECIAL)
+                  .withType(PokemonType.PSYCHIC)
+                  .withPP(15)
+                  .withAccuracy(100)
+                  .build(),
+            ])
+            .build(),
       ];
-      const leader = new GymLeader(
-         'Misty',
-         'The Tomboyish Mermaid',
-         'https://cdn.bulbagarden.net/upload/0/0c/VSMisty_PE.png'
-      );
-      const badge = new GymBadge(
-         'Cascade Badge',
-         'https://cdn.bulbagarden.net/upload/archive/9/9c/20160212103957%21Cascade_Badge.png'
-      );
-      return new Gym(
-         'Cerulean Gym',
-         'Cerulean City',
-         PokemonType.WATER,
-         badge,
-         leader,
-         pokemons
-      );
+      const leader = GymLeader.builder()
+         .withLabel('Misty')
+         .withFlavorText('The Tomboyish Mermaid')
+         .withSpritUrl('https://cdn.bulbagarden.net/upload/0/0c/VSMisty_PE.png')
+         .build();
+      const badge = GymBadge.builder()
+         .withLabel('Cascade Badge')
+         .withSpriteUrl(
+            'https://cdn.bulbagarden.net/upload/archive/9/9c/20160212103957%21Cascade_Badge.png'
+         )
+         .build();
+      return Gym.builder()
+         .withLabel('Cerulean Gym')
+         .withLocation('Cerulean City')
+         .withDominantType(PokemonType.WATER)
+         .withBadge(badge)
+         .withLeader(leader)
+         .withPokemons(pokemons)
+         .build();
    }
    getSurge() {
       const thunderbolt = GymPokemonMove.builder()
@@ -201,7 +217,6 @@ export default class LetsGo {
          .withAccuracy(100)
          .withPP(15)
          .withPower(90)
-         .withIsPriority(false)
          .withDescription(
             `A strong electric blast crashes down on the target. This may also leave the target with paralysis.`
          )
@@ -225,7 +240,6 @@ export default class LetsGo {
                   .withType(PokemonType.NORMAL)
                   .withPower(60)
                   .withPP(20)
-                  .withIsPriority(false)
                   .withDescription(
                      `Star-shaped rays are shot at the opposing Pokémon. This attack never misses.`
                   )
@@ -243,8 +257,6 @@ export default class LetsGo {
             )
             .withLevel(25)
             .withTypes([PokemonType.STEEL, PokemonType.ELECTRIC])
-            .withAbility(UtilConst.NONE)
-            .withHeldItem(UtilConst.NONE)
             .withMoves([
                thunderbolt,
                GymPokemonMove.builder()
@@ -253,7 +265,6 @@ export default class LetsGo {
                   .withType(PokemonType.NORMAL)
                   .withPP(20)
                   .withAccuracy(90)
-                  .withIsPriority(false)
                   .withDescription(
                      `The target is hit with a destructive shock wave that always inflicts 20 HP damage.`
                   )
@@ -269,8 +280,6 @@ export default class LetsGo {
                'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/26.png'
             )
             .withLevel(26)
-            .withAbility(UtilConst.NONE)
-            .withHeldItem(UtilConst.NONE)
             .withTypes([PokemonType.ELECTRIC])
             .withMoves([
                thunderbolt,
@@ -285,7 +294,6 @@ export default class LetsGo {
                   .withDescription(
                      `The target is quickly kicked twice in succession using both feet.`
                   )
-                  .withIsPriority(false)
                   .build(),
             ])
             .build(),
@@ -318,7 +326,6 @@ export default class LetsGo {
          .withDescription(
             `A nutrient-draining attack. The user's HP is restored by half the damage taken by the target.`
          )
-         .withIsPriority(false)
          .withDamageClass(DamageClass.SPECIAL)
          .withType(PokemonType.GRASS)
          .withLabel('Mega Drain')
@@ -334,8 +341,6 @@ export default class LetsGo {
                'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/114.png'
             )
             .withTypes([PokemonType.GRASS])
-            .withAbility(UtilConst.NONE)
-            .withHeldItem(UtilConst.NONE)
             .withMoves([
                megaDrain,
                bindMove,
@@ -345,7 +350,6 @@ export default class LetsGo {
                   .withDamageClass(DamageClass.STATUS)
                   .withType(PokemonType.GRASS)
                   .withPP(15)
-                  .withIsPriority(false)
                   .withDescription(
                      `The user scatters a big cloud of sleep-inducing dust around the target.`
                   )
@@ -354,8 +358,6 @@ export default class LetsGo {
             .build(),
          GymPokemon.builder()
             .withSpecies('Weepinbell')
-            .withAbility(UtilConst.NONE)
-            .withHeldItem(UtilConst.NONE)
             .withTypes([PokemonType.GRASS, PokemonType.POISON])
             .withLevel(33)
             .withSpriteUrl(
@@ -368,8 +370,6 @@ export default class LetsGo {
             .build(),
          GymPokemon.builder()
             .withSpecies('Vileplume')
-            .withAbility(UtilConst.NONE)
-            .withHeldItem(UtilConst.NONE)
             .withLevel(34)
             .withTypes([PokemonType.GRASS, PokemonType.POISON])
             .withSpriteUrl(
@@ -387,7 +387,6 @@ export default class LetsGo {
                   .withPower(95)
                   .withDamageClass(DamageClass.SPECIAL)
                   .withType(PokemonType.FAIRY)
-                  .withIsPriority(false)
                   .withDescription(
                      `Borrowing the power of the moon, the user attacks the target. This may also lower the target's Sp. Atk stat.`
                   )
@@ -415,6 +414,7 @@ export default class LetsGo {
          .withPokemons(pokemons)
          .build();
    }
+   // TODO
    getKoga() {
       const pokemons = [];
       const leader = new GymLeader();
@@ -422,406 +422,442 @@ export default class LetsGo {
       return new Gym(null, null, null, badge, leader, pokemons);
    }
    getSabrina() {
-      const psychic = new GymPokemonMove(
-         'Psychic',
-         `The target is hit by a strong telekinetic force. This may also lower the target's Sp. Def stat.`,
-         false,
-         DamageClass.SPECIAL,
-         PokemonType.PSYCHIC,
-         10,
-         90,
-         100
-      );
+      const psychic = GymPokemonMove.builder()
+         .withLabel('Psychic')
+         .withDescription(
+            `The target is hit by a strong telekinetic force. This may also lower the target's Sp. Def stat.`
+         )
+         .withDamageClass(DamageClass.SPECIAL)
+         .withType(PokemonType.PSYCHIC)
+         .withPP(10)
+         .withPower(90)
+         .withAccuracy(100)
+         .build();
       const pokemons = [
-         new GymPokemon(
-            'Mr. Mime',
-            'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/122.png',
-            'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/122.png',
-            [PokemonType.PSYCHIC, PokemonType.FAIRY],
-            43,
-            UtilConst.NONE,
-            UtilConst.NONE,
-            [
+         GymPokemon.builder()
+            .withSpecies('Mr. Mime')
+            .withIconUrl(
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/122.png'
+            )
+            .withSpriteUrl(
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/122.png'
+            )
+            .withTypes([PokemonType.PSYCHIC, PokemonType.FAIRY])
+            .withLevel(43)
+            .withMoves([
                psychic,
-               new GymPokemonMove(
-                  'Reflect',
-                  `A wondrous wall of light is put up to reduce damage from physical attacks for five turns.`,
-                  false,
-                  DamageClass.STATUS,
-                  PokemonType.PSYCHIC,
-                  20,
-                  null,
-                  null
-               ),
+               GymPokemonMove.builder()
+                  .withLabel('Reflect')
+                  .withDescription(
+                     `A wondrous wall of light is put up to reduce damage from physical attacks for five turns.`
+                  )
+                  .withDamageClass(DamageClass.STATUS)
+                  .withType(PokemonType.PSYCHIC)
+                  .withPP(20)
+                  .build(),
                lightscreen,
-               new GymPokemonMove(
-                  'Double Slap',
-                  `The target is slapped repeatedly, back and forth, two to five times in a row.`,
-                  false,
-                  DamageClass.PHYSICAL,
-                  PokemonType.NORMAL,
-                  10,
-                  15,
-                  85
-               ),
-            ]
-         ),
-         new GymPokemon(
-            'Slowbro',
-            'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/80.png',
-            'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/80.png',
-            [PokemonType.WATER, PokemonType.PSYCHIC],
-            43,
-            UtilConst.NONE,
-            UtilConst.NONE,
-            [
+               GymPokemonMove.builder()
+                  .withLabel('Double Slap')
+                  .withDescription(
+                     `The target is slapped repeatedly, back and forth, two to five times in a row.`
+                  )
+                  .withDamageClass(DamageClass.PHYSICAL)
+                  .withType(PokemonType.NORMAL)
+                  .withPP(10)
+                  .withPower(15)
+                  .withAccuracy(85)
+                  .build(),
+            ])
+            .build(),
+         GymPokemon.builder()
+            .withSpecies('Slowbro')
+            .withIconUrl(
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/80.png'
+            )
+            .withSpriteUrl(
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/80.png'
+            )
+            .withTypes([PokemonType.WATER, PokemonType.PSYCHIC])
+            .withLevel(43)
+            .withMoves([
                psychic,
-               new GymPokemonMove(
-                  'Yawn',
-                  'The user lets loose a huge yawn that lulls the target into falling asleep on the next turn.',
-                  false,
-                  DamageClass.STATUS,
-                  PokemonType.NORMAL,
-                  10,
-                  null,
-                  null
-               ),
-               new GymPokemonMove(
-                  'Surf',
-                  `The user attacks everything around it by swamping its surroundings with a giant wave.`,
-                  false,
-                  DamageClass.SPECIAL,
-                  PokemonType.WATER,
-                  15,
-                  90,
-                  100
-               ),
-               new GymPokemonMove(
-                  'Calm Mind',
-                  'The user quietly focuses its mind and calms its spirit to raise its Sp. Atk and Sp. Def stats.',
-                  false,
-                  DamageClass.STATUS,
-                  PokemonType.PSYCHIC,
-                  20,
-                  null,
-                  null
-               ),
-            ]
-         ),
-         new GymPokemon(
-            'Jynx',
-            'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/124.png',
-            'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/124.png',
-            [PokemonType.ICE, PokemonType.PSYCHIC],
-            43,
-            UtilConst.NONE,
-            UtilConst.NONE,
-            [
+               GymPokemonMove.builder()
+                  .withLabel('Yawn')
+                  .withDescription(
+                     'The user lets loose a huge yawn that lulls the target into falling asleep on the next turn.'
+                  )
+                  .withDamageClass(DamageClass.STATUS)
+                  .withType(PokemonType.NORMAL)
+                  .withPP(10)
+                  .build(),
+               GymPokemonMove.builder()
+                  .withLabel('Surf')
+                  .withDescription(
+                     `The user attacks everything around it by swamping its surroundings with a giant wave.`
+                  )
+                  .withDamageClass(DamageClass.SPECIAL)
+                  .withType(PokemonType.WATER)
+                  .withPP(15)
+                  .withPower(90)
+                  .withAccuracy(100)
+                  .build(),
+               GymPokemonMove.builder()
+                  .withLabel('Calm Mind')
+                  .withDescription(
+                     'The user quietly focuses its mind and calms its spirit to raise its Sp. Atk and Sp. Def stats.'
+                  )
+                  .withDamageClass(DamageClass.STATUS)
+                  .withType(PokemonType.PSYCHIC)
+                  .withPP(20)
+                  .build(),
+            ])
+            .build(),
+         GymPokemon.builder()
+            .withSpecies('Jynx')
+            .withIconUrl(
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/124.png'
+            )
+            .withSpriteUrl(
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/124.png'
+            )
+            .withTypes([PokemonType.ICE, PokemonType.PSYCHIC])
+            .withLevel(43)
+            .withMoves([
                psychic,
-               new GymPokemonMove(
-                  'Lovely Kiss',
-                  `With a scary face, the user tries to force a kiss on the target. If it succeeds, the target falls asleep.`,
-                  false,
-                  DamageClass.STATUS,
-                  PokemonType.NORMAL,
-                  10,
-                  null,
-                  75
-               ),
-               new GymPokemonMove(
-                  'Ice Punch',
-                  'The target is punched with an icy fist. This may also leave the target frozen.',
-                  false,
-                  DamageClass.PHYSICAL,
-                  PokemonType.ICE,
-                  15,
-                  75,
-                  100
-               ),
-            ]
-         ),
-         new GymPokemon(
-            'Alakazam',
-            'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/65.png',
-            'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/65.png',
-            [PokemonType.PSYCHIC],
-            44,
-            UtilConst.NONE,
-            UtilConst.NONE,
-            [
+               GymPokemonMove.builder()
+                  .withLabel('Lovely Kiss')
+                  .withDescription(
+                     `With a scary face, the user tries to force a kiss on the target. If it succeeds, the target falls asleep.`
+                  )
+                  .withDamageClass(DamageClass.STATUS)
+                  .withType(PokemonType.NORMAL)
+                  .withPP(10)
+                  .withAccuracy(75)
+                  .build(),
+               GymPokemonMove.builder()
+                  .withLabel('Ice Punch')
+                  .withDescription(
+                     'The target is punched with an icy fist. This may also leave the target frozen.'
+                  )
+                  .withDamageClass(DamageClass.PHYSICAL)
+                  .withType(PokemonType.ICE)
+                  .withPP(15)
+                  .withPower(75)
+                  .withAccuracy(100)
+                  .build(),
+            ])
+            .build(),
+         GymPokemon.builder()
+            .withSpecies('Alakazam')
+            .withIconUrl(
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/65.png'
+            )
+            .withSpriteUrl(
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/65.png'
+            )
+            .withTypes([PokemonType.PSYCHIC])
+            .withLevel(44)
+            .withMoves([
                psychic,
-               new GymPokemonMove(
-                  'Night Shade',
-                  `The user makes the target see a frightening mirage. It inflicts damage equal to the user's level.`,
-                  false,
-                  DamageClass.SPECIAL,
-                  PokemonType.GHOST,
-                  15,
-                  null,
-                  100
-               ),
-            ]
-         ),
+               GymPokemonMove.builder()
+                  .withLabel('Night Shade')
+                  .withDescription(
+                     `The user makes the target see a frightening mirage. It inflicts damage equal to the user's level.`
+                  )
+                  .withDamageClass(DamageClass.SPECIAL)
+                  .withType(PokemonType.GHOST)
+                  .withPP(15)
+                  .withAccuracy(100)
+                  .build(),
+            ])
+            .build(),
       ];
-      const badge = new GymBadge(
-         'Marsh Badge',
-         'https://cdn.bulbagarden.net/upload/archive/6/6b/20160212103714%21Marsh_Badge.png'
-      );
-      const leader = new GymLeader(
-         'Sabrina',
-         'The Mistress of Psychic-type Pokémon',
-         'https://cdn.bulbagarden.net/upload/2/20/VSSabrina_PE.png'
-      );
-      return new Gym(
-         'Saffron Gym',
-         'Saffron City',
-         PokemonType.PSYCHIC,
-         badge,
-         leader,
-         pokemons
-      );
+      const badge = GymBadge.builder()
+         .withLabel('Marsh Badge')
+         .withSpriteUrl(
+            'https://cdn.bulbagarden.net/upload/archive/6/6b/20160212103714%21Marsh_Badge.png'
+         )
+         .build();
+      const leader = GymLeader.builder()
+         .withLabel('Sabrina')
+         .withFlavorText('The Mistress of Psychic-type Pokémon')
+         .withSpritUrl('https://cdn.bulbagarden.net/upload/2/20/VSSabrina_PE.png')
+         .build();
+      return Gym.builder()
+         .withLabel('Saffron Gym')
+         .withLocation('Saffron City')
+         .withDominantType(PokemonType.PSYCHIC)
+         .withBadge(badge)
+         .withLeader(leader)
+         .withPokemons(pokemons)
+         .build();
    }
    getBlaine() {
-      const flareBlitz = new GymPokemonMove(
-         'Flare Blitz',
-         'The user cloaks itself in fire and charges the target. This also damages the user quite a lot. This may leave the target with a burn.',
-         false,
-         DamageClass.PHYSICAL,
-         PokemonType.FIRE,
-         15,
-         120,
-         100
-      );
-
+      const flareBlitz = GymPokemonMove.builder()
+         .withLabel('Flare Blitz')
+         .withDescription(
+            'The user cloaks itself in fire and charges the target. This also damages the user quite a lot. This may leave the target with a burn.'
+         )
+         .withDamageClass(DamageClass.PHYSICAL)
+         .withType(PokemonType.FIRE)
+         .withPP(15)
+         .withPower(120)
+         .withAccuracy(100)
+         .build();
       const pokemons = [
-         new GymPokemon(
-            'Magmar',
-            'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/126.png',
-            'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/126.png',
-            [PokemonType.FIRE],
-            47,
-            UtilConst.NONE,
-            UtilConst.NONE,
-            [
-               new GymPokemonMove(
-                  'Flamethrower',
-                  'The target is scorched with an intense blast of fire. This may also leave the target with a burn.',
-                  false,
-                  DamageClass.SPECIAL,
-                  PokemonType.FIRE,
-                  15,
-                  90,
-                  100
-               ),
-               new GymPokemonMove(
-                  'Low Kick',
-                  `A powerful low kick that makes the target fall over. The heavier the target, the greater the move's power.`,
-                  false,
-                  DamageClass.PHYSICAL,
-                  PokemonType.FIGHTING,
-                  20,
-                  null,
-                  100
-               ),
-               new GymPokemonMove(
-                  'Confuse Ray',
-                  'The target is exposed to a sinister ray that triggers confusion.',
-                  false,
-                  DamageClass.STATUS,
-                  PokemonType.GHOST,
-                  10,
-                  null,
-                  100
-               ),
-            ]
-         ),
-         new GymPokemon(
-            'Rapidash',
-            'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/78.png',
-            'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/78.png',
-            [PokemonType.FIRE],
-            47,
-            UtilConst.NONE,
-            UtilConst.NONE,
-            [
+         GymPokemon.builder()
+            .withSpecies('Magmar')
+            .withIconUrl(
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/126.png'
+            )
+            .withSpriteUrl(
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/126.png'
+            )
+            .withTypes([PokemonType.FIRE])
+            .withLevel(47)
+            .withMoves([
+               GymPokemonMove.builder()
+                  .withLabel('Flamethrower')
+                  .withDescription(
+                     'The target is scorched with an intense blast of fire. This may also leave the target with a burn.'
+                  )
+                  .withDamageClass(DamageClass.SPECIAL)
+                  .withType(PokemonType.FIRE)
+                  .withPP(15)
+                  .withPower(90)
+                  .withAccuracy(100)
+                  .build(),
+               GymPokemonMove.builder()
+                  .withLabel('Low Kick')
+                  .withDescription(
+                     `A powerful low kick that makes the target fall over. The heavier the target, the greater the move's power.`
+                  )
+                  .withDamageClass(DamageClass.PHYSICAL)
+                  .withType(PokemonType.FIGHTING)
+                  .withPP(20)
+                  .withAccuracy(100)
+                  .build(),
+               GymPokemonMove.builder()
+                  .withLabel('Confuse Ray')
+                  .withDescription(
+                     'The target is exposed to a sinister ray that triggers confusion.'
+                  )
+                  .withDamageClass(DamageClass.STATUS)
+                  .withType(PokemonType.GHOST)
+                  .withPP(10)
+                  .withAccuracy(100)
+                  .build(),
+            ])
+            .build(),
+         GymPokemon.builder()
+            .withSpecies('Rapidash')
+            .withIconUrl(
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/78.png'
+            )
+            .withSpriteUrl(
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/78.png'
+            )
+            .withTypes([PokemonType.FIRE])
+            .withLevel(47)
+            .withMoves([
                flareBlitz,
                quickAttack,
-               new GymPokemonMove(
-                  'Fury Attack',
-                  'The target is jabbed repeatedly with a horn or beak two to five times in a row.',
-                  false,
-                  DamageClass.PHYSICAL,
-                  PokemonType.NORMAL,
-                  20,
-                  15,
-                  85
-               ),
-            ]
-         ),
-         new GymPokemon(
-            'Ninetales',
-            'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/38.png',
-            'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/38.png',
-            [PokemonType.FIRE],
-            47,
-            UtilConst.NONE,
-            UtilConst.NONE,
-            [
-               new GymPokemonMove(
-                  'Fire Blast',
-                  'The target is attacked with an intense blast of all-consuming fire. This may also leave the target with a burn.',
-                  false,
-                  DamageClass.SPECIAL,
-                  PokemonType.FIRE,
-                  5,
-                  110,
-                  85
-               ),
+               GymPokemonMove.builder()
+                  .withLabel('Fury Attack')
+                  .withDescription(
+                     'The target is jabbed repeatedly with a horn or beak two to five times in a row.'
+                  )
+                  .withDamageClass(DamageClass.PHYSICAL)
+                  .withType(PokemonType.NORMAL)
+                  .withPP(20)
+                  .withPower(15)
+                  .withAccuracy(85)
+                  .build(),
+            ])
+            .build(),
+         GymPokemon.builder()
+            .withSpecies('Ninetales')
+            .withIconUrl(
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/38.png'
+            )
+            .withSpriteUrl(
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/38.png'
+            )
+            .withTypes([PokemonType.FIRE])
+            .withLevel(47)
+            .withMoves([
+               GymPokemonMove.builder()
+                  .withLabel('Fire Blast')
+                  .withDescription(
+                     'The target is attacked with an intense blast of all-consuming fire. This may also leave the target with a burn.'
+                  )
+                  .withDamageClass(DamageClass.SPECIAL)
+                  .withType(PokemonType.FIRE)
+                  .withPP(5)
+                  .withPower(110)
+                  .withAccuracy(85)
+                  .build(),
                quickAttack,
-            ]
-         ),
-         new GymPokemon(
-            'Arcanine',
-            'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/59.png',
-            'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/59.png',
-            [PokemonType.FIRE],
-            48,
-            UtilConst.NONE,
-            UtilConst.NONE,
-            [
+            ])
+            .build(),
+         GymPokemon.builder()
+            .withSpecies('Arcanine')
+            .withIconUrl(
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/59.png'
+            )
+            .withSpriteUrl(
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/59.png'
+            )
+            .withTypes([PokemonType.FIRE])
+            .withLevel(48)
+            .withMoves([
                flareBlitz,
-               new GymPokemonMove(
-                  'Outrage',
-                  'The user rampages and attacks for two to three turns. The user then becomes confused.',
-                  false,
-                  DamageClass.PHYSICAL,
-                  PokemonType.DRAGON,
-                  10,
-                  120,
-                  100
-               ),
+               GymPokemonMove.builder()
+                  .withLabel('Outrage')
+                  .withDescription(
+                     'The user rampages and attacks for two to three turns. The user then becomes confused.'
+                  )
+                  .withDamageClass(DamageClass.PHYSICAL)
+                  .withType(PokemonType.DRAGON)
+                  .withPP(10)
+                  .withPower(120)
+                  .withAccuracy(100)
+                  .build(),
                crunch,
-            ]
-         ),
+            ])
+            .build(),
       ];
-      const leader = new GymLeader(
-         'Blaine',
-         'The Hotheaded Quiz Master!',
-         'https://cdn.bulbagarden.net/upload/1/11/VSBlaine_PE.png'
-      );
-      const badge = new GymBadge(
-         'Volcano Badge',
-         'https://cdn.bulbagarden.net/upload/archive/1/12/20160212101506%21Volcano_Badge.png'
-      );
-      return new Gym(
-         'Cinnabar Gym',
-         'Cinnabar Island',
-         PokemonType.FIRE,
-         badge,
-         leader,
-         pokemons
-      );
+      const leader = GymLeader.builder()
+         .withLabel('Blaine')
+         .withFlavorText('The Hotheaded Quiz Master!')
+         .withSpritUrl('https://cdn.bulbagarden.net/upload/1/11/VSBlaine_PE.png')
+         .build();
+      const badge = GymBadge.builder()
+         .withLabel('Volcano Badge')
+         .withSpriteUrl(
+            'https://cdn.bulbagarden.net/upload/archive/1/12/20160212101506%21Volcano_Badge.png'
+         )
+         .build();
+      return Gym.builder()
+         .withLabel('Cinnabar Gym')
+         .withLocation('Cinnabar Island')
+         .withDominantType(PokemonType.FIRE)
+         .withBadge(badge)
+         .withLeader(leader)
+         .withPokemons(pokemons)
+         .build();
    }
    getGiovanni() {
-      const earthquake = new GymPokemonMove(
-         'Earthquake',
-         'The user sets off an earthquake that strikes every Pokémon around it.',
-         false,
-         DamageClass.PHYSICAL,
-         PokemonType.GROUND,
-         10,
-         100,
-         100
-      );
-      const megahorn = new GymPokemonMove(
-         'Megahorn',
-         'Using its tough and impressive horn, the user rams into the target with no letup.',
-         false,
-         DamageClass.PHYSICAL,
-         PokemonType.BUG,
-         10,
-         120,
-         85
-      );
+      const earthquake = GymPokemonMove.builder()
+         .withLabel('Earthquake')
+         .withDescription(
+            'The user sets off an earthquake that strikes every Pokémon around it.'
+         )
+         .withDamageClass(DamageClass.PHYSICAL)
+         .withType(PokemonType.GROUND)
+         .withPP(10)
+         .withPower(100)
+         .withAccuracy(100)
+         .build();
+      const megahorn = GymPokemonMove.builder()
+         .withLabel('Megahorn')
+         .withDescription(
+            'Using its tough and impressive horn, the user rams into the target with no letup.'
+         )
+         .withDamageClass(DamageClass.PHYSICAL)
+         .withType(PokemonType.BUG)
+         .withPP(10)
+         .withPower(120)
+         .withAccuracy(85)
+         .build();
       const pokemons = [
-         new GymPokemon(
-            'Dugtrio',
-            'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/51.png',
-            'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/51.png',
-            [PokemonType.GROUND],
-            49,
-            UtilConst.NONE,
-            UtilConst.NONE,
-            [
-               new GymPokemonMove(
-                  'Slash',
-                  'The target is attacked with a slash of claws or blades. Critical hits land more easily.',
-                  false,
-                  DamageClass.PHYSICAL,
-                  PokemonType.NORMAL,
-                  20,
-                  70,
-                  100
-               ),
-               new GymPokemonMove(
-                  'Sucker Punch',
-                  'This move enables the user to attack first. This move fails if the target is not readying an attack.',
-                  true,
-                  DamageClass.PHYSICAL,
-                  PokemonType.DARK,
-                  5,
-                  70,
-                  100
-               ),
+         GymPokemon.builder()
+            .withSpecies('Dugtrio')
+            .withIconUrl(
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/51.png'
+            )
+            .withSpriteUrl(
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/51.png'
+            )
+            .withTypes([PokemonType.GROUND])
+            .withLevel(49)
+            .withMoves([
+               GymPokemonMove.withLabel('Slash')
+                  .withDescription(
+                     'The target is attacked with a slash of claws or blades. Critical hits land more easily.'
+                  )
+                  .withDamageClass(DamageClass.PHYSICAL)
+                  .withType(PokemonType.NORMAL)
+                  .withPP(20)
+                  .withPower(70)
+                  .withAccuracy(100)
+                  .build(),
+               GymPokemonMove.builder()
+                  .withLabel('Sucker Punch')
+                  .withDescription(
+                     'This move enables the user to attack first. This move fails if the target is not readying an attack.'
+                  )
+                  .withIsPriority()
+                  .withDamageClass(DamageClass.PHYSICAL)
+                  .withType(PokemonType.DARK)
+                  .withPP(5)
+                  .withPower(70)
+                  .withAccuracy(100)
+                  .build(),
                earthquake,
-            ]
-         ),
-         new GymPokemon(
-            'Nidoqueen',
-            'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/31.png',
-            'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/31.png',
-            [PokemonType.POISON, PokemonType.GROUND],
-            49,
-            UtilConst.NONE,
-            UtilConst.NONE,
-            [
-               new GymPokemonMove(
-                  'Super Fang',
-                  `The user chomps hard on the target with its sharp front fangs. This cuts the target's HP in half.`,
-                  false,
-                  DamageClass.PHYSICAL,
-                  PokemonType.NORMAL,
-                  10,
-                  null,
-                  90
-               ),
+            ])
+            .build(),
+         GymPokemon.builder()
+            .withSpecies('Nidoqueen')
+            .withIconUrl(
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/31.png'
+            )
+            .withSpriteUrl(
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/31.png'
+            )
+            .withTypes([PokemonType.POISON, PokemonType.GROUND])
+            .withLevel(49)
+            .withMoves([
+               GymPokemonMove.builder()
+                  .withLabel('Super Fang')
+                  .withDescription(
+                     `The user chomps hard on the target with its sharp front fangs. This cuts the target's HP in half.`
+                  )
+                  .withDamageClass(DamageClass.PHYSICAL)
+                  .withType(PokemonType.NORMAL)
+                  .withPP(10)
+                  .withAccuracy(90)
+                  .build(),
                earthquake,
                crunch,
-            ]
-         ),
-         new GymPokemon(
-            'Nidoking',
-            'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/34.png',
-            'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/34.png',
-            [PokemonType.POISON, PokemonType.GROUND],
-            49,
-            UtilConst.NONE,
-            UtilConst.NONE,
-            [
+            ])
+            .build(),
+         GymPokemon.builder()
+            .withSpecies('Nidoking')
+            .withIconUrl(
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/34.png'
+            )
+            .withSpriteUrl(
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/34.png'
+            )
+            .withTypes([PokemonType.POISON, PokemonType.GROUND])
+            .withLevel(49)
+            .withMoves([
                megahorn,
                earthquake,
                poisonJab,
-               new GymPokemonMove(
-                  'Horn Drill',
-                  'The user stabs the target with a horn that rotates like a drill. The target faints instantly if this attack hits.',
-                  false,
-                  DamageClass.PHYSICAL,
-                  PokemonType.NORMAL,
-                  null,
-                  30
-               ),
-            ]
-         ),
+               GymPokemonMove.builder()
+                  .withLabel('Horn Drill')
+                  .withDescription(
+                     'The user stabs the target with a horn that rotates like a drill. The target faints instantly if this attack hits.'
+                  )
+                  .withDamageClass(DamageClass.PHYSICAL)
+                  .withType(PokemonType.NORMAL)
+                  .withPP(5)
+                  .withAccuracy(30)
+                  .build(),
+            ])
+            .build(),
          new GymPokemon(
             'Rhydon',
             'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/112.png',
@@ -832,37 +868,40 @@ export default class LetsGo {
             UtilConst.NONE,
             [
                earthquake,
-               new GymPokemonMove(
-                  'Rock Slide',
-                  'Large boulders are hurled at the opposing Pokémon to inflict damage. This may also make the opposing Pokémon flinch.',
-                  false,
-                  DamageClass.PHYSICAL,
-                  PokemonType.ROCK,
-                  10,
-                  75,
-                  90
-               ),
+               GymPokemonMove.builder()
+                  .withLabel('Rock Slide')
+                  .withDescription(
+                     'Large boulders are hurled at the opposing Pokémon to inflict damage. This may also make the opposing Pokémon flinch.'
+                  )
+                  .withDamageClass(DamageClass.PHYSICAL)
+                  .withType(PokemonType.ROCK)
+                  .withPP(10)
+                  .withPower(75)
+                  .withAccuracy(90)
+                  .build(),
                megahorn,
             ]
          ),
       ];
-      const leader = new GymLeader(
-         '...',
-         'The rest of the text is illegible...',
-         'https://cdn.bulbagarden.net/upload/4/4a/VSGiovanni_PE.png'
-      );
-      const badge = new GymBadge(
-         'Earth Badge',
-         'https://cdn.bulbagarden.net/upload/archive/7/78/20160212101002%21Earth_Badge.png'
-      );
-      return new Gym(
-         'Viridian Gym',
-         'Viridian City',
-         PokemonType.GROUND,
-         badge,
-         leader,
-         pokemons
-      );
+      const leader = GymLeader.builder()
+         .withLabel('...')
+         .withFlavorText('The rest of the text is illegible...')
+         .withSpritUrl('https://cdn.bulbagarden.net/upload/4/4a/VSGiovanni_PE.png')
+         .build();
+      const badge = GymBadge.builder()
+         .withLabel('Earth Badge')
+         .withSpriteUrl(
+            'https://cdn.bulbagarden.net/upload/archive/7/78/20160212101002%21Earth_Badge.png'
+         )
+         .build();
+      return Gym.builder()
+         .withLabel('Viridian Gym')
+         .withLocation('Viridian City')
+         .withDominantType(PokemonType.GROUND)
+         .withBadge(badge)
+         .withLeader(leader)
+         .withPokemons(pokemons)
+         .build();
    }
 }
 
@@ -871,7 +910,6 @@ const poisonJab = GymPokemonMove.builder()
    .withDescription(
       'The target is stabbed with a tentacle or arm steeped in poison. This may also poison the target.'
    )
-   .withIsPriority(false)
    .withDamageClass(DamageClass.PHYSICAL)
    .withType(PokemonType.POISON)
    .withPP(20)
@@ -884,7 +922,6 @@ const lightscreen = GymPokemonMove.builder()
    .withDescription(
       `A wondrous wall of light is put up to reduce damage from special attacks for five turns.`
    )
-   .withIsPriority(false)
    .withDamageClass(DamageClass.STATUS)
    .withType(PokemonType.PSYCHIC)
    .withPP(30)
@@ -895,7 +932,7 @@ const quickAttack = GymPokemonMove.builder()
    .withDescription(
       'The user lunges at the target at a speed that makes it almost invisible. This move always goes first.'
    )
-   .withIsPriority(true)
+   .withIsPriority()
    .withDamageClass(DamageClass.PHYSICAL)
    .withType(PokemonType.NORMAL)
    .withPP(30)
@@ -908,7 +945,6 @@ const crunch = GymPokemonMove.builder()
    .withDescription(
       `The user crunches up the target with sharp fangs. This may also lower the target's Defense stat.`
    )
-   .withIsPriority(false)
    .withDamageClass(DamageClass.PHYSICAL)
    .withType(PokemonType.DARK)
    .withPP(15)
@@ -921,10 +957,11 @@ const bindMove = GymPokemonMove.builder()
    .withDescription(
       'Things such as long bodies or tentacles are used to bind and squeeze the target for four to five turns.'
    )
-   .withIsPriority(false)
    .withDamageClass(DamageClass.PHYSICAL)
    .withType(PokemonType.NORMAL)
    .withPP(20)
    .withPower(15)
    .withAccuracy(85)
    .build();
+
+console.log(new LetsGo().gyms[7].pokemons[1].moves);
