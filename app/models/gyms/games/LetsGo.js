@@ -7,6 +7,8 @@ import PokemonType from '../../constants/PokemonType.js';
 import UtilConst from '../../constants/UtilConst.js';
 import DamageClass from '../../constants/DamageClass.js';
 
+// TODO: implement builders for all components and start using them. maybe convert old declarations into builders
+
 export default class LetsGo {
    constructor() {
       this.gyms = [
