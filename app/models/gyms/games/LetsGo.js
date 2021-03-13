@@ -797,7 +797,7 @@ export default class LetsGo {
                   .withDescription(
                      'This move enables the user to attack first. This move fails if the target is not readying an attack.'
                   )
-                  .withIsPriority()
+                  .withPriority()
                   .withDamageClass(DamageClass.PHYSICAL)
                   .withType(PokemonType.DARK)
                   .withPP(5)
@@ -932,7 +932,7 @@ const quickAttack = GymPokemonMove.builder()
    .withDescription(
       'The user lunges at the target at a speed that makes it almost invisible. This move always goes first.'
    )
-   .withIsPriority()
+   .withPriority()
    .withDamageClass(DamageClass.PHYSICAL)
    .withType(PokemonType.NORMAL)
    .withPP(30)
@@ -963,5 +963,3 @@ const bindMove = GymPokemonMove.builder()
    .withPower(15)
    .withAccuracy(85)
    .build();
-
-console.log(new LetsGo().gyms[7].pokemons[1].moves);
