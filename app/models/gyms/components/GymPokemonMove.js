@@ -1,8 +1,8 @@
 export default class GymPokemonMove {
-   constructor(label, description, isPriority, damageClass, type, pp, power, accuracy) {
+   constructor(label, description, damageClass, type, pp, power, accuracy) {
       this.label = label;
       this.description = description;
-      this.is_priority = isPriority;
+      this.is_priority = false;
       this.damage_class = damageClass;
       this.type = type;
       this.pp = pp;
@@ -20,8 +20,8 @@ export default class GymPokemonMove {
       this.description = val;
       return this;
    }
-   static withIsPriority(val) {
-      this.is_priority = val;
+   static withIsPriority() {
+      this.is_priority = true;
       return this;
    }
    static withDamageClass(val) {
@@ -48,7 +48,6 @@ export default class GymPokemonMove {
       return new GymPokemonMove(
          this.label,
          this.description,
-         this.is_priority,
          this.damage_class,
          this.type,
          this.pp,
