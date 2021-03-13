@@ -10,6 +10,14 @@ export default class GymPokemon {
       this.moves = moves;
    }
    static builder() {
+      this.species = undefined;
+      this.icon_url = undefined;
+      this.sprite_url = undefined;
+      this.types = undefined;
+      this.level = undefined;
+      this.ability = undefined;
+      this.held_item = undefined;
+      this.moves = undefined;
       return this;
    }
    static withSpecies(val) {

@@ -4,6 +4,8 @@ export default class GymBadge {
       this.sprite_url = spriteUrl;
    }
    static builder() {
+      this.label = undefined;
+      this.sprite_url = undefined;
       return this;
    }
    static withLabel(val) {

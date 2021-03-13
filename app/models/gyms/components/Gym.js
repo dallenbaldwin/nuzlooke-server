@@ -9,6 +9,12 @@ export default class Gym {
       this.pokemons = pokemons;
    }
    static builder() {
+      this.label = undefined;
+      this.location = undefined;
+      this.dominant_type = undefined;
+      this.badge = undefined;
+      this.leader = undefined;
+      this.pokemons = undefined;
       return this;
    }
    static withLabel(val) {
