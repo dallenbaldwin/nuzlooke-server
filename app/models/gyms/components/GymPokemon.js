@@ -12,36 +12,36 @@ export default class GymPokemon {
    static builder() {
       return this;
    }
-   static withSpecies(species) {
-      this.species = species;
+   static withSpecies(val) {
+      this.species = val;
       return this;
    }
-   static withIconUrl(iconUrl) {
-      this.icon_url = iconUrl;
+   static withIconUrl(val) {
+      this.icon_url = val;
       return this;
    }
-   static withSpriteUrl(spriteUrl) {
-      this.sprite_url = spriteUrl;
+   static withSpriteUrl(val) {
+      this.sprite_url = val;
       return this;
    }
-   static withTypes(types) {
-      this.types = types;
+   static withTypes(val) {
+      this.types = val;
       return this;
    }
-   static withLevel(level) {
-      this.level = level;
+   static withLevel(val) {
+      this.level = val;
       return this;
    }
-   static withAbility(ability) {
-      this.ability = ability;
+   static withAbility(val) {
+      this.ability = val;
       return this;
    }
-   static withHeldItem(heldItem) {
-      this.held_item = heldItem;
+   static withHeldItem(val) {
+      this.held_item = val;
       return this;
    }
-   static withMoves(moves) {
-      this.moves = moves;
+   static withMoves(val) {
+      this.moves = val;
       return this;
    }
    static build() {

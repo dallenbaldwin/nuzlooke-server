@@ -6,12 +6,14 @@ import RubySapphire from './games/RubySapphire.js';
 export default versionFamily => {
    switch (versionFamily) {
       case VersionFamily.LETSGO:
-         return Object(new LetsGo().gyms);
+         return deClassify(new LetsGo().gyms);
       case VersionFamily.RUBYSAPPHIRE:
-         return Object(new RubySapphire().gyms);
+         return deClassify(new RubySapphire().gyms);
       case VersionFamily.EMERALD:
-         return Object(new Emerald().gyms);
+         return deClassify(new Emerald().gyms);
       default:
          return null;
    }
 };
+
+const deClassify = classObject => JSON.parse(JSON.stringify(classObject));
