@@ -10,7 +10,7 @@ const PokemonType = Object.freeze({
    STEEL: 'Steel',
    FIRE: 'Fire',
    WATER: 'Water',
-   GRASS: 'Water',
+   GRASS: 'Grass',
    ELECTRIC: 'Electric',
    PSYCHIC: 'Psychic',
    ICE: 'Ice',
