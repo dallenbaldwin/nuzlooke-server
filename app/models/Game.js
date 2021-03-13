@@ -1,4 +1,4 @@
-import client from './Client.js';
+import DataClient from './DataClient.js';
 import { fromAWSItem, toAWSItem, isUndefined } from '../util/Util.js';
 import { GameVersion, getVersion } from './constants/GameVersion.js';
 import GameGyms from './gyms/GameGyms.js';
@@ -24,7 +24,7 @@ export default class Game {
       try {
          const game = new Game(object);
          const item = toAWSItem(game);
-         await client.putItem({ TableName: 'games', Item: item }).promise();
+         await DataClient.putItem({ TableName: 'games', Item: item }).promise();
          result({ message: 'successfully created game', data: game });
       } catch (err) {
          result({ message: 'error creating game', error: err });
@@ -32,12 +32,10 @@ export default class Game {
    }
    static async read(id, result) {
       try {
-         const game = await client
-            .getItem({
-               TableName: 'games',
-               Key: { id: { S: id } },
-            })
-            .promise();
+         const game = await DataClient.getItem({
+            TableName: 'games',
+            Key: { id: { S: id } },
+         }).promise();
          result({ message: 'successfully read game', data: fromAWSItem(game.Item) });
       } catch (err) {
          result({ message: 'error reading game', error: err });
@@ -46,15 +44,13 @@ export default class Game {
    static async update(gameId, attributes, result) {
       try {
          const parsedResult = parseUpdateObject(attributes);
-         const updated = await client
-            .updateItem({
-               TableName: 'games',
-               Key: { id: { S: gameId } },
-               ReturnValues: 'ALL_NEW',
-               UpdateExpression: parsedResult.updateExpression,
-               ExpressionAttributeValues: parsedResult.expressionAttributeValues,
-            })
-            .promise();
+         const updated = await DataClient.updateItem({
+            TableName: 'games',
+            Key: { id: { S: gameId } },
+            ReturnValues: 'ALL_NEW',
+            UpdateExpression: parsedResult.updateExpression,
+            ExpressionAttributeValues: parsedResult.expressionAttributeValues,
+         }).promise();
          result({
             message: 'successfully updated game',
             data: fromAWSItem(updated.Attributes),
@@ -65,15 +61,13 @@ export default class Game {
    }
    static async delete(id, result) {
       try {
-         const response = await client
-            .deleteItem({
-               TableName: 'games',
-               Key: { id: { S: id } },
-               // this lets you check to see if there was anything deleted.
-               // by design, AWS successfully deletes something that doesn't exist
-               ReturnValues: 'ALL_OLD',
-            })
-            .promise();
+         const response = await DataClient.deleteItem({
+            TableName: 'games',
+            Key: { id: { S: id } },
+            // this lets you check to see if there was anything deleted.
+            // by design, AWS successfully deletes something that doesn't exist
+            ReturnValues: 'ALL_OLD',
+         }).promise();
          if (!response.Attributes)
             return result({
                message: 'no game exists with id',
