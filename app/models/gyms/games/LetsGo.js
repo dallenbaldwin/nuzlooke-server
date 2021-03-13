@@ -4,13 +4,9 @@ import GymLeader from '../components/GymLeader.js';
 import GymPokemon from '../components/GymPokemon.js';
 import GymPokemonMove from '../components/GymPokemonMove.js';
 import PokemonType from '../../constants/PokemonType.js';
-import UtilConst from '../../constants/UtilConst.js';
 import DamageClass from '../../constants/DamageClass.js';
+import MovePriority from '../../constants/MovePriority.js';
 
-// convert everyone to use builders
-// isPriority can be false by default with builder
-// remove nulls and opt for skipping the builder method
-// remove the utilconst.none
 // listify the builder methods that take arrays??
 
 export default class LetsGo {
@@ -378,20 +374,7 @@ export default class LetsGo {
             .withIconUrl(
                'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/45.png'
             )
-            .withMoves([
-               megaDrain,
-               GymPokemonMove.builder()
-                  .withLabel('Moonblast')
-                  .withAccuracy(100)
-                  .withPP(15)
-                  .withPower(95)
-                  .withDamageClass(DamageClass.SPECIAL)
-                  .withType(PokemonType.FAIRY)
-                  .withDescription(
-                     `Borrowing the power of the moon, the user attacks the target. This may also lower the target's Sp. Atk stat.`
-                  )
-                  .build(),
-            ])
+            .withMoves([megaDrain, moonblast])
             .build(),
       ];
       const leader = GymLeader.builder()
@@ -414,25 +397,165 @@ export default class LetsGo {
          .withPokemons(pokemons)
          .build();
    }
-   // TODO
+   // TODO: finish koga
    getKoga() {
-      const pokemons = [];
-      const leader = new GymLeader();
-      const badge = new GymBadge();
-      return new Gym(null, null, null, badge, leader, pokemons);
-   }
-   getSabrina() {
-      const psychic = GymPokemonMove.builder()
-         .withLabel('Psychic')
+      const toxic = GymPokemonMove.builder()
+         .withLabel('Toxic')
+         .withDamageClass(DamageClass.STATUS)
+         .withType(PokemonType.POISON)
+         .withPP(10)
+         .withAccuracy(90)
          .withDescription(
-            `The target is hit by a strong telekinetic force. This may also lower the target's Sp. Def stat.`
+            `A move that leaves the target badly poisoned. Its poison damage worsens every turn.`
          )
+         .build();
+      const sludgeBomb = GymPokemonMove.builder()
+         .withLabel('Sludge Bomb')
          .withDamageClass(DamageClass.SPECIAL)
-         .withType(PokemonType.PSYCHIC)
+         .withType(PokemonType.POISON)
          .withPP(10)
          .withPower(90)
          .withAccuracy(100)
+         .withDescription(
+            `Unsanitary sludge is hurled at the target. This may also poison the target.`
+         )
          .build();
+      const protect = GymPokemonMove.builder()
+         .withLabel('Protect')
+         .withDamageClass(DamageClass.STATUS)
+         .withType(PokemonType.NORMAL)
+         .withPP(10)
+         .withPriority(MovePriority.PLUS4)
+         .withDescription(
+            `Enables the user to evade all attacks. Its chance of failing rises if it is used in succession.`
+         )
+         .build();
+      const pokemons = [
+         GymPokemon.builder()
+            .withSpecies('Weezing')
+            .withLevel(43)
+            .withTypes([PokemonType.POISON])
+            .withIconUrl(
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/110.png'
+            )
+            .withSpriteUrl(
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/110.png'
+            )
+            .withMoves([
+               toxic,
+               protect,
+               sludgeBomb,
+               GymPokemonMove.builder()
+                  .withLabel('Explosion')
+                  .withType(PokemonType.NORMAL)
+                  .withDamageClass(DamageClass.PHYSICAL)
+                  .withPP(5)
+                  .withAccuracy(100)
+                  .withPower(250)
+                  .withDescription(
+                     `The user attacks everything around it by causing a tremendous explosion. The user faints upon using this move.`
+                  )
+                  .build(),
+            ])
+            .build(),
+         GymPokemon.builder()
+            .withSpecies('Muk')
+            .withLevel(43)
+            .withTypes([PokemonType.POISON])
+            .withIconUrl(
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/89.png'
+            )
+            .withSpriteUrl(
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/89.png'
+            )
+            .withMoves([toxic, protect, sludgeBomb, moonblast])
+            .build(),
+         GymPokemon.builder()
+            .withSpecies('Golbat')
+            .withLevel(43)
+            .withTypes([PokemonType.POISON, PokemonType.FLYING])
+            .withIconUrl(
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/42.png'
+            )
+            .withSpriteUrl(
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/42.png'
+            )
+            .withMoves([
+               toxic,
+               protect,
+               GymPokemonMove.builder()
+                  .withLabel('Fly')
+                  .withType(PokemonType.FLYING)
+                  .withDamageClass(DamageClass.PHYSICAL)
+                  .withPP(15)
+                  .withPower(90)
+                  .withAccuracy(95)
+                  .withDescription(
+                     `The user flies up into the sky and then strikes its target on the next turn.`
+                  )
+                  .build(),
+               GymPokemonMove.builder()
+                  .withLabel('Leech Life')
+                  .withType(PokemonType.BUG)
+                  .withDamageClass(DamageClass.PHYSICAL)
+                  .withPP(10)
+                  .withPower(80)
+                  .withAccuracy(100)
+                  .withDescription(
+                     `The user drains the target's blood. The user's HP is restored by half the damage taken by the target.`
+                  )
+                  .build(),
+            ])
+            .build(),
+         GymPokemon.builder()
+            .withSpecies('Venomoth')
+            .withLevel(44)
+            .withTypes([PokemonType.BUG, PokemonType.POISON])
+            .withIconUrl(
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/49.png'
+            )
+            .withSpriteUrl(
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/49.png'
+            )
+            .withMoves([
+               sludgeBomb,
+               protect,
+               psychic,
+               GymPokemonMove.builder()
+                  .withLabel('Bug Buzz')
+                  .withType(PokemonType.BUG)
+                  .withDamageClass(DamageClass.SPECIAL)
+                  .withPP(10)
+                  .withPower(90)
+                  .withAccuracy(100)
+                  .withDescription(
+                     `The user generates a damaging sound wave by vibration. This may also lower the target's Sp. Def stat.`
+                  )
+                  .build(),
+            ])
+            .build(),
+      ];
+      const leader = GymLeader.builder()
+         .withLabel('Koga')
+         .withSpritUrl('https://cdn.bulbagarden.net/upload/d/d8/VSKoga_PE.png')
+         .withFlavorText('The Poisonous Ninja Master')
+         .build();
+      const badge = GymBadge.builder()
+         .withLabel('Soul Badge')
+         .withSpriteUrl(
+            'https://cdn.bulbagarden.net/upload/archive/7/7d/20160212103742%21Soul_Badge.png'
+         )
+         .build();
+      return Gym.builder()
+         .withLabel('Fuchsia Gym')
+         .withLocation('Fuchsia City')
+         .withDominantType(PokemonType.POISON)
+         .withBadge(badge)
+         .withLeader(leader)
+         .withPokemons(pokemons)
+         .build();
+   }
+   getSabrina() {
       const pokemons = [
          GymPokemon.builder()
             .withSpecies('Mr. Mime')
@@ -797,7 +920,7 @@ export default class LetsGo {
                   .withDescription(
                      'This move enables the user to attack first. This move fails if the target is not readying an attack.'
                   )
-                  .withPriority()
+                  .withPriority(MovePriority.PLUS1)
                   .withDamageClass(DamageClass.PHYSICAL)
                   .withType(PokemonType.DARK)
                   .withPP(5)
@@ -858,15 +981,17 @@ export default class LetsGo {
                   .build(),
             ])
             .build(),
-         new GymPokemon(
-            'Rhydon',
-            'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/112.png',
-            'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/112.png',
-            [PokemonType.GROUND, PokemonType.ROCK],
-            50,
-            UtilConst.NONE,
-            UtilConst.NONE,
-            [
+         GymPokemon.builder()
+            .withSpecies('Rhydon')
+            .withIconUrl(
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/112.png'
+            )
+            .withSpriteUrl(
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/112.png'
+            )
+            .withTypes([PokemonType.GROUND, PokemonType.ROCK])
+            .withLevel(50)
+            .withMoves([
                earthquake,
                GymPokemonMove.builder()
                   .withLabel('Rock Slide')
@@ -880,8 +1005,8 @@ export default class LetsGo {
                   .withAccuracy(90)
                   .build(),
                megahorn,
-            ]
-         ),
+            ])
+            .build(),
       ];
       const leader = GymLeader.builder()
          .withLabel('...')
@@ -932,7 +1057,7 @@ const quickAttack = GymPokemonMove.builder()
    .withDescription(
       'The user lunges at the target at a speed that makes it almost invisible. This move always goes first.'
    )
-   .withPriority()
+   .withPriority(MovePriority.PLUS1)
    .withDamageClass(DamageClass.PHYSICAL)
    .withType(PokemonType.NORMAL)
    .withPP(30)
@@ -962,4 +1087,28 @@ const bindMove = GymPokemonMove.builder()
    .withPP(20)
    .withPower(15)
    .withAccuracy(85)
+   .build();
+
+const psychic = GymPokemonMove.builder()
+   .withLabel('Psychic')
+   .withDescription(
+      `The target is hit by a strong telekinetic force. This may also lower the target's Sp. Def stat.`
+   )
+   .withDamageClass(DamageClass.SPECIAL)
+   .withType(PokemonType.PSYCHIC)
+   .withPP(10)
+   .withPower(90)
+   .withAccuracy(100)
+   .build();
+
+const moonblast = GymPokemonMove.builder()
+   .withLabel('Moonblast')
+   .withAccuracy(100)
+   .withPP(15)
+   .withPower(95)
+   .withDamageClass(DamageClass.SPECIAL)
+   .withType(PokemonType.FAIRY)
+   .withDescription(
+      `Borrowing the power of the moon, the user attacks the target. This may also lower the target's Sp. Atk stat.`
+   )
    .build();

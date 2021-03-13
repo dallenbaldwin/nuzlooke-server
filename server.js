@@ -22,3 +22,6 @@ app.get('/', (req, res) => {
 app.listen(PORT, () => {
    console.log(`server listening on http://${HOST}:${PORT}/`);
 });
+
+import LetsGo from './app/models/gyms/games/LetsGo.js';
+const letsgo = new LetsGo().gyms;
