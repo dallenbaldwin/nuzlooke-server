@@ -28,8 +28,8 @@ export default class GymPokemonMove {
       this.description = val;
       return this;
    }
-   static withPriority() {
-      this.priority = true;
+   static withPriority(val) {
+      this.priority = val;
       return this;
    }
    static withDamageClass(val) {
