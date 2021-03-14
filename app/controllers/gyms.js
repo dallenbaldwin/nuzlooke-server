@@ -4,7 +4,7 @@ import Emerald from '../models/gyms/games/Emerald.js';
 import RubySapphire from '../models/gyms/games/RubySapphire.js';
 import { deClassify } from '../util/Util.js';
 
-export default versionFamily => {
+export function listGyms(versionFamily) {
    switch (versionFamily) {
       case VersionFamily.LETSGO:
          return deClassify(new LetsGo().gyms);
@@ -13,6 +13,6 @@ export default versionFamily => {
       case VersionFamily.EMERALD:
          return deClassify(new Emerald().gyms);
       default:
-         return null;
+         return undefined;
    }
-};
+}
