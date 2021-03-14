@@ -1,3 +1,5 @@
+import { arrayify } from '../../../util/Util.js';
+
 export default class Gym {
    constructor(label, location, dominantType, badge, leader, pokemons) {
       this.is_defeated = false;
@@ -37,8 +39,8 @@ export default class Gym {
       this.leader = val;
       return this;
    }
-   static withPokemons(val) {
-      this.pokemons = val;
+   static withPokemons(...vals) {
+      this.pokemons = arrayify(...vals);
       return this;
    }
    static build() {

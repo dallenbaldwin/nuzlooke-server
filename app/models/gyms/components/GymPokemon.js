@@ -1,3 +1,5 @@
+import { arrayify } from '../../../util/Util.js';
+
 export default class GymPokemon {
    constructor(species, iconUrl, spriteUrl, types, level, ability, heldItem, moves) {
       this.species = species;
@@ -32,8 +34,8 @@ export default class GymPokemon {
       this.sprite_url = val;
       return this;
    }
-   static withTypes(val) {
-      this.types = val;
+   static withTypes(...vals) {
+      this.types = arrayify(...vals);
       return this;
    }
    static withLevel(val) {
@@ -48,8 +50,8 @@ export default class GymPokemon {
       this.held_item = val;
       return this;
    }
-   static withMoves(val) {
-      this.moves = val;
+   static withMoves(...vals) {
+      this.moves = arrayify(...vals);
       return this;
    }
    static build() {
