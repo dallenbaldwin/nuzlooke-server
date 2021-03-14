@@ -1,9 +1,10 @@
 import Game from '../models/Game.js';
 import APIResponse from '../models/APIResponse.js';
+import { isUndefined } from '../util/Util.js';
 
 export function createGame(request, response) {
    const errors = getErrors(request.body);
-   if (!request.body || errors !== null)
+   if (!request.body || isUndefined(errors))
       return response
          .status(400)
          .send(APIResponse.withError(400, 'Invalid request body', errors));
@@ -85,5 +86,5 @@ function getErrors(game) {
    const errors = [];
    if (!game.label) errors.push('Missing game name');
    if (!game.version) errors.push('Missing game version');
-   return errors.length > 0 ? errors : null;
+   return errors.length > 0 ? errors : undefined;
 }
