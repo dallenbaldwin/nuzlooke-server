@@ -12,6 +12,7 @@ export default class APIResponse {
       const res = new Res(message, data);
       return new APIResponse(code, res, null);
    }
+   // TODO: add more static methods like with404, with200, with201, with500 to abstract the code
 }
 
 class Res {
