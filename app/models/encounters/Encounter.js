@@ -1,4 +1,4 @@
-import { arrayify } from '../../util/Util';
+import { arrayify } from '../../util/Util.js';
 
 export default class Encounter {
    constructor(isAvailable, label, sortId, pokemons) {
