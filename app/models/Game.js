@@ -1,12 +1,11 @@
 import DataClient from './DataClient.js';
 import { fromAWSItem, toAWSItem, isUndefined } from '../util/Util.js';
 import { getVersion } from './constants/GameVersion.js';
-import Gyms from '../controllers/gyms.js';
-import Encounters from '../controllers/encounters.js';
+import { listGyms } from '../controllers/gyms.js';
+import { listEncounters } from '../controllers/encounters.js';
 import uuid_pkg from 'uuid';
 const { v4: uuid } = uuid_pkg;
 
-// TODO refactor to include Game Version and Version Family changes
 export default class Game {
    // {label: String, version: GameVersion (Dictionary label) }
    constructor(object) {
@@ -14,9 +13,9 @@ export default class Game {
       this.label = object.label;
       this.version = getVersion(object.version.toUpperCase());
       this.is_finished = false;
-      this.encounters = object.encounters || []; // Encounters(this.version.family);
+      this.encounters = listEncounters(this.version.family);
       this.pokemons = [];
-      this.gyms = Gyms(this.version.family);
+      this.gyms = listGyms(this.version.family);
       this.game_rules = [];
    }
    static async create(object, result) {
