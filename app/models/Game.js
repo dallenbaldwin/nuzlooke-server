@@ -27,8 +27,7 @@ export default class Game {
             Item: item,
             ReturnConsumedCapacity: 'TOTAL',
          }).promise();
-         // result({ message: 'successfully created game', data: game });
-         result({ message: 'successfully created game', data: put.ConsumedCapacity });
+         result({ message: 'successfully created game', data: game });
       } catch (err) {
          result({ message: 'error creating game', error: err });
       }
