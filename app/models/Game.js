@@ -1,5 +1,5 @@
 import DataClient from './DataClient.js';
-import { fromAWSItem, toAWSItem, isUndefined } from '../util/Util.js';
+import { fromAWSItem, toAWSItem, isUndefined } from '../util/UtilMethods.js';
 import { getVersion } from './constants/GameVersion.js';
 import { listGyms } from '../controllers/gyms.js';
 import { listEncounters } from '../controllers/encounters.js';

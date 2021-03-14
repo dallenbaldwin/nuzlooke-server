@@ -1,4 +1,4 @@
-import { fromAWSItem, isUndefined, toAWSItem } from '../util/Util.js';
+import { fromAWSItem, isUndefined, toAWSItem } from '../util/UtilMethods.js';
 import DataClient from './DataClient.js';
 import uuid_pkg from 'uuid';
 const { v4: uuid } = uuid_pkg;

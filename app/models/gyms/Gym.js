@@ -1,4 +1,4 @@
-import { arrayify } from '../../util/Util.js';
+import { arrayify } from '../../util/UtilMethods.js';
 
 export default class Gym {
    constructor(label, location, dominantType, badge, leader, pokemons) {

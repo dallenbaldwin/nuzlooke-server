@@ -2,7 +2,7 @@ import { VersionFamily } from '../models/constants/GameVersion.js';
 import LetsGo from '../models/gyms/games/LetsGo.js';
 import Emerald from '../models/gyms/games/Emerald.js';
 import RubySapphire from '../models/gyms/games/RubySapphire.js';
-import { deClassify } from '../util/Util.js';
+import { deClassify } from '../util/UtilMethods.js';
 
 export function listGyms(versionFamily) {
    switch (versionFamily) {

@@ -1,6 +1,6 @@
 import Game from '../models/Game.js';
 import APIResponse from '../models/APIResponse.js';
-import { isUndefined } from '../util/Util.js';
+import { isUndefined } from '../util/UtilMethods.js';
 
 export function createGame(request, response) {
    const errors = getErrors(request.body);

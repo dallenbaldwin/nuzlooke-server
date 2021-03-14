@@ -1,4 +1,4 @@
-import { arrayify } from '../../util/Util.js';
+import { arrayify } from '../../util/UtilMethods.js';
 
 export default class EncounterPokemon {
    constructor(species, iconUrl, spriteUrl, types) {

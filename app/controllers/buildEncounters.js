@@ -2,7 +2,7 @@ import { VersionFamily } from '../models/constants/GameVersion.js';
 import Encounter from '../models/encounters/Encounter.js';
 import EncounterPokemon from '../models/encounters/EncounterPokemon.js';
 import PokeAPI from '../models/PokeAPI.js';
-import { arrayify } from '../util/Util.js';
+import { arrayify } from '../util/UtilMethods.js';
 
 export default function buildEncounters(versionFamily) {
    switch (versionFamily) {
