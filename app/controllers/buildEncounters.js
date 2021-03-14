@@ -4,11 +4,11 @@ import EncounterPokemon from '../models/encounters/EncounterPokemon.js';
 import PokeAPI from '../models/PokeAPI.js';
 import { arrayify } from '../util/Util.js';
 
-export default async function buildEncounters(versionFamily) {
+export default function buildEncounters(versionFamily) {
    switch (versionFamily) {
       case VersionFamily.LETSGO:
          // TODO: replace this with actual code
-         return arrayify(
+         const encounters = arrayify(
             Encounter.builder()
                .withLabel(`Oak's Lab`)
                .withPokemons(
@@ -24,6 +24,7 @@ export default async function buildEncounters(versionFamily) {
                )
                .build()
          );
+         return encounters;
       default:
          return [];
    }
