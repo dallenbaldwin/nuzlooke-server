@@ -13,6 +13,9 @@ app.use(express.urlencoded({ extended: true }));
 import gameRoutes from './app/routes/game.js';
 gameRoutes(app);
 
+import userRoutes from './app/routes/user.js';
+userRoutes(app);
+
 app.get('/', (req, res) => {
    res.status(200).send({
       message: 'welcome to the nuzlooke-server',
