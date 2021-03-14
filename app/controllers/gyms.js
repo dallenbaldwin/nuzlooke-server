@@ -1,7 +1,8 @@
-import { VersionFamily } from '../constants/GameVersion.js';
-import LetsGo from './games/LetsGo.js';
-import Emerald from './games/Emerald.js';
-import RubySapphire from './games/RubySapphire.js';
+import { VersionFamily } from '../models/constants/GameVersion.js';
+import LetsGo from '../models/gyms/games/LetsGo.js';
+import Emerald from '../models/gyms/games/Emerald.js';
+import RubySapphire from '../models/gyms/games/RubySapphire.js';
+import { deClassify } from '../util/Util.js';
 
 export default versionFamily => {
    switch (versionFamily) {
@@ -15,5 +16,3 @@ export default versionFamily => {
          return null;
    }
 };
-
-const deClassify = classObject => JSON.parse(JSON.stringify(classObject));

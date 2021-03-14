@@ -1,4 +1,4 @@
-import { VersionFamily } from '../constants/GameVersion.js';
+import { VersionFamily } from '../models/constants/GameVersion.js';
 // import LetsGo from './encounters/LetsGo.js';
 // import Emerald from './encounters/Emerald.js';
 // import RubySapphire from './encounters/RubySapphire.js';

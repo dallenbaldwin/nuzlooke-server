@@ -1,8 +1,8 @@
 import DataClient from './DataClient.js';
 import { fromAWSItem, toAWSItem, isUndefined } from '../util/Util.js';
-import { GameVersion, getVersion } from './constants/GameVersion.js';
-import GameGyms from './gyms/GameGyms.js';
-import Encounters from './encounters/Encounters.js';
+import { getVersion } from './constants/GameVersion.js';
+import Gyms from '../controllers/gyms.js';
+import Encounters from '../controllers/encounters.js';
 import uuid_pkg from 'uuid';
 const { v4: uuid } = uuid_pkg;
 
@@ -12,20 +12,24 @@ export default class Game {
    constructor(object) {
       this.id = uuid();
       this.label = object.label;
-      // FIXME: this needs to be refactored
-      this.version = getVersion(object.version);
+      this.version = getVersion(object.version.toUpperCase());
       this.is_finished = false;
-      this.encounters = object.encounters || []; // Encounters(this.version.version_family);
+      this.encounters = object.encounters || []; // Encounters(this.version.family);
       this.pokemons = [];
-      this.gyms = object.gyms || []; // GameGyms(this.version.version_family);
+      this.gyms = Gyms(this.version.family);
       this.game_rules = [];
    }
    static async create(object, result) {
       try {
          const game = new Game(object);
          const item = toAWSItem(game);
-         await DataClient.putItem({ TableName: 'games', Item: item }).promise();
-         result({ message: 'successfully created game', data: game });
+         const put = await DataClient.putItem({
+            TableName: 'games',
+            Item: item,
+            ReturnConsumedCapacity: 'TOTAL',
+         }).promise();
+         // result({ message: 'successfully created game', data: game });
+         result({ message: 'successfully created game', data: put.ConsumedCapacity });
       } catch (err) {
          result({ message: 'error creating game', error: err });
       }

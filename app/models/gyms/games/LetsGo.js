@@ -1,13 +1,11 @@
-import Gym from '../components/Gym.js';
-import GymBadge from '../components/GymBadge.js';
-import GymLeader from '../components/GymLeader.js';
-import GymPokemon from '../components/GymPokemon.js';
-import GymPokemonMove from '../components/GymPokemonMove.js';
+import Gym from '../Gym.js';
+import GymBadge from '../GymBadge.js';
+import GymLeader from '../GymLeader.js';
+import GymPokemon from '../GymPokemon.js';
+import GymPokemonMove from '../GymPokemonMove.js';
 import PokemonType from '../../constants/PokemonType.js';
 import DamageClass from '../../constants/DamageClass.js';
 import MovePriority from '../../constants/MovePriority.js';
-
-// listify the builder methods that take arrays??
 
 export default class LetsGo {
    constructor() {
@@ -397,7 +395,6 @@ export default class LetsGo {
          .withPokemons(pokemons)
          .build();
    }
-   // TODO: finish koga
    getKoga() {
       const toxic = GymPokemonMove.builder()
          .withLabel('Toxic')

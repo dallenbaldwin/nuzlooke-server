@@ -11,3 +11,5 @@ export const arrayify = (...values) => {
    values.forEach(value => a.push(value));
    return a.flatMap(i => i); // force it to accept an array of values or a list of values
 };
+
+export const deClassify = classObject => JSON.parse(JSON.stringify(classObject));

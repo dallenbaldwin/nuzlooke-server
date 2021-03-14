@@ -83,7 +83,7 @@ export function deleteGame(request, response) {
 
 function getErrors(game) {
    const errors = [];
-   if (!game.game_name) errors.push('Missing game name');
+   if (!game.label) errors.push('Missing game name');
    if (!game.version) errors.push('Missing game version');
    return errors.length > 0 ? errors : null;
 }
