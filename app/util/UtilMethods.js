@@ -4,7 +4,7 @@ export const toAWSItem = object => AWS.DynamoDB.Converter.marshall(object);
 
 export const fromAWSItem = object => AWS.DynamoDB.Converter.unmarshall(object);
 
-export const isUndefined = value => value === undefined;
+export const isUndefined = value => value === undefined || value === null;
 
 export const arrayify = (...values) => {
    const a = [];

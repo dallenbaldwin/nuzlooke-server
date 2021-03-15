@@ -4,7 +4,7 @@ import { isUndefined } from '../util/UtilMethods.js';
 
 export function createGame(request, response) {
    const errors = getErrors(request.body);
-   if (!request.body || isUndefined(errors))
+   if (!request.body || !isUndefined(errors))
       return response
          .status(400)
          .send(APIResponse.withError(400, 'Invalid request body', errors));
