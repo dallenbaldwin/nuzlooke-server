@@ -27,9 +27,9 @@ export default class Game {
             Item: item,
             ReturnConsumedCapacity: 'TOTAL',
          }).promise();
-         result({ message: 'successfully created game', data: game });
+         result({ data: game });
       } catch (err) {
-         result({ message: 'error creating game', error: err });
+         result({ error: err });
       }
    }
    static async read(id, result) {
@@ -38,9 +38,9 @@ export default class Game {
             TableName: 'games',
             Key: { id: { S: id } },
          }).promise();
-         result({ message: 'successfully read game', data: fromAWSItem(game.Item) });
+         result({ data: fromAWSItem(game.Item) });
       } catch (err) {
-         result({ message: 'error reading game', error: err });
+         result({ error: err });
       }
    }
    static async update(gameId, attributes, result) {
@@ -54,11 +54,10 @@ export default class Game {
             ExpressionAttributeValues: parsedResult.expressionAttributeValues,
          }).promise();
          result({
-            message: 'successfully updated game',
             data: fromAWSItem(updated.Attributes),
          });
       } catch (err) {
-         result({ message: 'error updating game', error: err });
+         result({ error: err });
       }
    }
    static async delete(id, result) {
@@ -70,14 +69,10 @@ export default class Game {
             // by design, AWS successfully deletes something that doesn't exist
             ReturnValues: 'ALL_OLD',
          }).promise();
-         if (!response.Attributes)
-            return result({
-               message: 'no game exists with id',
-               data: { code: 404, id: id },
-            });
-         result({ message: 'successfully deleted game', data: id });
+         if (!response.Attributes) return result({ data: { code: 404 } });
+         result({ data: id });
       } catch (err) {
-         result({ message: 'error deleting game', error: err });
+         result({ error: err });
       }
    }
    get snapshot() {

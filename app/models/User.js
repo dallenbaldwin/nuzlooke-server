@@ -20,9 +20,9 @@ export default class User {
             Item: item,
             ReturnConsumedCapacity: 'TOTAL',
          }).promise();
-         result({ message: 'successfully created user', data: user });
+         result({ data: user });
       } catch (err) {
-         result({ message: 'error creating user', error: err });
+         result({ error: err });
       }
    }
    static async read(id, result) {
@@ -31,9 +31,9 @@ export default class User {
             TableName: 'users',
             Key: { id: { S: id } },
          }).promise();
-         result({ message: 'successfully read user', data: fromAWSItem(user.Item) });
+         result({ data: fromAWSItem(user.Item) });
       } catch (err) {
-         result({ message: 'error reading user', error: err });
+         result({ error: err });
       }
    }
    static async update(userId, attributes, result) {
@@ -47,11 +47,10 @@ export default class User {
             ExpressionAttributeValues: parsedResult.expressionAttributeValues,
          }).promise();
          result({
-            message: 'successfully updated user',
             data: fromAWSItem(updated.Attributes),
          });
       } catch (err) {
-         result({ message: 'error updating user', error: err });
+         result({ error: err });
       }
    }
 }

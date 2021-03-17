@@ -49,11 +49,15 @@ export function updateGame(request, response) {
 
 export function deleteGame(request, response) {
    Game.delete(request.params.id, res => {
-      if (res.error) return response.status(500).send(res.error.stack);
+      if (res.error)
+         return response.status(500).send(APIResponse.withError(res.error.stack));
 
-      if (res.data.code) return response.status(404).send(res.data);
+      if (res.data.code)
+         return response
+            .status(404)
+            .send(APIResponse.withMissingObject('game', request.params.id));
 
-      return response.status(410).send(res.data);
+      return response.status(410).send(APIResponse.withResponse(res.data));
    });
 }
 

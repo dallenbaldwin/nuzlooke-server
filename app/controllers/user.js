@@ -57,7 +57,7 @@ export function readUserGames(request, response) {
             .status(404)
             .send(APIResponse.withMissingObject('user', request.params.id));
 
-      return response.status(200).send({ games: res.data.games });
+      return response.status(200).send(APIResponse.withResponse(res.data));
    });
 }
 
