@@ -25,3 +25,5 @@ app.get('/', (req, res) => {
 app.listen(PORT, () => {
    console.log(`server listening on http://${HOST}:${PORT}/`);
 });
+
+// fuser -n tcp 3000 in case you don't end it right

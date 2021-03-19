@@ -1,19 +1,19 @@
 export default class GameRule {
-   constructor(label, description, id) {
+   constructor(label, description, code) {
       this.label = label;
       this.description = description;
-      this.id = id;
+      this.code = code;
    }
    static builder() {
       this.label = undefined;
       this.description = undefined;
-      this.id = undefined;
+      this.code = undefined;
       return this;
    }
    static withConstant(val) {
       this.label = val.label || undefined;
       this.description = val.description || undefined;
-      this.id = val.id || undefined;
+      this.code = val.code || undefined;
       return this;
    }
    static withLabel(val) {
@@ -25,10 +25,10 @@ export default class GameRule {
       return this;
    }
    static withCode(val) {
-      this.id = val;
+      this.code = val;
       return this;
    }
    static build() {
-      return new GameRule(this.label, this.description, this.id);
+      return new GameRule(this.label, this.description, this.code);
    }
 }

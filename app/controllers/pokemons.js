@@ -6,7 +6,7 @@ import PartyState from '../models/constants/PartyState.js';
 
 export function getStarter(version) {
    switch (version) {
-      case GameVersion.LETSGOEEVEE:
+      case GameVersion.LETSGOEEVEE.label:
          const eevee = UserPokemon.builder()
             .withSpecies('Eevee')
             .withTypes(PokemonType.NORMAL)
@@ -19,7 +19,7 @@ export function getStarter(version) {
             .withPartyState(PartyState.PARTY)
             .build();
          return deClassify(arrayify(eevee));
-      case GameVersion.LETSGOPIKACHU:
+      case GameVersion.LETSGOPIKACHU.label:
          const pikachu = UserPokemon.builder()
             .withSpecies('Pikachu')
             .withIconUrl(
