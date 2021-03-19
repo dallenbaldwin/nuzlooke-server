@@ -4,6 +4,8 @@ import { getVersion } from './constants/GameVersion.js';
 import { listGyms } from '../controllers/gyms.js';
 import { listEncounters } from '../controllers/encounters.js';
 import uuid_pkg from 'uuid';
+import { getStarter } from '../controllers/pokemons.js';
+import { getDefaultRules } from '../controllers/gameRules.js';
 const { v4: uuid } = uuid_pkg;
 
 export default class Game {
@@ -14,9 +16,9 @@ export default class Game {
       this.version = getVersion(object.version.toUpperCase());
       this.is_finished = false;
       this.encounters = listEncounters(this.version.family);
-      this.pokemons = [];
+      this.pokemons = getStarter(this.version.label);
       this.gyms = listGyms(this.version.family);
-      this.game_rules = [];
+      this.game_rules = getDefaultRules();
    }
    static async create(object, result) {
       try {
@@ -75,15 +77,6 @@ export default class Game {
          result({ error: err });
       }
    }
-   get snapshot() {
-      return {
-         gym_id: this.id,
-         is_finished: this.is_finished,
-         name: this.name,
-         version: this.version,
-         // party_icon_urls: this.pokemons.L.filter(p => p.party_state ===)
-      };
-   }
 }
 
 function parseUpdateObject(object) {
@@ -94,7 +87,7 @@ function parseUpdateObject(object) {
       sets.push('label = :label');
       values[':label'] = awsObject.label;
    }
-   if (!isUndefined(object.version) || !isUndefined(object.version.label)) {
+   if (!isUndefined(object.version)) {
       const versionData = getVersion(
          !isUndefined(object.version.label) ? object.version.label : object.version
       );

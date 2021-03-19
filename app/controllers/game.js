@@ -57,7 +57,7 @@ export function deleteGame(request, response) {
             .status(404)
             .send(APIResponse.withMissingObject('game', request.params.id));
 
-      return response.status(410).send(APIResponse.withResponse(res.data));
+      return response.status(200).send(APIResponse.withResponse(res.data));
    });
 }
 
