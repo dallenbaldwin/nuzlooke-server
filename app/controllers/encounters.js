@@ -35,7 +35,11 @@ function buildEncounters(versionFamily) {
                .build(),
             Encounter.builder()
                .withLabel('Route 1')
-               .withResult(EncounterResult.builder().withResult(En).build())
+               .withResult(
+                  EncounterResult.builder()
+                     .withResult(EncounterResultConst.AVAILABLE)
+                     .build()
+               )
                .withPokemons(
                   EncounterPokemon.builder().withSpecies('Pidgey').build(),
                   EncounterPokemon.builder().withSpecies('Rattata').build()
