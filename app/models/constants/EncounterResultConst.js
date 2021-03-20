@@ -1,8 +1,8 @@
-const EncounterResult = Object.freeze({
+const EncounterResultConst = Object.freeze({
    FAINTED: 'Fainted',
    FLED: 'Fled',
    CAUGHT: 'Caught',
    AVAILABLE: 'Available',
 });
 
-export default EncounterResult;
+export default EncounterResultConst;
