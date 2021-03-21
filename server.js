@@ -9,6 +9,10 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// check to see if database tables exist
+import runDiagnostics from './app/controllers/dataClient.js';
+runDiagnostics();
+
 // set routes
 import gameRoutes from './app/routes/game.js';
 gameRoutes(app);
