@@ -21,8 +21,9 @@ function buildEncounters(versionFamily) {
                .withResult(
                   // yes this is wrong. but it's for testing
                   EncounterResult.builder()
-                     .withResult(EncounterResultConst.CAUGHT)
+                     .withConstant(EncounterResultConst.CAUGHT)
                      .withSpecies('Pikachu')
+                     .withNickname('Sparky')
                      .withSpriteUrl(
                         'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png'
                      )
@@ -37,7 +38,7 @@ function buildEncounters(versionFamily) {
                .withLabel('Route 1')
                .withResult(
                   EncounterResult.builder()
-                     .withResult(EncounterResultConst.AVAILABLE)
+                     .withConstant(EncounterResultConst.AVAILABLE)
                      .build()
                )
                .withPokemons(

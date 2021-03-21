@@ -1,7 +1,10 @@
 import { arrayify } from '../../util/UtilMethods.js';
+import uuid_pkg from 'uuid';
+const { v4: uuid } = uuid_pkg;
 
 export default class UserPokemon {
    constructor(species, icon_url, sprite_url, types, nickname, evolves_to, party_state) {
+      this.id = uuid();
       this.species = species;
       this.icon_url = icon_url;
       this.sprite_url = sprite_url;
