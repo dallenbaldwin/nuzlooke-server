@@ -13,6 +13,10 @@ app.use(express.urlencoded({ extended: true }));
 import runDiagnostics from './app/controllers/dataClient.js';
 runDiagnostics();
 
+// import DataClient from './app/models/DataClient.js';
+// DataClient.deleteTable({ TableName: 'Users' }).promise().then(console.log);
+// DataClient.deleteTable({ TableName: 'Games' }).promise().then(console.log);
+
 // set routes
 import gameRoutes from './app/routes/game.js';
 gameRoutes(app);

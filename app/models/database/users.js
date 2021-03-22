@@ -5,7 +5,7 @@ export default {
          AttributeType: 'S',
       },
    ],
-   TableName: 'Users',
+   TableName: 'users',
    ProvisionedThroughput: {
       ReadCapacityUnits: 5,
       WriteCapacityUnits: 5,

@@ -32,10 +32,10 @@ async function createUsersTable() {
 export default async function runDiagnostics() {
    try {
       const tables = await getTables();
-      if (!tables.includes('Users')) {
+      if (!tables.includes('users')) {
          await createUsersTable();
       }
-      if (!tables.includes('Games')) {
+      if (!tables.includes('games')) {
          await createGamesTable();
       }
       console.log('Connected to DynamoDB with tables: ', tables);
