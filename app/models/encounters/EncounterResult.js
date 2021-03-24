@@ -37,3 +37,5 @@ export default class EncounterResult {
       );
    }
 }
+
+// TODO: need to add pokemonID
