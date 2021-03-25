@@ -25,8 +25,18 @@ function buildEncounters(versionFamily) {
                      .build()
                )
                .withPokemons(
-                  EncounterPokemon.builder().withSpecies('Pikachu').build(),
-                  EncounterPokemon.builder().withSpecies('Eevee').build()
+                  EncounterPokemon.builder()
+                     .withSpecies('Pikachu')
+                     .withIconUrl(
+                        'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/132.png'
+                     )
+                     .build(),
+                  EncounterPokemon.builder()
+                     .withSpecies('Eevee')
+                     .withIconUrl(
+                        'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/132.png'
+                     )
+                     .build()
                )
                .build(),
             Encounter.builder()
