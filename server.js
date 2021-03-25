@@ -9,13 +9,13 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// import DataClient from './app/models/DataClient.js';
+// DataClient.deleteTable({ TableName: 'users' }).promise().then(console.log);
+// DataClient.deleteTable({ TableName: 'games' }).promise().then(console.log);
+
 // check to see if database tables exist
 import runDiagnostics from './app/controllers/dataClient.js';
 runDiagnostics();
-
-// import DataClient from './app/models/DataClient.js';
-// DataClient.deleteTable({ TableName: 'Users' }).promise().then(console.log);
-// DataClient.deleteTable({ TableName: 'Games' }).promise().then(console.log);
 
 // set routes
 import gameRoutes from './app/routes/game.js';
