@@ -20,7 +20,9 @@ function buildEncounters(versionFamily) {
                .withLabel(`Oak's Lab`)
                .withResult(
                   // yes this is wrong. but it's for testing
-                  EncounterResult.builder().withConstant(EncounterResultConst.AVAILABLE)
+                  EncounterResult.builder()
+                     .withConstant(EncounterResultConst.AVAILABLE)
+                     .build()
                )
                .withPokemons(
                   EncounterPokemon.builder().withSpecies('Pikachu').build(),
