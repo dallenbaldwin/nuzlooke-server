@@ -20,14 +20,7 @@ function buildEncounters(versionFamily) {
                .withLabel(`Oak's Lab`)
                .withResult(
                   // yes this is wrong. but it's for testing
-                  EncounterResult.builder()
-                     .withConstant(EncounterResultConst.CAUGHT)
-                     .withSpecies('Pikachu')
-                     .withNickname('Sparky')
-                     .withSpriteUrl(
-                        'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png'
-                     )
-                     .build()
+                  EncounterResult.builder().withConstant(EncounterResultConst.AVAILABLE)
                )
                .withPokemons(
                   EncounterPokemon.builder().withSpecies('Pikachu').build(),

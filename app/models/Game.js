@@ -3,7 +3,6 @@ import { fromAWSItem, toAWSItem, isUndefined } from '../util/UtilMethods.js';
 import { getVersion } from './constants/GameVersion.js';
 import { listGyms } from '../controllers/gyms.js';
 import { listEncounters } from '../controllers/encounters.js';
-import { getStarter } from '../controllers/pokemons.js';
 import { getDefaultRules } from '../controllers/gameRules.js';
 import uuid_pkg from 'uuid';
 const { v4: uuid } = uuid_pkg;
@@ -16,7 +15,7 @@ export default class Game {
       this.version = getVersion(object.version.toUpperCase());
       this.is_finished = false;
       this.encounters = listEncounters(this.version.family);
-      this.pokemons = getStarter(this.version.label);
+      this.pokemons = [];
       this.gyms = listGyms(this.version.family);
       this.game_rules = getDefaultRules();
    }
