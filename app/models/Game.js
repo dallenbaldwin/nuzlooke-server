@@ -14,7 +14,7 @@ export default class Game {
       this.label = object.label;
       this.version = getVersion(object.version.toUpperCase());
       this.is_finished = false;
-      this.encounters = listEncounters(this.version.family);
+      this.encounters = listEncounters(this.version);
       this.pokemons = [];
       this.gyms = listGyms(this.version.family);
       this.game_rules = getDefaultRules();
