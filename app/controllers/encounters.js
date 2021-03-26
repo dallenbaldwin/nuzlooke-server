@@ -6,6 +6,8 @@ import { arrayify } from '../util/UtilMethods.js';
 import { deClassify } from '../util/UtilMethods.js';
 import * as pokeapi from '../controllers/pokeapi.js';
 
+import fs from 'fs';
+
 export async function listEncounters(version = GameVersion.LETSGOEEVEE) {
    return deClassify(new EncounterController(version.api_data).buildEncounters());
 }
@@ -17,30 +19,26 @@ class EncounterController {
       this.versionGroup = versionObject.version_group;
    }
 
-   async getVersionGroup() {
-      const versionGroup = await pokeapi.getWithBaseUrl(
-         `version-group/${this.versionGroup}`
-      );
-      return versionGroup;
-   }
-
-   async buildEncounters() {
-      /*
-      get locations per region based on version family
-      */
-      const version = await this.getVersionGroup();
-      return version;
-      // return [];
-   }
-
-   buildEncounter(...locationAreas) {
-      /*
-      get location-areas from location
-      combine 
-      filter out pokemon that aren't in the family
-      */
+   async getAssembledData() {
+      let versionGroup = await pokeapi.getVersionGroup(this.versionGroup);
+      let regions = [];
+      versionGroup.regions.forEach(region => {
+         regions.push(pokeapi.get(pokeapi.sanitize(region.url)));
+      });
+      regions = await Promise.all(regions);
+      let locations = [];
+      regions.forEach(region => {
+         region.locations.forEach(location => {
+            locations.push(pokeapi.get(pokeapi.sanitize(location.url)));
+         });
+      });
+      locations = await Promise.all(locations);
+      return locations;
+      // TODO i have locations... now i need to get areas...
    }
 }
 
 const c = new EncounterController(GameVersion.EMERALD.api_data);
-c.buildEncounters().then(console.log);
+c.getAssembledData().then(res => {
+   fs.writeFileSync('./results.json', JSON.stringify(res, undefined, 2));
+});

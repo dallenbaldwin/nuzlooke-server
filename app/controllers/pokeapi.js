@@ -2,33 +2,48 @@ import PokeAPI from '../models/PokeAPI.js';
 
 const pokeapi = new PokeAPI();
 const client = pokeapi.client;
-const baseURL = pokeapi.baseURL;
 
-export async function get(endpoint) {
+const withBaseUrl = endpoint => `${pokeapi.baseURL}/${endpoint}/`;
+
+const normalize = str =>
+   str
+      .split(' ')
+      .map(s => s.toLowerCase())
+      .join('-');
+
+export const sanitize = url => url.slice(0, url.length - 1);
+
+export async function get(url) {
    try {
-      let response = await client.get(endpoint);
+      let response = await client.get(url);
       return response.data;
    } catch (err) {
       console.error(err);
    }
 }
 
-export async function getWithBaseUrl(endpoint) {
+async function getWithBaseUrl(endpoint) {
    try {
-      let response = await client.get(`${baseURL}/${endpoint}/`);
+      let response = await client.get(withBaseUrl(endpoint));
       return response.data;
    } catch (err) {
       console.error(err);
    }
 }
 
-export async function get
+export async function getVersionGroup(versionGroup) {
+   try {
+      let response = await getWithBaseUrl(`version-group/${versionGroup}`);
+      return response;
+   } catch (err) {
+      console.error(err);
+   }
+}
 
 export async function getPokemonBySpecies(species = 'ditto') {
-   species = species.toLowerCase();
    try {
-      let response = await client.get(`${baseURL}/pokemon/${species}`);
-      return response.data;
+      let response = await getWithBaseUrl(`pokemon/${species}`);
+      return response;
    } catch (err) {
       console.error(err);
    }
