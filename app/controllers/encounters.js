@@ -1,57 +1,46 @@
 import EncounterResultConst from '../models/constants/EncounterResultConst.js';
-import { VersionFamily } from '../models/constants/GameVersion.js';
+import { GameVersion } from '../models/constants/GameVersion.js';
 import Encounter from '../models/encounters/Encounter.js';
 import EncounterPokemon from '../models/encounters/EncounterPokemon.js';
-import EncounterResult from '../models/encounters/EncounterResult.js';
-import PokeAPI from '../models/PokeAPI.js';
 import { arrayify } from '../util/UtilMethods.js';
 import { deClassify } from '../util/UtilMethods.js';
+import * as pokeapi from '../controllers/pokeapi.js';
 
-export function listEncounters(versionFamily) {
-   return deClassify(buildEncounters(versionFamily));
+export async function listEncounters(version = GameVersion.LETSGOEEVEE) {
+   return deClassify(new EncounterController(version.api_data).buildEncounters());
 }
 
-function buildEncounters(versionFamily) {
-   switch (versionFamily) {
-      case VersionFamily.LETSGO:
-         // TODO: replace this with actual code
-         const encounters = arrayify(
-            Encounter.builder()
-               .withLabel(`Oak's Lab`)
-               .withResult(
-                  // yes this is wrong. but it's for testing
-                  EncounterResult.builder()
-                     .withConstant(EncounterResultConst.AVAILABLE)
-                     .build()
-               )
-               .withPokemons(
-                  EncounterPokemon.builder().withSpecies('Pikachu').build(),
-                  EncounterPokemon.builder().withSpecies('Eevee').build()
-               )
-               .build(),
-            Encounter.builder()
-               .withLabel('Route 1')
-               .withResult(
-                  EncounterResult.builder()
-                     .withConstant(EncounterResultConst.AVAILABLE)
-                     .build()
-               )
-               .withPokemons(
-                  EncounterPokemon.builder().withSpecies('Pidgey').build(),
-                  EncounterPokemon.builder().withSpecies('Rattata').build()
-               )
-               .build()
-         );
-         return encounters;
-      default:
-         return [];
+class EncounterController {
+   constructor(versionObject) {
+      this.generation = versionObject.generation;
+      this.version = versionObject.version;
+      this.versionGroup = versionObject.version_group;
+   }
+
+   async getVersionGroup() {
+      const versionGroup = await pokeapi.getWithBaseUrl(
+         `version-group/${this.versionGroup}`
+      );
+      return versionGroup;
+   }
+
+   async buildEncounters() {
+      /*
+      get locations per region based on version family
+      */
+      const version = await this.getVersionGroup();
+      return version;
+      // return [];
+   }
+
+   buildEncounter(...locationAreas) {
+      /*
+      get location-areas from location
+      combine 
+      filter out pokemon that aren't in the family
+      */
    }
 }
 
-// TODO: Figure out how this is going to work
-/*
-- get the region from the version family
-- 
-
-
-*/
+const c = new EncounterController(GameVersion.EMERALD.api_data);
+c.buildEncounters().then(console.log);
