@@ -2,6 +2,7 @@ export const VersionFamily = Object.freeze({
    LETSGO: 'letsgo',
    RUBYSAPPHIRE: 'rubysapphire',
    EMERALD: 'emerald',
+   FIREREDLEAFGREEN: 'fireredleafgreen',
 });
 
 export const APIGeneration = Object.freeze({
@@ -15,15 +16,38 @@ export const APIVersion = Object.freeze({
    RUBY: 'ruby',
    SAPPHIRE: 'sapphire',
    EMERALD: 'emerald',
+   FIRERED: 'firered',
+   LEAFGREEN: 'leafgreen',
 });
 
 export const APIVersionGroup = Object.freeze({
    LETSGO: 'lets-go',
    RUBYSAPPHIRE: 'ruby-sapphire',
    EMERALD: 'emerald',
+   FIREREDLEAFGREEN: 'firered-leafgreen',
 });
 
 export const GameVersion = Object.freeze({
+   FIRERED: {
+      label: 'FireRed',
+      artwork_url: 'https://cdn.bulbagarden.net/upload/4/43/FireRed_EN_boxart.png',
+      version_family: VersionFamily.FIREREDLEAFGREEN,
+      api_data: {
+         generation: APIGeneration.GEN3,
+         version: APIVersion.FIRERED,
+         version_group: APIVersionGroup.FIREREDLEAFGREEN,
+      },
+   },
+   LEAFGREEN: {
+      label: 'LeafGreen',
+      version_family: VersionFamily.FIREREDLEAFGREEN,
+      artwork_url: 'https://cdn.bulbagarden.net/upload/d/d7/LeafGreen_EN_boxart.png',
+      api_data: {
+         generation: APIGeneration.GEN3,
+         version: APIVersion.LEAFGREEN,
+         version_group: APIVersionGroup.FIREREDLEAFGREEN,
+      },
+   },
    LETSGOPIKACHU: {
       label: `Let's Go Pikachu`,
       artwork_url:
