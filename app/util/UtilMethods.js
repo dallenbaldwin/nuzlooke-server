@@ -13,3 +13,8 @@ export const arrayify = (...values) => {
 };
 
 export const deClassify = classObject => JSON.parse(JSON.stringify(classObject));
+
+export const uniquify = array => {
+   const transformed = new Set(array.map(a => JSON.stringify(a)));
+   return [...transformed].map(t => JSON.parse(t));
+};

@@ -15,8 +15,7 @@ export const sanitize = url => url.slice(0, url.length - 1);
 
 export async function get(url) {
    try {
-      let response = await client.get(url);
-      return response.data;
+      return (await client.get(sanitize(url))).data;
    } catch (err) {
       console.error(err);
    }
@@ -31,9 +30,9 @@ async function getWithBaseUrl(endpoint) {
    }
 }
 
-export async function getVersionGroup(versionGroup) {
+export async function getRegion(region) {
    try {
-      let response = await getWithBaseUrl(`version-group/${versionGroup}`);
+      let response = await getWithBaseUrl(`region/${region}`);
       return response;
    } catch (err) {
       console.error(err);

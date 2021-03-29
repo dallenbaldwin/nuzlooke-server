@@ -10,6 +10,11 @@ export const APIGeneration = Object.freeze({
    GEN3: 'generation-iii',
 });
 
+export const APIGameRegions = Object.freeze({
+   HOENN: 'hoenn',
+   KANTO: 'kanto',
+});
+
 export const APIVersion = Object.freeze({
    LETSGOPIKACHU: 'lets-go-pikachu',
    LETSGOEEVEE: 'lets-go-eevee',
@@ -36,6 +41,7 @@ export const GameVersion = Object.freeze({
          generation: APIGeneration.GEN3,
          version: APIVersion.FIRERED,
          version_group: APIVersionGroup.FIREREDLEAFGREEN,
+         regions: [APIGameRegions.KANTO],
       },
    },
    LEAFGREEN: {
@@ -46,6 +52,7 @@ export const GameVersion = Object.freeze({
          generation: APIGeneration.GEN3,
          version: APIVersion.LEAFGREEN,
          version_group: APIVersionGroup.FIREREDLEAFGREEN,
+         regions: [APIGameRegions.KANTO],
       },
    },
    LETSGOPIKACHU: {
@@ -57,6 +64,7 @@ export const GameVersion = Object.freeze({
          generation: APIGeneration.GEN7,
          version: APIVersion.LETSGOPIKACHU,
          version_group: APIVersionGroup.LETSGO,
+         regions: [APIGameRegions.KANTO],
       },
    },
    LETSGOEEVEE: {
@@ -67,6 +75,7 @@ export const GameVersion = Object.freeze({
          generation: APIGeneration.GEN7,
          version: APIVersion.LETSGOEEVEE,
          version_group: APIVersionGroup.LETSGO,
+         regions: [APIGameRegions.KANTO],
       },
    },
    RUBY: {
@@ -77,6 +86,7 @@ export const GameVersion = Object.freeze({
          generation: APIGeneration.GEN3,
          version: APIVersion.RUBY,
          version_group: APIVersionGroup.RUBYSAPPHIRE,
+         regions: [APIGameRegions.HOENN],
       },
    },
    SAPPHIRE: {
@@ -87,6 +97,7 @@ export const GameVersion = Object.freeze({
          generation: APIGeneration.GEN3,
          version: APIVersion.SAPPHIRE,
          version_group: APIVersionGroup.RUBYSAPPHIRE,
+         regions: [APIGameRegions.HOENN],
       },
    },
    EMERALD: {
@@ -98,6 +109,7 @@ export const GameVersion = Object.freeze({
          generation: APIGeneration.GEN3,
          version: APIVersion.EMERALD,
          version_group: APIVersionGroup.EMERALD,
+         regions: [APIGameRegions.HOENN],
       },
    },
 });

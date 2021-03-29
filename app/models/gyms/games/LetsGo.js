@@ -8,6 +8,7 @@ import DamageClass from '../../constants/DamageClass.js';
 import MovePriority from '../../constants/MovePriority.js';
 
 export default class LetsGo {
+   // FIXME needs to be converted firered/leafgreen
    constructor() {
       this.gyms = [
          this.getBrock(),

@@ -2,7 +2,7 @@ import DataClient from './DataClient.js';
 import { fromAWSItem, toAWSItem, isUndefined } from '../util/UtilMethods.js';
 import { getVersion } from './constants/GameVersion.js';
 import { listGyms } from '../controllers/gyms.js';
-import { listEncounters } from '../controllers/encounters.js';
+import EncounterController from '../controllers/encounters.js';
 import { getDefaultRules } from '../controllers/gameRules.js';
 import uuid_pkg from 'uuid';
 const { v4: uuid } = uuid_pkg;
@@ -14,7 +14,7 @@ export default class Game {
       this.label = object.label;
       this.version = getVersion(object.version.toUpperCase());
       this.is_finished = false;
-      this.encounters = listEncounters(this.version);
+      this.encounters = [];
       this.pokemons = [];
       this.gyms = listGyms(this.version.family);
       this.game_rules = getDefaultRules();
@@ -22,6 +22,11 @@ export default class Game {
    static async create(object, result) {
       try {
          const game = new Game(object);
+         // can't make an internal function here... so it's ugly
+         const encounterController = new EncounterController(game.version.api_data);
+         await encounterController.buildLocations();
+         game.encounters = [...encounterController.assembledLocations.values()];
+         // convert to aws and put
          const item = toAWSItem(game);
          const put = await DataClient.putItem({
             TableName: 'games',
