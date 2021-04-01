@@ -1,6 +1,8 @@
 import { APIGeneration } from '../models/constants/GameVersion.js';
 import Encounter from '../models/encounters/Encounter.js';
 import EncounterPokemon from '../models/encounters/EncounterPokemon.js';
+import EncounterResult from '../models/encounters/EncounterResult.js';
+import EncounterResultConst from '../models/constants/EncounterResultConst.js';
 import * as pokeapi from '../controllers/pokeapi.js';
 import * as util from '../util/UtilMethods.js';
 
@@ -16,6 +18,7 @@ export default class EncounterController {
    }
 
    async buildLocations() {
+      // TODO try and add a manager/worker pattern to this... also. sort before you send
       try {
          console.log('getting api locations...');
          await this.getAPILocations();
@@ -37,8 +40,11 @@ export default class EncounterController {
          const location = await pokeapi.get(url);
          let english = location.names.find(n => n.language.name === 'en');
          if (location.areas.length > 0) {
-            // FIXME set initial result!
+            const result = EncounterResult.builder()
+               .withConstant(EncounterResultConst.AVAILABLE)
+               .build();
             const encounter = Encounter.builder()
+               .withResult(result)
                .withLabel(english ? english.name : location.name)
                .withSortId(location.id)
                .build();
@@ -62,7 +68,7 @@ export default class EncounterController {
                   this.pokedex.set(pokemon.species, pokemon.url);
                });
                encounter.pokemons = pokemons.map(p => p.species);
-               // console.log(location.name, encounter);
+               console.log(location.name);
                this.assembledLocations.set(location.name, encounter);
             }
          }
@@ -86,7 +92,7 @@ export default class EncounterController {
             .withSpriteUrl(pokemon.sprites.front_default)
             .withSpecies(english ? english.name : pokemon.species.name)
             .build();
-         // console.log(key, encounterPokemon);
+         console.log(key);
          this.pokedex.set(key, encounterPokemon);
       }
    }
