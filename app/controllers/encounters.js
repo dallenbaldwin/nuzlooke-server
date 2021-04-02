@@ -32,16 +32,20 @@ export default class EncounterController {
    }
 
    async buildLocations() {
-      // TODO try and add a manager/worker pattern to this... also. sort before you send
+      // TODO try and add a manager/worker pattern to this
       try {
-         console.log('getting api locations...');
+         console.group('getting api locations...');
          await this.getAPILocations();
-         console.log('assembling location data...');
+         console.groupEnd();
+         console.group('assembling location data...');
          await this.assembleLocations();
-         console.log('filling pokedex...');
+         console.groupEnd();
+         console.group('filling pokedex...');
          await this.fillPokedex();
-         console.log('appling pokedex...');
+         console.groupEnd();
+         console.group('appling pokedex...');
          this.applyPokedex();
+         console.groupEnd();
          console.log('done!');
          return;
       } catch (err) {
@@ -52,8 +56,9 @@ export default class EncounterController {
    async assembleLocations() {
       for (let url of this.apiLocations) {
          const location = await pokeapi.get(url);
-         let english = location.names.find(n => n.language.name === 'en');
+         console.log(location.name, `${location.areas.length} locations...`);
          if (location.areas.length > 0) {
+            let english = location.names.find(n => n.language.name === 'en');
             const result = EncounterResult.builder()
                .withConstant(EncounterResultConst.AVAILABLE)
                .build();
@@ -82,7 +87,6 @@ export default class EncounterController {
                   this.pokedex.set(pokemon.species, pokemon.url);
                });
                encounter.pokemons = pokemons.map(p => p.species);
-               console.log(location.name);
                this.assembledLocations.set(location.name, encounter);
             }
          }
@@ -106,7 +110,7 @@ export default class EncounterController {
             .withSpriteUrl(pokemon.sprites.front_default)
             .withSpecies(english ? english.name : pokemon.species.name)
             .build();
-         console.log(key);
+         console.log(`set ${key}`);
          this.pokedex.set(key, encounterPokemon);
       }
    }
