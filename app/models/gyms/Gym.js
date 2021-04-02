@@ -1,7 +1,8 @@
 import { arrayify } from '../../util/UtilMethods.js';
 
 export default class Gym {
-   constructor(label, location, dominantType, badge, leader, pokemons) {
+   constructor(sortId, label, location, dominantType, badge, leader, pokemons) {
+      this.sort_id = sortId;
       this.is_defeated = false;
       this.label = label;
       this.location = location;
@@ -11,12 +12,18 @@ export default class Gym {
       this.pokemons = pokemons;
    }
    static builder() {
+      this.sort_id = undefined;
+      this.is_defeated = false;
       this.label = undefined;
       this.location = undefined;
       this.dominant_type = undefined;
       this.badge = undefined;
       this.leader = undefined;
       this.pokemons = undefined;
+      return this;
+   }
+   static withSortId(val) {
+      this.sort_id = val;
       return this;
    }
    static withLabel(val) {
@@ -45,6 +52,7 @@ export default class Gym {
    }
    static build() {
       return new Gym(
+         this.sort_id,
          this.label,
          this.location,
          this.dominant_type,

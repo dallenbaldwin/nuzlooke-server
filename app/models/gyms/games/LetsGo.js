@@ -96,6 +96,7 @@ export default class LetsGo {
          )
          .build();
       return Gym.builder()
+         .withSortId(1)
          .withLabel('Pewter Gym')
          .withLocation('Pewter City')
          .withDominantType(PokemonType.ROCK)
@@ -196,6 +197,7 @@ export default class LetsGo {
          )
          .build();
       return Gym.builder()
+         .withSortId(2)
          .withLabel('Cerulean Gym')
          .withLocation('Cerulean City')
          .withDominantType(PokemonType.WATER)
@@ -305,6 +307,7 @@ export default class LetsGo {
          )
          .build();
       return Gym.builder()
+         .withSortId(3)
          .withLabel('Vermilion Gym')
          .withLocation('Vermilion City')
          .withDominantType(PokemonType.ELECTRIC)
@@ -388,6 +391,7 @@ export default class LetsGo {
          )
          .build();
       return Gym.builder()
+         .withSortId(4)
          .withBadge(badge)
          .withLabel('Celadon Gym')
          .withDominantType(PokemonType.GRASS)
@@ -545,6 +549,7 @@ export default class LetsGo {
          )
          .build();
       return Gym.builder()
+         .withSortId(5)
          .withLabel('Fuchsia Gym')
          .withLocation('Fuchsia City')
          .withDominantType(PokemonType.POISON)
@@ -705,6 +710,7 @@ export default class LetsGo {
          .withSpritUrl('https://cdn.bulbagarden.net/upload/2/20/VSSabrina_PE.png')
          .build();
       return Gym.builder()
+         .withSortId(6)
          .withLabel('Saffron Gym')
          .withLocation('Saffron City')
          .withDominantType(PokemonType.PSYCHIC)
@@ -860,6 +866,7 @@ export default class LetsGo {
          )
          .build();
       return Gym.builder()
+         .withSortId(7)
          .withLabel('Cinnabar Gym')
          .withLocation('Cinnabar Island')
          .withDominantType(PokemonType.FIRE)
@@ -1018,6 +1025,7 @@ export default class LetsGo {
          )
          .build();
       return Gym.builder()
+         .withSortId(8)
          .withLabel('Viridian Gym')
          .withLocation('Viridian City')
          .withDominantType(PokemonType.GROUND)
