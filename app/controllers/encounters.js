@@ -17,6 +17,20 @@ export default class EncounterController {
       this.assembledLocations = new Map();
    }
 
+   get locations() {
+      return [...this.assembledLocations.values()];
+   }
+
+   sortLocationsByLabel() {
+      this.locations.sort((a, b) => {
+         const labelA = a.label.toUpperCase();
+         const labelB = b.label.toUpperCase();
+         if (labelA > labelB) return 1;
+         if (labelA < labelB) return -1;
+         return 0;
+      });
+   }
+
    async buildLocations() {
       // TODO try and add a manager/worker pattern to this... also. sort before you send
       try {

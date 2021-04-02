@@ -25,7 +25,8 @@ export default class Game {
          // can't make an internal function here... so it's ugly
          const encounterController = new EncounterController(game.version.api_data);
          await encounterController.buildLocations();
-         game.encounters = [...encounterController.assembledLocations.values()];
+         encounterController.sortLocationsByLabel();
+         game.encounters = encounterController.locations;
          // convert to aws and put
          const item = toAWSItem(game);
          const put = await DataClient.putItem({
