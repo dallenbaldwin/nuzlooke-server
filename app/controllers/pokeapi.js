@@ -11,6 +11,12 @@ const normalize = str =>
       .map(s => s.toLowerCase())
       .join('-');
 
+export const normalizeKabob = (string = '') =>
+   string
+      .split('-')
+      .map(s => s.slice(0, 1).toUpperCase() + s.slice(1).toLowerCase())
+      .join(' ');
+
 export const sanitize = url => url.slice(0, url.length - 1);
 
 export async function get(url) {

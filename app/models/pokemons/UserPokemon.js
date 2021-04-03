@@ -1,14 +1,12 @@
+import Pokemon from './Pokemon.js';
 import { arrayify } from '../../util/UtilMethods.js';
 import uuid_pkg from 'uuid';
 const { v4: uuid } = uuid_pkg;
 
-export default class UserPokemon {
+export default class UserPokemon extends Pokemon {
    constructor(species, icon_url, sprite_url, types, nickname, evolves_to, party_state) {
+      super(species, icon_url, sprite_url, types);
       this.id = uuid();
-      this.species = species;
-      this.icon_url = icon_url;
-      this.sprite_url = sprite_url;
-      this.types = types;
       this.nickname = nickname;
       this.evolves_to = evolves_to;
       this.party_state = party_state;
@@ -21,22 +19,6 @@ export default class UserPokemon {
       this.nickname = undefined;
       this.evolves_to = undefined;
       this.party_state = undefined;
-      return this;
-   }
-   static withSpecies(val) {
-      this.species = val;
-      return this;
-   }
-   static withIconUrl(val) {
-      this.icon_url = val;
-      return this;
-   }
-   static withSpritUrl(val) {
-      this.sprite_url = val;
-      return this;
-   }
-   static withTypes(...vals) {
-      this.types = arrayify(...vals);
       return this;
    }
    static withNickname(val) {

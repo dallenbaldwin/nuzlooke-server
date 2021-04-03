@@ -1,7 +1,7 @@
 import { APIGeneration } from '../models/constants/GameVersion.js';
 import Encounter from '../models/encounters/Encounter.js';
-import EncounterPokemon from '../models/encounters/EncounterPokemon.js';
 import EncounterResult from '../models/encounters/EncounterResult.js';
+import Pokemon from '../models/pokemons/Pokemon.js';
 import EncounterResultConst from '../models/constants/EncounterResultConst.js';
 import * as pokeapi from '../controllers/pokeapi.js';
 import * as util from '../util/UtilMethods.js';
@@ -105,7 +105,8 @@ export default class EncounterController {
          const pokemon = await pokeapi.get(url);
          const species = await pokeapi.get(pokemon.species.url);
          let english = species.names.find(n => n.language.name === 'en');
-         const encounterPokemon = EncounterPokemon.builder()
+         const encounterPokemon = Pokemon.builder()
+            .withTypes(pokemon.types.map(t => pokeapi.normalizeKabob(t.type.name)))
             .withIconUrl(pokemon.sprites.versions[APIGeneration.GEN7].icons.front_default)
             .withSpriteUrl(pokemon.sprites.front_default)
             .withSpecies(english ? english.name : pokemon.species.name)
