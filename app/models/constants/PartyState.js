@@ -1,7 +1,5 @@
-const PartyState = Object.freeze({
+export default Object.freeze({
    PARTY: 'Party',
    PC: 'PC',
    GRAVEYARD: 'Graveyard',
 });
-
-export default PartyState;

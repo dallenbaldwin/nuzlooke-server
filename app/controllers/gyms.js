@@ -1,18 +1,21 @@
-import { VersionFamily } from '../models/constants/GameVersion.js';
+import VersionGroup from '../models/constants/pokeapi/VersionGroup.js';
 import LetsGo from '../models/gyms/games/LetsGo.js';
 import Emerald from '../models/gyms/games/Emerald.js';
 import RubySapphire from '../models/gyms/games/RubySapphire.js';
-import { deClassify } from '../util/UtilMethods.js';
+import FireredLeafgreen from '../models/gyms/games/FireredLeafgreen.js';
 
-export function listGyms(versionFamily) {
-   switch (versionFamily) {
-      case VersionFamily.LETSGO:
-         return deClassify(new LetsGo().gyms);
-      case VersionFamily.RUBYSAPPHIRE:
-         return deClassify(new RubySapphire().gyms);
-      case VersionFamily.EMERALD:
-         return deClassify(new Emerald().gyms);
+export function buildGyms(version) {
+   const versionGroup = version.version_group;
+   switch (versionGroup) {
+      case VersionGroup.LETSGO:
+         return new LetsGo().gyms;
+      case VersionGroup.RUBYSAPPHIRE:
+         return new RubySapphire().gyms;
+      case VersionGroup.EMERALD:
+         return new Emerald().gyms;
+      case VersionGroup.FIREREDLEAFGREEN:
+         return new FireredLeafgreen().gyms;
       default:
-         return undefined;
+         return [];
    }
 }

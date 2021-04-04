@@ -1,4 +1,5 @@
 import { fromAWSItem, isUndefined, toAWSItem } from '../util/UtilMethods.js';
+import { parseUpdateObject } from '../controllers/user.js';
 import DataClient from './DataClient.js';
 import uuid_pkg from 'uuid';
 const { v4: uuid } = uuid_pkg;
@@ -53,31 +54,4 @@ export default class User {
          result({ error: err });
       }
    }
-}
-
-function parseUpdateObject(object) {
-   const sets = [];
-   const values = {};
-   let awsObject = toAWSItem(object);
-   if (!isUndefined(object.email)) {
-      sets.push('email = :email');
-      values[':email'] = awsObject.email;
-   }
-   if (!isUndefined(object.password)) {
-      sets.push('password = :password');
-      values[':password'] = awsObject.password;
-   }
-   if (!isUndefined(object.username)) {
-      sets.push('username = :username');
-      values[':username'] = awsObject.username;
-   }
-   if (!isUndefined(object.games)) {
-      sets.push('games = :games');
-      values[':games'] = awsObject.games;
-   }
-   const hasUpdates = sets.length > 0;
-   return {
-      updateExpression: hasUpdates ? `set ${sets.join(', ')}` : undefined,
-      expressionAttributeValues: hasUpdates ? values : undefined,
-   };
 }

@@ -1,4 +1,4 @@
-const RuleCode = Object.freeze({
+export default Object.freeze({
    USE_NICKNAMES: {
       label: 'Use Nicknames',
       description:
@@ -22,5 +22,3 @@ const RuleCode = Object.freeze({
    INSTA_DEATH: { label: 'Insta-Death', description: '', code: 1005 },
    DEATH_MARCH: { label: 'Death March', description: '', code: 1006 },
 });
-
-export default RuleCode;

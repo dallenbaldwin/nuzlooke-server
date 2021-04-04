@@ -1,4 +1,4 @@
-import { APIGeneration } from '../models/constants/GameVersion.js';
+import Generation from '../models/constants/pokeapi/Generation.js';
 import Encounter from '../models/encounters/Encounter.js';
 import EncounterResult from '../models/encounters/EncounterResult.js';
 import Pokemon from '../models/pokemons/Pokemon.js';
@@ -32,7 +32,7 @@ export default class EncounterController {
    }
 
    async buildLocations() {
-      // TODO try and add a manager/worker pattern to this
+      // TODO try and add a pm/dev pattern to this
       try {
          console.group('getting api locations...');
          await this.getAPILocations();
@@ -105,9 +105,10 @@ export default class EncounterController {
          const pokemon = await pokeapi.get(url);
          const species = await pokeapi.get(pokemon.species.url);
          let english = species.names.find(n => n.language.name === 'en');
+         // FIXME check to see if the generation has an icon_url, fallback to latest generation
          const encounterPokemon = Pokemon.builder()
             .withTypes(pokemon.types.map(t => pokeapi.normalizeKabob(t.type.name)))
-            .withIconUrl(pokemon.sprites.versions[APIGeneration.GEN7].icons.front_default)
+            .withIconUrl(pokemon.sprites.versions[Generation.GEN7].icons.front_default)
             .withSpriteUrl(pokemon.sprites.front_default)
             .withSpecies(english ? english.name : pokemon.species.name)
             .build();

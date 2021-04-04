@@ -1,4 +1,4 @@
-const PokemonType = Object.freeze({
+export default Object.freeze({
    NORMAL: 'Normal',
    FIGHTING: 'Fighting',
    FLYING: 'Flying',
@@ -19,5 +19,3 @@ const PokemonType = Object.freeze({
    FAIRY: 'Fairy',
    UNKNOWN: '???',
 });
-
-export default PokemonType;

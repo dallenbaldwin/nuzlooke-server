@@ -69,3 +69,30 @@ function getCreateErrors(user) {
    if (!user.password) errors.push('Missing user password');
    return errors.length > 0 ? errors : undefined;
 }
+
+export const parseUpdateObject = object => {
+   const sets = [];
+   const values = {};
+   let awsObject = toAWSItem(object);
+   if (!isUndefined(object.email)) {
+      sets.push('email = :email');
+      values[':email'] = awsObject.email;
+   }
+   if (!isUndefined(object.password)) {
+      sets.push('password = :password');
+      values[':password'] = awsObject.password;
+   }
+   if (!isUndefined(object.username)) {
+      sets.push('username = :username');
+      values[':username'] = awsObject.username;
+   }
+   if (!isUndefined(object.games)) {
+      sets.push('games = :games');
+      values[':games'] = awsObject.games;
+   }
+   const hasUpdates = sets.length > 0;
+   return {
+      updateExpression: hasUpdates ? `set ${sets.join(', ')}` : undefined,
+      expressionAttributeValues: hasUpdates ? values : undefined,
+   };
+};

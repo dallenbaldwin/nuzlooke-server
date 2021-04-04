@@ -8,7 +8,7 @@ import DamageClass from '../../constants/DamageClass.js';
 import MovePriority from '../../constants/MovePriority.js';
 
 export default class LetsGo {
-   // FIXME add firered/leafgreen. remove these from front end options
+   // FIXME remove these from front end options
    constructor() {
       this.gyms = [
          this.getBrock(),

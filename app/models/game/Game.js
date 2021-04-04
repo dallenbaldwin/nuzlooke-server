@@ -1,29 +1,29 @@
-import DataClient from './DataClient.js';
-import { fromAWSItem, toAWSItem, isUndefined } from '../util/UtilMethods.js';
-import { getVersion } from './constants/GameVersion.js';
-import { listGyms } from '../controllers/gyms.js';
-import EncounterController from '../controllers/encounters.js';
-import { getDefaultRules } from '../controllers/gameRules.js';
+import DataClient from '../DataClient.js';
+import { fromAWSItem, toAWSItem } from '../../util/UtilMethods.js';
+import { buildGyms } from '../../controllers/gyms.js';
+import { buildVersion, parseUpdateObject } from '../../controllers/game.js';
+import EncounterController from '../../controllers/encounters.js';
+import { getDefaultRules } from '../../controllers/gameRules.js';
+import Version from '../constants/pokeapi/Version.js';
 import uuid_pkg from 'uuid';
 const { v4: uuid } = uuid_pkg;
 
 export default class Game {
-   // {label: String, version: GameVersion (Dictionary label) }
-   constructor(object) {
+   constructor(object = { label: 'New Game', version: Version.EMERALD }) {
       this.id = uuid();
       this.label = object.label;
-      this.version = getVersion(object.version.toUpperCase());
+      this.version = buildVersion(object.version);
       this.is_finished = false;
       this.encounters = [];
       this.pokemons = [];
-      this.gyms = listGyms(this.version.family);
+      this.gyms = buildGyms(this.version.version_group);
       this.game_rules = getDefaultRules();
    }
    static async create(object, result) {
       try {
          const game = new Game(object);
          // can't make an internal function here... so it's ugly
-         const encounterController = new EncounterController(game.version.api_data);
+         const encounterController = new EncounterController(game.version);
          await encounterController.buildLocations();
          encounterController.sortLocationsByLabel();
          game.encounters = encounterController.locations;
@@ -82,48 +82,4 @@ export default class Game {
          result({ error: err });
       }
    }
-}
-
-function parseUpdateObject(object) {
-   const sets = [];
-   const values = {};
-   let awsObject = toAWSItem(object);
-   if (!isUndefined(object.label)) {
-      sets.push('label = :label');
-      values[':label'] = awsObject.label;
-   }
-   if (!isUndefined(object.version)) {
-      const versionData = getVersion(
-         !isUndefined(object.version.label) ? object.version.label : object.version
-      );
-      object.version = versionData;
-      awsObject = toAWSItem(object);
-      sets.push('version = :version');
-      values[':version'] = awsObject.version;
-   }
-   if (!isUndefined(object.is_finished)) {
-      sets.push('is_finished = :is_finished');
-      values[':is_finished'] = awsObject.is_finished;
-   }
-   if (!isUndefined(object.encounters)) {
-      sets.push('encounters = :encounters');
-      values[':encounters'] = awsObject.encounters;
-   }
-   if (!isUndefined(object.pokemons)) {
-      sets.push('pokemons = :pokemons');
-      values[':pokemons'] = awsObject.pokemons;
-   }
-   if (!isUndefined(object.gyms)) {
-      sets.push('gyms = :gyms');
-      values[':gyms'] = awsObject.gyms;
-   }
-   if (!isUndefined(object.game_rules)) {
-      sets.push('game_rules = :game_rules');
-      values[':game_rules'] = awsObject.game_rules;
-   }
-   const hasUpdates = sets.length > 0;
-   return {
-      updateExpression: hasUpdates ? `set ${sets.join(', ')}` : undefined,
-      expressionAttributeValues: hasUpdates ? values : undefined,
-   };
 }
