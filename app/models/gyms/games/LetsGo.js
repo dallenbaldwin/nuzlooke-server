@@ -88,7 +88,7 @@ export default class LetsGo {
       ];
       const leader = GymLeader.builder()
          .withLabel('Brock')
-         .withFlavorText('The Rock-Solid Pokémon Trainer')
+         .withFlavorText('The Rock-Solid Pokémon Trainer!')
          .withSpritUrl('https://cdn.bulbagarden.net/upload/e/e2/VSBrock_PE.png')
          .build();
       const badge = GymBadge.builder()
@@ -191,7 +191,7 @@ export default class LetsGo {
       ];
       const leader = GymLeader.builder()
          .withLabel('Misty')
-         .withFlavorText('The Tomboyish Mermaid')
+         .withFlavorText('The Tomboyish Mermaid!')
          .withSpritUrl('https://cdn.bulbagarden.net/upload/0/0c/VSMisty_PE.png')
          .build();
       const badge = GymBadge.builder()
@@ -304,7 +304,7 @@ export default class LetsGo {
       ];
       const leader = GymLeader.builder()
          .withLabel('Lt. Surge')
-         .withFlavorText('The Lightning American')
+         .withFlavorText('Lightning Lieutenant')
          .withSpritUrl('https://cdn.bulbagarden.net/upload/c/c6/VSLt_Surge_PE.png')
          .build();
       const badge = GymBadge.builder()
@@ -724,7 +724,7 @@ export default class LetsGo {
          .build();
       const leader = GymLeader.builder()
          .withLabel('Sabrina')
-         .withFlavorText('The Mistress of Psychic-type Pokémon')
+         .withFlavorText('The Master of Psychic Pokémon!')
          .withSpritUrl('https://cdn.bulbagarden.net/upload/2/20/VSSabrina_PE.png')
          .build();
       return Gym.builder()
@@ -1040,8 +1040,8 @@ export default class LetsGo {
             .build(),
       ];
       const leader = GymLeader.builder()
-         .withLabel('...')
-         .withFlavorText('The rest of the text is illegible...')
+         .withLabel('Giovanni')
+         .withFlavorText('The Self-Proclaimed Strongest Trainer')
          .withSpritUrl('https://cdn.bulbagarden.net/upload/4/4a/VSGiovanni_PE.png')
          .build();
       const badge = GymBadge.builder()
