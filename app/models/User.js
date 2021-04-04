@@ -1,4 +1,4 @@
-import { fromAWSItem, isUndefined, toAWSItem } from '../util/UtilMethods.js';
+import { fromAWSItem, toAWSItem } from '../util/UtilMethods.js';
 import { parseUpdateObject } from '../controllers/user.js';
 import DataClient from './DataClient.js';
 import uuid_pkg from 'uuid';

@@ -1,6 +1,6 @@
 import User from '../models/User.js';
 import APIResponse from '../models/APIResponse.js';
-import { isUndefined } from '../util/UtilMethods.js';
+import { isUndefined, toAWSItem } from '../util/UtilMethods.js';
 
 export function createUser(request, response) {
    const errors = getCreateErrors(request.body);
