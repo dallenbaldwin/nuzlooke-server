@@ -4,20 +4,20 @@ import Pokemon from './Pokemon.js';
 export default class GymPokemon extends Pokemon {
    constructor(
       species,
-      iconUrl,
-      spriteUrl,
+      icon_url,
+      sprite_url,
       types,
       sort_id,
       level,
       ability,
-      heldItem,
+      held_item,
       moves
    ) {
-      super(species, iconUrl, spriteUrl, types);
+      super(species, icon_url, sprite_url, types);
       this.sort_id = sort_id;
       this.level = level;
       this.ability = ability;
-      this.held_item = heldItem;
+      this.held_item = held_item;
       this.moves = moves;
    }
    static builder() {
@@ -61,7 +61,7 @@ export default class GymPokemon extends Pokemon {
          this.sort_id,
          this.level,
          this.ability,
-         this.heldItem,
+         this.held_item,
          this.moves
       );
    }
