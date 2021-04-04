@@ -216,7 +216,7 @@ export default class RubySapphire {
       const leader = GymLeader.builder()
          .withFlavorText('A big wave in fighting')
          .withLabel('Brawly')
-         .withSpritUrl()
+         .withSpritUrl('https://cdn.bulbagarden.net/upload/9/92/Spr_RS_Brawly.png')
          .build();
       return Gym.builder()
          .withBadge(badge)
