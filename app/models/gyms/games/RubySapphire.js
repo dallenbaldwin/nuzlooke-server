@@ -657,7 +657,7 @@ export default class RubySapphire {
                GymPokemonMove.builder()
                   .withLabel('Water Gun')
                   .withType(PokemonType.WATER)
-                  .withDamageClass(DamageClass.WATER)
+                  .withDamageClass(DamageClass.STATUS)
                   .withPP(25)
                   .withPower(40)
                   .withAccuracy(100)

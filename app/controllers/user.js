@@ -49,8 +49,7 @@ export const updateUser = (request, response) => {
 
 export const readUserGames = (request, response) => {
    User.read(request.params.id, res => {
-      if (res.error)
-         return response.status(500).send(APIResponse.withError(res.error.stack));
+      if (res.error) return response.status(500).send(APIResponse.withError(res.error));
 
       if (!res.data.id)
          return response

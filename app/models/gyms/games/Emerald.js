@@ -17,7 +17,7 @@ export default class Emerald {
          this.getNorman(),
          this.getWinona(),
          this.getTateLiza(),
-         this.getWallace(),
+         this.getJuan(),
       ];
    }
    getRoxanne() {
@@ -791,7 +791,7 @@ export default class Emerald {
                GymPokemonMove.builder()
                   .withLabel('Water Gun')
                   .withType(PokemonType.WATER)
-                  .withDamageClass(DamageClass.WATER)
+                  .withDamageClass(DamageClass.STATUS)
                   .withPP(25)
                   .withPower(40)
                   .withAccuracy(100)
@@ -1256,7 +1256,7 @@ export default class Emerald {
          .build();
       return Gym.builder()
          .withBadge(badge)
-         .withDominantType()
+         .withDominantType(PokemonType.WATER)
          .withLabel('Sootopolis Gym')
          .withLeader(leader)
          .withLocation('Sootopolis City')
