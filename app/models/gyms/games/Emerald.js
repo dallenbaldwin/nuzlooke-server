@@ -47,22 +47,26 @@ export default class Emerald {
          .withType(PokemonType.NORMAL)
          .build();
       const geodude = GymPokemon.builder()
+         .withSortId(1)
          .withAbility('Rock Head')
          .withLevel(12)
          .withMoves(tackle, defenseCurl, rockThrow, rockTomb)
          .withSpecies('Geodude')
          .withIconUrl(
-            'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/emerald/74.png'
+            'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/74.png'
          )
          .withSpriteUrl(
             'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/74.png'
          )
          .withTypes(PokemonType.ROCK, PokemonType.GROUND)
          .build();
+      const geo2 = geodude;
+      geo2.sort_id = 2;
       const pokemons = [
          geodude,
-         geodude,
+         geo2,
          GymPokemon.builder()
+            .withSortId(3)
             .withAbility('Sturdy')
             .withHeldItem('Oran Berry')
             .withLevel(15)
@@ -85,7 +89,7 @@ export default class Emerald {
                rockTomb
             )
             .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/emerald/299.png'
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/299.png'
             )
             .withSpecies('Nosepass')
             .withSpriteUrl(
@@ -123,6 +127,7 @@ export default class Emerald {
          .build();
       const pokemons = [
          GymPokemon.builder()
+            .withSortId(1)
             .withAbility('Guts')
             .withLevel(16)
             .withMoves(
@@ -155,7 +160,7 @@ export default class Emerald {
             )
             .withTypes(PokemonType.FIGHTING)
             .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/emerald/66.png'
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/66.png'
             )
             .withSpriteUrl(
                'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/66.png'
@@ -163,6 +168,7 @@ export default class Emerald {
             .withSpecies('Machop')
             .build(),
          GymPokemon.builder()
+            .withSortId(2)
             .withLevel(16)
             .withAbility('Pure Power')
             .withMoves(
@@ -191,7 +197,7 @@ export default class Emerald {
             )
             .withSpecies('Meditite')
             .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/emerald/307.png'
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/307.png'
             )
             .withSpriteUrl(
                'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/307.png'
@@ -199,6 +205,7 @@ export default class Emerald {
             .withTypes(PokemonType.FIGHTING, PokemonType.PSYCHIC)
             .build(),
          GymPokemon.builder()
+            .withSortId(3)
             .withAbility('Guts')
             .withLevel(19)
             .withHeldItem('Sitrus Berry')
@@ -235,7 +242,7 @@ export default class Emerald {
             )
             .withTypes(PokemonType.FIGHTING)
             .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/emerald/296.png'
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/296.png'
             )
             .withSpriteUrl(
                'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/296.png'
@@ -298,6 +305,7 @@ export default class Emerald {
          .build();
       const pokemons = [
          GymPokemon.builder()
+            .withSortId(1)
             .withAbility('Soundproof')
             .withLevel(20)
             .withMoves(
@@ -332,7 +340,7 @@ export default class Emerald {
             )
             .withSpecies('Voltorb')
             .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/emerald/100.png'
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/100.png'
             )
             .withSpriteUrl(
                'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/100.png'
@@ -341,12 +349,13 @@ export default class Emerald {
             .withTypes(PokemonType.ELECTRIC)
             .build(),
          GymPokemon.builder()
+            .withSortId(2)
             .withAbility('Static')
             .withLevel(20)
             .withMoves(shockWave, leer, quickAttack, howl)
             .withSpecies('Electrike')
             .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/emerald/309.png'
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/309.png'
             )
             .withSpriteUrl(
                'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/309.png'
@@ -354,6 +363,7 @@ export default class Emerald {
             .withTypes(PokemonType.ELECTRIC)
             .build(),
          GymPokemon.builder()
+            .withSortId(3)
             .withAbility('Magnet Pull')
             .withLevel(22)
             .withMoves(
@@ -373,7 +383,7 @@ export default class Emerald {
             )
             .withSpecies('Magneton')
             .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/emerald/82.png'
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/82.png'
             )
             .withSpriteUrl(
                'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/82.png'
@@ -381,13 +391,14 @@ export default class Emerald {
             .withTypes(PokemonType.ELECTRIC, PokemonType.STEEL)
             .build(),
          GymPokemon.builder()
+            .withSortId(4)
             .withAbility('Static')
             .withLevel(24)
             .withHeldItem('Sitrus Berry')
             .withMoves(quickAttack, thunderWave, shockWave, howl)
             .withTypes(PokemonType.ELECTRIC)
             .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/emerald/310.png'
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/310.png'
             )
             .withSpriteUrl(
                'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/310.png'
@@ -426,6 +437,7 @@ export default class Emerald {
          .build();
       const pokemons = [
          GymPokemon.builder()
+            .withSortId(1)
             .withAbility('Oblivious')
             .withLevel(24)
             .withMoves(
@@ -450,7 +462,7 @@ export default class Emerald {
                sunnyDay
             )
             .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/emerald/322.png'
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/322.png'
             )
             .withSpriteUrl(
                'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/322.png'
@@ -459,6 +471,7 @@ export default class Emerald {
             .withTypes(PokemonType.FIRE, PokemonType.GROUND)
             .build(),
          GymPokemon.builder()
+            .withSortId(2)
             .withAbility('Magma Armor')
             .withLevel(24)
             .withMoves(
@@ -476,7 +489,7 @@ export default class Emerald {
                sunnyDay
             )
             .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/emerald/218.png'
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/218.png'
             )
             .withSpriteUrl(
                'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/218.png'
@@ -485,11 +498,12 @@ export default class Emerald {
             .withSpecies('Slugma')
             .build(),
          GymPokemon.builder()
+            .withSortId(3)
             .withAbility('Magma Armor')
             .withLevel(26)
             .withMoves(overheat, tackle, sunnyDay, attract)
             .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/emerald/323.png'
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/323.png'
             )
             .withSpriteUrl(
                'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/323.png'
@@ -498,13 +512,14 @@ export default class Emerald {
             .withTypes(PokemonType.FIRE, PokemonType.GROUND)
             .build(),
          GymPokemon.builder()
+            .withSortId(4)
             .withAbility('White Smoke')
             .withHeldItem('White Herb')
             .withLevel(29)
             .withMoves(overheat, sunnyDay, bodySlam, attract)
             .withTypes(PokemonType.FIRE)
             .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/emerald/324.png'
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/324.png'
             )
             .withSpriteUrl(
                'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/324.png'
@@ -560,6 +575,7 @@ export default class Emerald {
          .build();
       const pokemons = [
          GymPokemon.builder()
+            .withSortId(1)
             .withAbility('Own Tempo')
             .withLevel(27)
             .withMoves(
@@ -586,26 +602,28 @@ export default class Emerald {
             .withSpecies('Spinda')
             .withTypes(PokemonType.NORMAL)
             .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/emerald/327.png'
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/327.png'
             )
             .withSpriteUrl(
                'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/327.png'
             )
             .build(),
          GymPokemon.builder()
+            .withSortId(2)
             .withAbility('Vital Spirit')
             .withLevel(27)
             .withMoves(slash, facade, encore, faintAttack)
             .withSpecies('Vigoroth')
             .withTypes(PokemonType.NORMAL)
             .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/emerald/288.png'
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/288.png'
             )
             .withSpriteUrl(
                'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/288.png'
             )
             .build(),
          GymPokemon.builder()
+            .withSortId(3)
             .withAbility('Pickup')
             .withLevel(29)
             .withMoves(
@@ -631,13 +649,14 @@ export default class Emerald {
             .withSpecies('Linoone')
             .withTypes(PokemonType.NORMAL)
             .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/emerald/264.png'
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/264.png'
             )
             .withSpriteUrl(
                'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/264.png'
             )
             .build(),
          GymPokemon.builder()
+            .withSortId(4)
             .withAbility('Truant')
             .withLevel(31)
             .withHeldItem('Sitrus Berry')
@@ -666,7 +685,7 @@ export default class Emerald {
             .withSpecies('Slaking')
             .withTypes(PokemonType.NORMAL)
             .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/emerald/289.png'
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/289.png'
             )
             .withSpriteUrl(
                'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/289.png'
@@ -703,6 +722,7 @@ export default class Emerald {
          .build();
       const pokemons = [
          GymPokemon.builder()
+            .withSortId(1)
             .withAbility('Natural Cure')
             .withLevel(29)
             .withMoves(
@@ -732,13 +752,14 @@ export default class Emerald {
             .withSpecies('Swablu')
             .withTypes(PokemonType.NORMAL, PokemonType.FLYING)
             .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/emerald/333.png'
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/333.png'
             )
             .withSpriteUrl(
                'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/333.png'
             )
             .build(),
          GymPokemon.builder()
+            .withSortId(2)
             .withAbility('Chlorophyll')
             .withLevel(29)
             .withMoves(
@@ -756,13 +777,14 @@ export default class Emerald {
             .withSpecies('Tropius')
             .withTypes(PokemonType.GRASS, PokemonType.FLYING)
             .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/emerald/357.png'
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/357.png'
             )
             .withSpriteUrl(
                'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/357.png'
             )
             .build(),
          GymPokemon.builder()
+            .withSortId(3)
             .withAbility('Keen Eye')
             .withLevel(30)
             .withMoves(
@@ -791,13 +813,14 @@ export default class Emerald {
             .withTypes(PokemonType.WATER, PokemonType.FLYING)
             .withSpecies('Pelipper')
             .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/emerald/279.png'
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/279.png'
             )
             .withSpriteUrl(
                'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/279.png'
             )
             .build(),
          GymPokemon.builder()
+            .withSortId(4)
             .withAbility('Keen Eye')
             .withLevel(31)
             .withMoves(
@@ -834,13 +857,14 @@ export default class Emerald {
             .withTypes(PokemonType.STEEL, PokemonType.FLYING)
             .withSpecies('Skarmory')
             .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/emerald/227.png'
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/227.png'
             )
             .withSpriteUrl(
                'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/227.png'
             )
             .build(),
          GymPokemon.builder()
+            .withSortId(5)
             .withAbility('Natural Cure')
             .withLevel(33)
             .withHeldItem('Oran Berry')
@@ -867,7 +891,7 @@ export default class Emerald {
             .withTypes(PokemonType.DRAGON, PokemonType.FLYING)
             .withSpecies('Altaria')
             .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/emerald/334.png'
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/334.png'
             )
             .withSpriteUrl(
                'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/334.png'
@@ -912,6 +936,7 @@ export default class Emerald {
          .build();
       const pokemons = [
          GymPokemon.builder()
+            .withSortId(1)
             .withLevel(41)
             .withAbility('Levitate')
             .withMoves(
@@ -931,13 +956,14 @@ export default class Emerald {
             .withSpecies('Claydol')
             .withTypes(PokemonType.GROUND, PokemonType.PSYCHIC)
             .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/emerald/344.png'
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/344.png'
             )
             .withSpriteUrl(
                'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/344.png'
             )
             .build(),
          GymPokemon.builder()
+            .withSortId(2)
             .withLevel(41)
             .withAbility('Synchronize')
             .withMoves(
@@ -955,13 +981,14 @@ export default class Emerald {
             .withSpecies('Xatu')
             .withTypes(PokemonType.PSYCHIC, PokemonType.FLYING)
             .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/emerald/178.png'
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/178.png'
             )
             .withSpriteUrl(
                'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/178.png'
             )
             .build(),
          GymPokemon.builder()
+            .withSortId(3)
             .withLevel(42)
             .withAbility('Levitate')
             .withHeldItem('Sitrus Berry')
@@ -981,13 +1008,14 @@ export default class Emerald {
             .withSpecies('Lunatone')
             .withTypes(PokemonType.ROCK, PokemonType.PSYCHIC)
             .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/emerald/337.png'
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/337.png'
             )
             .withSpriteUrl(
                'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/337.png'
             )
             .build(),
          GymPokemon.builder()
+            .withSortId(4)
             .withLevel(42)
             .withAbility('Levitate')
             .withHeldItem('Sitrus Berry')
@@ -1008,7 +1036,7 @@ export default class Emerald {
             .withSpecies('Solrock')
             .withTypes(PokemonType.ROCK, PokemonType.PSYCHIC)
             .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/emerald/338.png'
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/338.png'
             )
             .withSpriteUrl(
                'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/338.png'
@@ -1046,6 +1074,7 @@ export default class Emerald {
          .build();
       const pokemons = [
          GymPokemon.builder()
+            .withSortId(1)
             .withLevel(41)
             .withAbility('Swift Swim')
             .withMoves(
@@ -1072,13 +1101,15 @@ export default class Emerald {
             )
             .withTypes(PokemonType.WATER)
             .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/emerald/370.png'
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/370.png'
             )
             .withSpriteUrl(
                'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/370.png'
             )
-            .withSpecies('Luvdisc'),
+            .withSpecies('Luvdisc')
+            .build(),
          GymPokemon.builder()
+            .withSortId(2)
             .withLevel(41)
             .withAbility('Oblivious')
             .withMoves(
@@ -1101,13 +1132,15 @@ export default class Emerald {
             )
             .withTypes(PokemonType.WATER, PokemonType.GROUND)
             .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/emerald/340.png'
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/340.png'
             )
             .withSpriteUrl(
                'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/340.png'
             )
-            .withSpecies('Whiscash'),
+            .withSpecies('Whiscash')
+            .build(),
          GymPokemon.builder()
+            .withSortId(3)
             .withLevel(43)
             .withAbility('Thick Fat')
             .withMoves(
@@ -1126,13 +1159,15 @@ export default class Emerald {
             )
             .withTypes(PokemonType.ICE, PokemonType.WATER)
             .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/emerald/364.png'
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/364.png'
             )
             .withSpriteUrl(
                'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/364.png'
             )
-            .withSpecies('Sealeo'),
+            .withSpecies('Sealeo')
+            .build(),
          GymPokemon.builder()
+            .withSortId(4)
             .withAbility('Hyper Cutter')
             .withLevel(43)
             .withMoves(
@@ -1160,7 +1195,7 @@ export default class Emerald {
             )
             .withSpecies('Crawdaunt')
             .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/emerald/342.png'
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/342.png'
             )
             .withSpriteUrl(
                'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/342.png'
@@ -1168,6 +1203,7 @@ export default class Emerald {
             .withTypes(PokemonType.WATER, PokemonType.DARK)
             .build(),
          GymPokemon.builder()
+            .withSortId(5)
             .withAbility('Swift Swim')
             .withHeldItem('Chesto Berry')
             .withLevel(46)
@@ -1202,7 +1238,7 @@ export default class Emerald {
             .withSpecies('Kingdra')
             .withTypes(PokemonType.WATER, PokemonType.DRAGON)
             .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/emerald/230.png'
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/230.png'
             )
             .withSpriteUrl(
                'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/230.png'

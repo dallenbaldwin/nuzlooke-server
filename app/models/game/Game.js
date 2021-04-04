@@ -9,7 +9,7 @@ import uuid_pkg from 'uuid';
 const { v4: uuid } = uuid_pkg;
 
 export default class Game {
-   constructor(object = { label: 'New Game', version: Version.EMERALD }) {
+   constructor(object) {
       this.id = uuid();
       this.label = object.label;
       this.version = buildVersion(object.version);

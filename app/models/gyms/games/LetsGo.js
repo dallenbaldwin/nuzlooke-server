@@ -24,6 +24,7 @@ export default class LetsGo {
    getBrock() {
       const pokemons = [
          GymPokemon.builder()
+            .withSortId(1)
             .withSpecies('Geodude')
             .withIconUrl(
                'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/74.png'
@@ -48,6 +49,7 @@ export default class LetsGo {
             ])
             .build(),
          GymPokemon.builder()
+            .withSortId(2)
             .withSpecies('Onix')
             .withIconUrl(
                'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/95.png'
@@ -108,6 +110,7 @@ export default class LetsGo {
    getMisty() {
       const pokemons = [
          GymPokemon.builder()
+            .withSortId(1)
             .withSpecies('Psyduck')
             .withIconUrl(
                'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/54.png'
@@ -141,6 +144,7 @@ export default class LetsGo {
             ])
             .build(),
          GymPokemon.builder()
+            .withSortId(2)
             .withSpecies('Starmie')
             .withIconUrl(
                'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/121.png'
@@ -220,6 +224,7 @@ export default class LetsGo {
          .build();
       const pokemons = [
          GymPokemon.builder()
+            .withSortId(1)
             .withLevel(25)
             .withTypes([PokemonType.ELECTRIC])
             .withSpecies('Voltorb')
@@ -245,6 +250,7 @@ export default class LetsGo {
             ])
             .build(),
          GymPokemon.builder()
+            .withSortId(2)
             .withSpecies('Magnemite')
             .withIconUrl(
                'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/81.png'
@@ -269,6 +275,7 @@ export default class LetsGo {
             ])
             .build(),
          GymPokemon.builder()
+            .withSortId(3)
             .withSpecies('Raichu')
             .withSpriteUrl(
                'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/26.png'
@@ -330,6 +337,7 @@ export default class LetsGo {
          .build();
       const pokemons = [
          GymPokemon.builder()
+            .withSortId(1)
             .withSpecies('Tangela')
             .withLevel(33)
             .withSpriteUrl(
@@ -355,6 +363,7 @@ export default class LetsGo {
             ])
             .build(),
          GymPokemon.builder()
+            .withSortId(2)
             .withSpecies('Weepinbell')
             .withTypes([PokemonType.GRASS, PokemonType.POISON])
             .withLevel(33)
@@ -367,6 +376,7 @@ export default class LetsGo {
             .withMoves([megaDrain, poisonJab])
             .build(),
          GymPokemon.builder()
+            .withSortId(3)
             .withSpecies('Vileplume')
             .withLevel(34)
             .withTypes([PokemonType.GRASS, PokemonType.POISON])
@@ -434,6 +444,7 @@ export default class LetsGo {
          .build();
       const pokemons = [
          GymPokemon.builder()
+            .withSortId(1)
             .withSpecies('Weezing')
             .withLevel(43)
             .withTypes([PokemonType.POISON])
@@ -461,6 +472,7 @@ export default class LetsGo {
             ])
             .build(),
          GymPokemon.builder()
+            .withSortId(2)
             .withSpecies('Muk')
             .withLevel(43)
             .withTypes([PokemonType.POISON])
@@ -473,6 +485,7 @@ export default class LetsGo {
             .withMoves([toxic, protect, sludgeBomb, moonblast])
             .build(),
          GymPokemon.builder()
+            .withSortId(3)
             .withSpecies('Golbat')
             .withLevel(43)
             .withTypes([PokemonType.POISON, PokemonType.FLYING])
@@ -510,6 +523,7 @@ export default class LetsGo {
             ])
             .build(),
          GymPokemon.builder()
+            .withSortId(4)
             .withSpecies('Venomoth')
             .withLevel(44)
             .withTypes([PokemonType.BUG, PokemonType.POISON])
@@ -561,6 +575,7 @@ export default class LetsGo {
    getSabrina() {
       const pokemons = [
          GymPokemon.builder()
+            .withSortId(1)
             .withSpecies('Mr. Mime')
             .withIconUrl(
                'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/122.png'
@@ -596,6 +611,7 @@ export default class LetsGo {
             ])
             .build(),
          GymPokemon.builder()
+            .withSortId(2)
             .withSpecies('Slowbro')
             .withIconUrl(
                'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/80.png'
@@ -639,6 +655,7 @@ export default class LetsGo {
             ])
             .build(),
          GymPokemon.builder()
+            .withSortId(3)
             .withSpecies('Jynx')
             .withIconUrl(
                'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/124.png'
@@ -674,6 +691,7 @@ export default class LetsGo {
             ])
             .build(),
          GymPokemon.builder()
+            .withSortId(4)
             .withSpecies('Alakazam')
             .withIconUrl(
                'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/65.png'
@@ -733,6 +751,7 @@ export default class LetsGo {
          .build();
       const pokemons = [
          GymPokemon.builder()
+            .withSortId(1)
             .withSpecies('Magmar')
             .withIconUrl(
                'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/126.png'
@@ -777,6 +796,7 @@ export default class LetsGo {
             ])
             .build(),
          GymPokemon.builder()
+            .withSortId(2)
             .withSpecies('Rapidash')
             .withIconUrl(
                'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/78.png'
@@ -803,6 +823,7 @@ export default class LetsGo {
             ])
             .build(),
          GymPokemon.builder()
+            .withSortId(3)
             .withSpecies('Ninetales')
             .withIconUrl(
                'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/38.png'
@@ -828,6 +849,7 @@ export default class LetsGo {
             ])
             .build(),
          GymPokemon.builder()
+            .withSortId(4)
             .withSpecies('Arcanine')
             .withIconUrl(
                'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/59.png'
@@ -900,6 +922,7 @@ export default class LetsGo {
          .build();
       const pokemons = [
          GymPokemon.builder()
+            .withSortId(1)
             .withSpecies('Dugtrio')
             .withIconUrl(
                'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/51.png'
@@ -936,6 +959,7 @@ export default class LetsGo {
             ])
             .build(),
          GymPokemon.builder()
+            .withSortId(2)
             .withSpecies('Nidoqueen')
             .withIconUrl(
                'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/31.png'
@@ -961,6 +985,7 @@ export default class LetsGo {
             ])
             .build(),
          GymPokemon.builder()
+            .withSortId(3)
             .withSpecies('Nidoking')
             .withIconUrl(
                'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/34.png'
@@ -987,6 +1012,7 @@ export default class LetsGo {
             ])
             .build(),
          GymPokemon.builder()
+            .withSortId(4)
             .withSpecies('Rhydon')
             .withIconUrl(
                'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/112.png'

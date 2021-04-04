@@ -49,10 +49,11 @@ export default class RubySapphire {
          .build();
       const pokemons = [
          GymPokemon.builder()
+            .withSortId(1)
             .withLevel(14)
             .withAbility('Sturdy')
             .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/ruby-sapphire/back/74.png'
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/74.png'
             )
             .withSpecies('Geodude')
             .withSpriteUrl(
@@ -73,10 +74,11 @@ export default class RubySapphire {
             )
             .build(),
          GymPokemon.builder()
+            .withSortId(2)
             .withLevel(15)
             .withAbility('Sturdy')
             .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/ruby-sapphire/back/299.png'
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/299.png'
             )
             .withSpecies('Nosepass')
             .withSpriteUrl(
@@ -126,6 +128,7 @@ export default class RubySapphire {
          .build();
       const pokemons = [
          GymPokemon.builder()
+            .withSortId(1)
             .withAbility('Guts')
             .withLevel(17)
             .withMoves(
@@ -158,7 +161,7 @@ export default class RubySapphire {
             )
             .withTypes(PokemonType.FIGHTING)
             .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/ruby-sapphire/66.png'
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/66.png'
             )
             .withSpriteUrl(
                'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/66.png'
@@ -166,6 +169,7 @@ export default class RubySapphire {
             .withSpecies('Machop')
             .build(),
          GymPokemon.builder()
+            .withSortId(2)
             .withAbility('Guts')
             .withLevel(18)
             .withMoves(
@@ -201,7 +205,7 @@ export default class RubySapphire {
             )
             .withTypes(PokemonType.FIGHTING)
             .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/ruby-sapphire/296.png'
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/296.png'
             )
             .withSpriteUrl(
                'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/296.png'
@@ -247,6 +251,7 @@ export default class RubySapphire {
          .build();
       const pokemons = [
          GymPokemon.builder()
+            .withSortId(1)
             .withAbility('Magnet Pull')
             .withLevel(22)
             .withMoves(
@@ -266,13 +271,14 @@ export default class RubySapphire {
             .withSpecies('Magnemite')
             .withTypes(PokemonType.ELECTRIC, PokemonType.STEEL)
             .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/ruby-sapphire/81.png'
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/81.png'
             )
             .withSpriteUrl(
                'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/81.png'
             )
             .build(),
          GymPokemon.builder()
+            .withSortId(2)
             .withAbility('Soundproof')
             .withLevel(20)
             .withMoves(
@@ -308,13 +314,14 @@ export default class RubySapphire {
             .withSpecies('Voltorb')
             .withTypes(PokemonType.ELECTRIC)
             .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/ruby-sapphire/100.png'
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/100.png'
             )
             .withSpriteUrl(
                'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/100.png'
             )
             .build(),
          GymPokemon.builder()
+            .withSortId(3)
             .withAbility('Magnet Pull')
             .withLevel(23)
             .withMoves(
@@ -335,7 +342,7 @@ export default class RubySapphire {
             .withSpecies('Magneton')
             .withTypes(PokemonType.ELECTRIC, PokemonType.STEEL)
             .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/ruby-sapphire/82.png'
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/82.png'
             )
             .withSpriteUrl(
                'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/82.png'
@@ -373,6 +380,7 @@ export default class RubySapphire {
          .build();
       const pokemons = [
          GymPokemon.builder()
+            .withSortId(1)
             .withAbility('Magma Armor')
             .withLevel(26)
             .withMoves(
@@ -390,7 +398,7 @@ export default class RubySapphire {
                sunnyDay
             )
             .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/ruby-sapphire/218.png'
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/218.png'
             )
             .withSpriteUrl(
                'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/218.png'
@@ -399,6 +407,7 @@ export default class RubySapphire {
             .withSpecies('Slugma')
             .build(),
          GymPokemon.builder()
+            .withSortId(2)
             .withAbility('Magma Armor')
             .withLevel(26)
             .withMoves(
@@ -416,7 +425,7 @@ export default class RubySapphire {
                sunnyDay
             )
             .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/ruby-sapphire/218.png'
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/218.png'
             )
             .withSpriteUrl(
                'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/218.png'
@@ -425,12 +434,13 @@ export default class RubySapphire {
             .withSpecies('Slugma')
             .build(),
          GymPokemon.builder()
+            .withSortId(3)
             .withAbility('White Smoke')
             .withLevel(28)
             .withMoves(overheat, bodySlam, flail, attract)
             .withTypes(PokemonType.FIRE)
             .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/ruby-sapphire/324.png'
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/324.png'
             )
             .withSpriteUrl(
                'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/324.png'
@@ -477,6 +487,7 @@ export default class RubySapphire {
          .build();
       const pokemons = [
          GymPokemon.builder()
+            .withSortId(1)
             .withAbility('Truant')
             .withLevel(28)
             .withMoves(
@@ -496,13 +507,14 @@ export default class RubySapphire {
             .withSpecies('Slaking')
             .withTypes(PokemonType.NORMAL)
             .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/ruby-sapphire/289.png'
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/289.png'
             )
             .withSpriteUrl(
                'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/289.png'
             )
             .build(),
          GymPokemon.builder()
+            .withSortId(2)
             .withAbility('Vital Spirit')
             .withLevel(30)
             .withMoves(
@@ -524,13 +536,14 @@ export default class RubySapphire {
             .withSpecies('Vigoroth')
             .withTypes(PokemonType.NORMAL)
             .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/ruby-sapphire/288.png'
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/288.png'
             )
             .withSpriteUrl(
                'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/288.png'
             )
             .build(),
          GymPokemon.builder()
+            .withSortId(3)
             .withAbility('Truant')
             .withLevel(31)
             .withMoves(
@@ -557,7 +570,7 @@ export default class RubySapphire {
             .withSpecies('Slaking')
             .withTypes(PokemonType.NORMAL)
             .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/ruby-sapphire/289.png'
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/289.png'
             )
             .withSpriteUrl(
                'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/289.png'
@@ -594,6 +607,7 @@ export default class RubySapphire {
          .build();
       const pokemons = [
          GymPokemon.builder()
+            .withSortId(1)
             .withAbility('Guts')
             .withLevel(31)
             .withMoves(
@@ -629,13 +643,14 @@ export default class RubySapphire {
             .withTypes(PokemonType.NORMAL, PokemonType.FLYING)
             .withSpecies('Swellow')
             .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/ruby-sapphire/277.png'
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/277.png'
             )
             .withSpriteUrl(
                'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/277.png'
             )
             .build(),
          GymPokemon.builder()
+            .withSortId(2)
             .withAbility('Keen Eye')
             .withLevel(30)
             .withMoves(
@@ -664,13 +679,14 @@ export default class RubySapphire {
             .withTypes(PokemonType.WATER, PokemonType.FLYING)
             .withSpecies('Pelipper')
             .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/ruby-sapphire/279.png'
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/279.png'
             )
             .withSpriteUrl(
                'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/279.png'
             )
             .build(),
          GymPokemon.builder()
+            .withSortId(3)
             .withAbility('Keen Eye')
             .withLevel(32)
             .withMoves(
@@ -699,13 +715,14 @@ export default class RubySapphire {
             .withTypes(PokemonType.STEEL, PokemonType.FLYING)
             .withSpecies('Skarmory')
             .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/ruby-sapphire/227.png'
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/227.png'
             )
             .withSpriteUrl(
                'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/227.png'
             )
             .build(),
          GymPokemon.builder()
+            .withSortId(4)
             .withAbility('Natural Cure')
             .withLevel(33)
             .withMoves(
@@ -731,7 +748,7 @@ export default class RubySapphire {
             .withTypes(PokemonType.DRAGON, PokemonType.FLYING)
             .withSpecies('Altaria')
             .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/ruby-sapphire/334.png'
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/334.png'
             )
             .withSpriteUrl(
                'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/334.png'
@@ -769,6 +786,7 @@ export default class RubySapphire {
          .build();
       const pokemons = [
          GymPokemon.builder()
+            .withSortId(1)
             .withAbility('Levitate')
             .withLevel(42)
             .withMoves(
@@ -793,13 +811,14 @@ export default class RubySapphire {
             .withSpecies('Lunatone')
             .withTypes(PokemonType.ROCK, PokemonType.PSYCHIC)
             .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/ruby-sapphire/337.png'
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/337.png'
             )
             .withSpriteUrl(
                'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/337.png'
             )
             .build(),
          GymPokemon.builder()
+            .withSortId(2)
             .withAbility('Levitate')
             .withLevel(42)
             .withMoves(
@@ -821,7 +840,7 @@ export default class RubySapphire {
             .withSpecies('Solrock')
             .withTypes(PokemonType.ROCK, PokemonType.PSYCHIC)
             .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/ruby-sapphire/338.png'
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/338.png'
             )
             .withSpriteUrl(
                'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/338.png'
@@ -866,6 +885,7 @@ export default class RubySapphire {
          .build();
       const pokemons = [
          GymPokemon.builder()
+            .withSortId(1)
             .withLevel(40)
             .withAbility('Swift Swim')
             .withMoves(
@@ -885,13 +905,15 @@ export default class RubySapphire {
             )
             .withTypes(PokemonType.WATER)
             .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/ruby-sapphire/370.png'
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/370.png'
             )
             .withSpriteUrl(
                'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/370.png'
             )
-            .withSpecies('Luvdisc'),
+            .withSpecies('Luvdisc')
+            .build(),
          GymPokemon.builder()
+            .withSortId(2)
             .withLevel(40)
             .withAbility('Thick Fat')
             .withMoves(
@@ -910,13 +932,15 @@ export default class RubySapphire {
             )
             .withTypes(PokemonType.ICE, PokemonType.WATER)
             .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/emerald/364.png'
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/364.png'
             )
             .withSpriteUrl(
                'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/364.png'
             )
-            .withSpecies('Sealeo'),
+            .withSpecies('Sealeo')
+            .build(),
          GymPokemon.builder()
+            .withSortId(3)
             .withLevel(42)
             .withAbility('Swift Swim')
             .withMoves(
@@ -933,13 +957,15 @@ export default class RubySapphire {
             )
             .withTypes(PokemonType.WATER)
             .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/ruby-sapphire/119.png'
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/119.png'
             )
             .withSpriteUrl(
                'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/119.png'
             )
-            .withSpecies('Seaking'),
+            .withSpecies('Seaking')
+            .build(),
          GymPokemon.builder()
+            .withSortId(4)
             .withLevel(42)
             .withAbility('Oblivious')
             .withMoves(
@@ -956,13 +982,15 @@ export default class RubySapphire {
             )
             .withTypes(PokemonType.WATER, PokemonType.GROUND)
             .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/ruby-sapphire/340.png'
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/340.png'
             )
             .withSpriteUrl(
                'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/340.png'
             )
-            .withSpecies('Whiscash'),
+            .withSpecies('Whiscash')
+            .build(),
          GymPokemon.builder()
+            .withSortId(5)
             .withLevel(43)
             .withAbility('Marvel Scale')
             .withMoves(
@@ -995,12 +1023,13 @@ export default class RubySapphire {
             )
             .withTypes(PokemonType.WATER)
             .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/ruby-sapphire/350.png'
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/350.png'
             )
             .withSpriteUrl(
                'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/350.png'
             )
-            .withSpecies('Milotic'),
+            .withSpecies('Milotic')
+            .build(),
       ];
       const badge = GymBadge.builder()
          .withLabel('Rain Badge')
@@ -1013,7 +1042,7 @@ export default class RubySapphire {
          .build();
       return Gym.builder()
          .withBadge(badge)
-         .withDominantType()
+         .withDominantType(PokemonType.WATER)
          .withLabel('Sootopolis Gym')
          .withLeader(leader)
          .withLocation('Sootopolis City')
