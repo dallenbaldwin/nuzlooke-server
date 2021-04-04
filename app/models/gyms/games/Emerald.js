@@ -46,25 +46,35 @@ export default class Emerald {
          .withDamageClass(DamageClass.STATUS)
          .withType(PokemonType.NORMAL)
          .build();
-      const geodude = GymPokemon.builder()
-         .withSortId(1)
-         .withAbility('Rock Head')
-         .withLevel(12)
-         .withMoves(tackle, defenseCurl, rockThrow, rockTomb)
-         .withSpecies('Geodude')
-         .withIconUrl(
-            'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/74.png'
-         )
-         .withSpriteUrl(
-            'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/74.png'
-         )
-         .withTypes(PokemonType.ROCK, PokemonType.GROUND)
-         .build();
-      const geo2 = geodude;
-      geo2.sort_id = 2;
       const pokemons = [
-         geodude,
-         geo2,
+         GymPokemon.builder()
+            .withSortId(1)
+            .withAbility('Rock Head')
+            .withLevel(12)
+            .withMoves(tackle, defenseCurl, rockThrow, rockTomb)
+            .withSpecies('Geodude')
+            .withIconUrl(
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/74.png'
+            )
+            .withSpriteUrl(
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/74.png'
+            )
+            .withTypes(PokemonType.ROCK, PokemonType.GROUND)
+            .build(),
+         GymPokemon.builder()
+            .withSortId(2)
+            .withAbility('Rock Head')
+            .withLevel(12)
+            .withMoves(tackle, defenseCurl, rockThrow, rockTomb)
+            .withSpecies('Geodude')
+            .withIconUrl(
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/74.png'
+            )
+            .withSpriteUrl(
+               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/74.png'
+            )
+            .withTypes(PokemonType.ROCK, PokemonType.GROUND)
+            .build(),
          GymPokemon.builder()
             .withSortId(3)
             .withAbility('Sturdy')
