@@ -2,7 +2,7 @@ import User from '../models/User.js';
 import APIResponse from '../models/APIResponse.js';
 import { isUndefined, toAWSItem } from '../util/UtilMethods.js';
 
-export function createUser(request, response) {
+export const createUser = (request, response) => {
    const errors = getCreateErrors(request.body);
    if (!request.body || !isUndefined(errors))
       return response.status(400).send(APIResponse.withError(errors));
@@ -13,9 +13,9 @@ export function createUser(request, response) {
 
       return response.status(201).send(APIResponse.withResponse(res.data));
    });
-}
+};
 
-export function readUser(request, response) {
+export const readUser = (request, response) => {
    User.read(request.params.id, res => {
       if (res.error)
          return response.status(500).send(APIResponse.withError(res.error.stack));
@@ -27,9 +27,9 @@ export function readUser(request, response) {
 
       return response.status(200).send(APIResponse.withResponse(res.data));
    });
-}
+};
 
-export function updateUser(request, response) {
+export const updateUser = (request, response) => {
    User.read(request.params.id, res => {
       if (!res.data.id) {
          return response
@@ -45,9 +45,9 @@ export function updateUser(request, response) {
          });
       }
    });
-}
+};
 
-export function readUserGames(request, response) {
+export const readUserGames = (request, response) => {
    User.read(request.params.id, res => {
       if (res.error)
          return response.status(500).send(APIResponse.withError(res.error.stack));
@@ -59,16 +59,16 @@ export function readUserGames(request, response) {
 
       return response.status(200).send(APIResponse.withResponse(res.data));
    });
-}
+};
 
-// export function authenticate(request, response) {}
+// export const authenticate = async (request, response) => {}
 
-function getCreateErrors(user) {
+const getCreateErrors = user => {
    const errors = [];
    if (!user.email) errors.push('Missing user email');
    if (!user.password) errors.push('Missing user password');
    return errors.length > 0 ? errors : undefined;
-}
+};
 
 export const parseUpdateObject = object => {
    const sets = [];

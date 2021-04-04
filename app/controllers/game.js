@@ -1,6 +1,6 @@
 import APIResponse from '../models/APIResponse.js';
 import Game from '../models/game/Game.js';
-import { isUndefined } from '../util/UtilMethods.js';
+import { isUndefined, toAWSItem } from '../util/UtilMethods.js';
 import GameVersion from '../models/game/GameVersion.js';
 import Version from '../models/constants/pokeapi/Version.js';
 import Artwork from '../models/constants/bulbapedia/Artwork.js';
@@ -8,7 +8,7 @@ import Generation from '../models/constants/pokeapi/Generation.js';
 import Region from '../models/constants/pokeapi/Region.js';
 import VersionGroup from '../models/constants/pokeapi/VersionGroup.js';
 
-export function createGame(request, response) {
+export const createGame = (request, response) => {
    const errors = getErrors(request.body);
    if (!request.body || !isUndefined(errors))
       return response.status(400).send(APIResponse.withError(errors));
@@ -19,9 +19,9 @@ export function createGame(request, response) {
 
       return response.status(201).send(APIResponse.withResponse(res.data));
    });
-}
+};
 
-export function readGame(request, response) {
+export const readGame = (request, response) => {
    Game.read(request.params.id, res => {
       if (res.error)
          return response.status(500).send(APIResponse.withError(res.error.stack));
@@ -33,9 +33,9 @@ export function readGame(request, response) {
 
       return response.status(200).send(APIResponse.withResponse(res.data));
    });
-}
+};
 
-export function updateGame(request, response) {
+export const updateGame = (request, response) => {
    Game.read(request.params.id, res => {
       if (!res.data.id) {
          return response
@@ -51,9 +51,9 @@ export function updateGame(request, response) {
          });
       }
    });
-}
+};
 
-export function deleteGame(request, response) {
+export const deleteGame = (request, response) => {
    Game.delete(request.params.id, res => {
       if (res.error)
          return response.status(500).send(APIResponse.withError(res.error.stack));
@@ -65,7 +65,7 @@ export function deleteGame(request, response) {
 
       return response.status(200).send(APIResponse.withResponse(res.data));
    });
-}
+};
 
 const getErrors = game => {
    const errors = [];

@@ -4,7 +4,7 @@ import Emerald from '../models/gyms/games/Emerald.js';
 import RubySapphire from '../models/gyms/games/RubySapphire.js';
 import FireredLeafgreen from '../models/gyms/games/FireredLeafgreen.js';
 
-export function buildGyms(version) {
+export const buildGyms = version => {
    const versionGroup = version.version_group;
    switch (versionGroup) {
       case VersionGroup.LETSGO:
@@ -18,4 +18,4 @@ export function buildGyms(version) {
       default:
          return [];
    }
-}
+};

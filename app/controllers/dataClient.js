@@ -2,34 +2,34 @@ import DataClient from '../models/DataClient.js';
 import games from '../models/database/games.js';
 import users from '../models/database/users.js';
 
-async function getTables() {
+const getTables = async () => {
    try {
       const tables = await DataClient.listTables().promise();
       return tables.TableNames;
    } catch (err) {
       console.error(err);
    }
-}
+};
 
-async function createGamesTable() {
+const createGamesTable = async () => {
    try {
       const gamesTable = await DataClient.createTable(games).promise();
       console.log(gamesTable.TableDescription);
    } catch (err) {
       console.error(err);
    }
-}
+};
 
-async function createUsersTable() {
+const createUsersTable = async () => {
    try {
       const usersTable = await DataClient.createTable(users).promise();
       console.log(usersTable.TableDescription);
    } catch (err) {
       console.error(err);
    }
-}
+};
 
-export default async function runDiagnostics() {
+export default async () => {
    try {
       const tables = await getTables();
       if (!tables.includes('users')) {
@@ -42,4 +42,4 @@ export default async function runDiagnostics() {
    } catch (err) {
       console.error(err);
    }
-}
+};
