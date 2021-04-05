@@ -1,11 +1,12 @@
 import Gym from '../Gym.js';
-import GymBadge from '../GymBadge.js';
 import GymLeader from '../GymLeader.js';
 import GymPokemon from '../../pokemons/GymPokemon.js';
 import GymPokemonMove from '../GymPokemonMove.js';
 import PokemonType from '../../constants/PokemonType.js';
 import DamageClass from '../../constants/DamageClass.js';
 import MovePriority from '../../constants/MovePriority.js';
+import GymBadges from '../GymBadges.js';
+import Sprites from '../../pokemons/Sprites.js';
 
 export default class LetsGo {
    // FIXME remove these from front end options
@@ -26,12 +27,8 @@ export default class LetsGo {
          GymPokemon.builder()
             .withSortId(1)
             .withSpecies('Geodude')
-            .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/74.png'
-            )
-            .withSpriteUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/74.png'
-            )
+            .withIconUrl(Sprites.GEODUDE.icon_url)
+            .withSpriteUrl(Sprites.GEODUDE.sprite_url)
             .withTypes([PokemonType.ROCK, PokemonType.GROUND])
             .withLevel(11)
             .withMoves([
@@ -51,12 +48,8 @@ export default class LetsGo {
          GymPokemon.builder()
             .withSortId(2)
             .withSpecies('Onix')
-            .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/95.png'
-            )
-            .withSpriteUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/95.png'
-            )
+            .withIconUrl(Sprites.ONIX.icon_url)
+            .withSpriteUrl(Sprites.ONIX.sprite_url)
             .withTypes([PokemonType.ROCK, PokemonType.GROUND])
             .withLevel(12)
             .withMoves([
@@ -91,18 +84,12 @@ export default class LetsGo {
          .withFlavorText('The Rock-Solid Pokémon Trainer!')
          .withSpritUrl('https://cdn.bulbagarden.net/upload/e/e2/VSBrock_PE.png')
          .build();
-      const badge = GymBadge.builder()
-         .withLabel('Boulder Badge')
-         .withSpriteUrl(
-            'https://cdn.bulbagarden.net/upload/archive/d/dd/20160212104017%21Boulder_Badge.png'
-         )
-         .build();
       return Gym.builder()
          .withSortId(1)
          .withLabel('Pewter Gym')
          .withLocation('Pewter City')
          .withDominantType(PokemonType.ROCK)
-         .withBadge(badge)
+         .withBadge(GymBadges.BOULDER)
          .withLeader(leader)
          .withPokemons(pokemons)
          .build();
@@ -112,12 +99,8 @@ export default class LetsGo {
          GymPokemon.builder()
             .withSortId(1)
             .withSpecies('Psyduck')
-            .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/54.png'
-            )
-            .withSpriteUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/54.png'
-            )
+            .withIconUrl(Sprites.PSYDUCK.icon_url)
+            .withSpriteUrl(Sprites.PSYDUCK.sprite_url)
             .withTypes([PokemonType.WATER])
             .withLevel(18)
             .withMoves([
@@ -146,12 +129,8 @@ export default class LetsGo {
          GymPokemon.builder()
             .withSortId(2)
             .withSpecies('Starmie')
-            .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/121.png'
-            )
-            .withSpriteUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/121.png'
-            )
+            .withIconUrl(Sprites.STARMIE.icon_url)
+            .withSpriteUrl(Sprites.STARMIE.sprite_url)
             .withTypes([PokemonType.WATER, PokemonType.PSYCHIC])
             .withLevel(19)
             .withMoves([
@@ -194,18 +173,12 @@ export default class LetsGo {
          .withFlavorText('The Tomboyish Mermaid!')
          .withSpritUrl('https://cdn.bulbagarden.net/upload/0/0c/VSMisty_PE.png')
          .build();
-      const badge = GymBadge.builder()
-         .withLabel('Cascade Badge')
-         .withSpriteUrl(
-            'https://cdn.bulbagarden.net/upload/archive/9/9c/20160212103957%21Cascade_Badge.png'
-         )
-         .build();
       return Gym.builder()
          .withSortId(2)
          .withLabel('Cerulean Gym')
          .withLocation('Cerulean City')
          .withDominantType(PokemonType.WATER)
-         .withBadge(badge)
+         .withBadge(GymBadges.CASCADE)
          .withLeader(leader)
          .withPokemons(pokemons)
          .build();
@@ -228,12 +201,8 @@ export default class LetsGo {
             .withLevel(25)
             .withTypes([PokemonType.ELECTRIC])
             .withSpecies('Voltorb')
-            .withSpriteUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/100.png'
-            )
-            .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/100.png'
-            )
+            .withSpriteUrl(Sprites.VOLTORB.sprite_url)
+            .withIconUrl(Sprites.VOLTORB.icon_url)
             .withMoves([
                thunderbolt,
                GymPokemonMove.builder()
@@ -252,12 +221,8 @@ export default class LetsGo {
          GymPokemon.builder()
             .withSortId(2)
             .withSpecies('Magnemite')
-            .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/81.png'
-            )
-            .withSpriteUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/81.png'
-            )
+            .withIconUrl(Sprites.MAGNEMITE.icon_url)
+            .withSpriteUrl(Sprites.MAGNEMITE.sprite_url)
             .withLevel(25)
             .withTypes([PokemonType.STEEL, PokemonType.ELECTRIC])
             .withMoves([
@@ -277,12 +242,8 @@ export default class LetsGo {
          GymPokemon.builder()
             .withSortId(3)
             .withSpecies('Raichu')
-            .withSpriteUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/26.png'
-            )
-            .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/26.png'
-            )
+            .withSpriteUrl(Sprites.RAICHU.sprite_url)
+            .withIconUrl(Sprites.RAICHU.icon_url)
             .withLevel(26)
             .withTypes([PokemonType.ELECTRIC])
             .withMoves([
@@ -307,18 +268,12 @@ export default class LetsGo {
          .withFlavorText('Lightning Lieutenant')
          .withSpritUrl('https://cdn.bulbagarden.net/upload/c/c6/VSLt_Surge_PE.png')
          .build();
-      const badge = GymBadge.builder()
-         .withLabel('Thunder Badge')
-         .withSpriteUrl(
-            'https://cdn.bulbagarden.net/upload/archive/a/a6/20160212103845%21Thunder_Badge.png'
-         )
-         .build();
       return Gym.builder()
          .withSortId(3)
          .withLabel('Vermilion Gym')
          .withLocation('Vermilion City')
          .withDominantType(PokemonType.ELECTRIC)
-         .withBadge(badge)
+         .withBadge(GymBadges.THUNDER)
          .withLeader(leader)
          .withPokemons(pokemons)
          .build();
@@ -340,12 +295,8 @@ export default class LetsGo {
             .withSortId(1)
             .withSpecies('Tangela')
             .withLevel(33)
-            .withSpriteUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/114.png'
-            )
-            .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/114.png'
-            )
+            .withSpriteUrl(Sprites.TANGELA.sprite_url)
+            .withIconUrl(Sprites.TANGELA.icon_url)
             .withTypes([PokemonType.GRASS])
             .withMoves([
                megaDrain,
@@ -367,12 +318,8 @@ export default class LetsGo {
             .withSpecies('Weepinbell')
             .withTypes([PokemonType.GRASS, PokemonType.POISON])
             .withLevel(33)
-            .withSpriteUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/70.png'
-            )
-            .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/70.png'
-            )
+            .withSpriteUrl(Sprites.WEEPINBEEL.sprite_url)
+            .withIconUrl(Sprites.WEEPINBEEL.icon_url)
             .withMoves([megaDrain, poisonJab])
             .build(),
          GymPokemon.builder()
@@ -380,12 +327,8 @@ export default class LetsGo {
             .withSpecies('Vileplume')
             .withLevel(34)
             .withTypes([PokemonType.GRASS, PokemonType.POISON])
-            .withSpriteUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/45.png'
-            )
-            .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/45.png'
-            )
+            .withSpriteUrl(Sprites.VILEPLUME.sprite_url)
+            .withIconUrl(Sprites.VILEPLUME.icon_url)
             .withMoves([megaDrain, moonblast])
             .build(),
       ];
@@ -394,15 +337,9 @@ export default class LetsGo {
          .withFlavorText('The Nature-Loving Princess!')
          .withSpritUrl('https://cdn.bulbagarden.net/upload/3/35/VSErika_PE.png')
          .build();
-      const badge = GymBadge.builder()
-         .withLabel('Rainbow Badge')
-         .withSpriteUrl(
-            'https://cdn.bulbagarden.net/upload/archive/b/b5/20160212103830%21Rainbow_Badge.png'
-         )
-         .build();
       return Gym.builder()
          .withSortId(4)
-         .withBadge(badge)
+         .withBadge(GymBadges.RAINBOW)
          .withLabel('Celadon Gym')
          .withDominantType(PokemonType.GRASS)
          .withLocation('Celadon City')
@@ -448,12 +385,8 @@ export default class LetsGo {
             .withSpecies('Weezing')
             .withLevel(43)
             .withTypes([PokemonType.POISON])
-            .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/110.png'
-            )
-            .withSpriteUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/110.png'
-            )
+            .withIconUrl(Sprites.WEEZING.icon_url)
+            .withSpriteUrl(Sprites.WEEZING.sprite_url)
             .withMoves([
                toxic,
                protect,
@@ -476,12 +409,8 @@ export default class LetsGo {
             .withSpecies('Muk')
             .withLevel(43)
             .withTypes([PokemonType.POISON])
-            .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/89.png'
-            )
-            .withSpriteUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/89.png'
-            )
+            .withIconUrl(Sprites.MUK.icon_url)
+            .withSpriteUrl(Sprites.MUK.sprite_url)
             .withMoves([toxic, protect, sludgeBomb, moonblast])
             .build(),
          GymPokemon.builder()
@@ -489,12 +418,8 @@ export default class LetsGo {
             .withSpecies('Golbat')
             .withLevel(43)
             .withTypes([PokemonType.POISON, PokemonType.FLYING])
-            .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/42.png'
-            )
-            .withSpriteUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/42.png'
-            )
+            .withIconUrl(Sprites.GOLBAT.icon_url)
+            .withSpriteUrl(Sprites.GOLBAT.sprite_url)
             .withMoves([
                toxic,
                protect,
@@ -527,12 +452,8 @@ export default class LetsGo {
             .withSpecies('Venomoth')
             .withLevel(44)
             .withTypes([PokemonType.BUG, PokemonType.POISON])
-            .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/49.png'
-            )
-            .withSpriteUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/49.png'
-            )
+            .withIconUrl(Sprites.VENOMOTH.icon_url)
+            .withSpriteUrl(Sprites.VENOMOTH.sprite_url)
             .withMoves([
                sludgeBomb,
                protect,
@@ -556,18 +477,12 @@ export default class LetsGo {
          .withSpritUrl('https://cdn.bulbagarden.net/upload/d/d8/VSKoga_PE.png')
          .withFlavorText('The Poisonous Ninja Master')
          .build();
-      const badge = GymBadge.builder()
-         .withLabel('Soul Badge')
-         .withSpriteUrl(
-            'https://cdn.bulbagarden.net/upload/archive/7/7d/20160212103742%21Soul_Badge.png'
-         )
-         .build();
       return Gym.builder()
          .withSortId(5)
          .withLabel('Fuchsia Gym')
          .withLocation('Fuchsia City')
          .withDominantType(PokemonType.POISON)
-         .withBadge(badge)
+         .withBadge(GymBadges.SOUL)
          .withLeader(leader)
          .withPokemons(pokemons)
          .build();
@@ -577,12 +492,8 @@ export default class LetsGo {
          GymPokemon.builder()
             .withSortId(1)
             .withSpecies('Mr. Mime')
-            .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/122.png'
-            )
-            .withSpriteUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/122.png'
-            )
+            .withIconUrl(Sprites.MRMIME.icon_url)
+            .withSpriteUrl(Sprites.MRMIME.sprite_url)
             .withTypes([PokemonType.PSYCHIC, PokemonType.FAIRY])
             .withLevel(43)
             .withMoves([
@@ -613,12 +524,8 @@ export default class LetsGo {
          GymPokemon.builder()
             .withSortId(2)
             .withSpecies('Slowbro')
-            .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/80.png'
-            )
-            .withSpriteUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/80.png'
-            )
+            .withIconUrl(Sprites.SLOWBRO.icon_url)
+            .withSpriteUrl(Sprites.SLOWBRO.sprite_url)
             .withTypes([PokemonType.WATER, PokemonType.PSYCHIC])
             .withLevel(43)
             .withMoves([
@@ -657,12 +564,8 @@ export default class LetsGo {
          GymPokemon.builder()
             .withSortId(3)
             .withSpecies('Jynx')
-            .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/124.png'
-            )
-            .withSpriteUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/124.png'
-            )
+            .withIconUrl(Sprites.JYNX.icon_url)
+            .withSpriteUrl(Sprites.JYNX.sprite_url)
             .withTypes([PokemonType.ICE, PokemonType.PSYCHIC])
             .withLevel(43)
             .withMoves([
@@ -693,12 +596,8 @@ export default class LetsGo {
          GymPokemon.builder()
             .withSortId(4)
             .withSpecies('Alakazam')
-            .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/65.png'
-            )
-            .withSpriteUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/65.png'
-            )
+            .withIconUrl(Sprites.ALAKAZAM.icon_url)
+            .withSpriteUrl(Sprites.ALAKAZAM.sprite_url)
             .withTypes([PokemonType.PSYCHIC])
             .withLevel(44)
             .withMoves([
@@ -716,12 +615,6 @@ export default class LetsGo {
             ])
             .build(),
       ];
-      const badge = GymBadge.builder()
-         .withLabel('Marsh Badge')
-         .withSpriteUrl(
-            'https://cdn.bulbagarden.net/upload/archive/6/6b/20160212103714%21Marsh_Badge.png'
-         )
-         .build();
       const leader = GymLeader.builder()
          .withLabel('Sabrina')
          .withFlavorText('The Master of Psychic Pokémon!')
@@ -732,7 +625,7 @@ export default class LetsGo {
          .withLabel('Saffron Gym')
          .withLocation('Saffron City')
          .withDominantType(PokemonType.PSYCHIC)
-         .withBadge(badge)
+         .withBadge(GymBadges.MARSH)
          .withLeader(leader)
          .withPokemons(pokemons)
          .build();
@@ -753,12 +646,8 @@ export default class LetsGo {
          GymPokemon.builder()
             .withSortId(1)
             .withSpecies('Magmar')
-            .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/126.png'
-            )
-            .withSpriteUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/126.png'
-            )
+            .withIconUrl(Sprites.MAGMAR.icon_url)
+            .withSpriteUrl(Sprites.MAGMAR.sprite_url)
             .withTypes([PokemonType.FIRE])
             .withLevel(47)
             .withMoves([
@@ -798,12 +687,8 @@ export default class LetsGo {
          GymPokemon.builder()
             .withSortId(2)
             .withSpecies('Rapidash')
-            .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/78.png'
-            )
-            .withSpriteUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/78.png'
-            )
+            .withIconUrl(Sprites.RAPIDASH.icon_url)
+            .withSpriteUrl(Sprites.RAPIDASH.sprite_url)
             .withTypes([PokemonType.FIRE])
             .withLevel(47)
             .withMoves([
@@ -825,12 +710,8 @@ export default class LetsGo {
          GymPokemon.builder()
             .withSortId(3)
             .withSpecies('Ninetales')
-            .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/38.png'
-            )
-            .withSpriteUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/38.png'
-            )
+            .withIconUrl(Sprites.NINETALES.icon_url)
+            .withSpriteUrl(Sprites.NINETALES.sprite_url)
             .withTypes([PokemonType.FIRE])
             .withLevel(47)
             .withMoves([
@@ -851,12 +732,8 @@ export default class LetsGo {
          GymPokemon.builder()
             .withSortId(4)
             .withSpecies('Arcanine')
-            .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/59.png'
-            )
-            .withSpriteUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/59.png'
-            )
+            .withIconUrl(Sprites.ARCANINE.icon_url)
+            .withSpriteUrl(Sprites.ARCANINE.sprite_url)
             .withTypes([PokemonType.FIRE])
             .withLevel(48)
             .withMoves([
@@ -881,18 +758,12 @@ export default class LetsGo {
          .withFlavorText('The Hotheaded Quiz Master!')
          .withSpritUrl('https://cdn.bulbagarden.net/upload/1/11/VSBlaine_PE.png')
          .build();
-      const badge = GymBadge.builder()
-         .withLabel('Volcano Badge')
-         .withSpriteUrl(
-            'https://cdn.bulbagarden.net/upload/archive/1/12/20160212101506%21Volcano_Badge.png'
-         )
-         .build();
       return Gym.builder()
          .withSortId(7)
          .withLabel('Cinnabar Gym')
          .withLocation('Cinnabar Island')
          .withDominantType(PokemonType.FIRE)
-         .withBadge(badge)
+         .withBadge(GymBadges.VOLCANO)
          .withLeader(leader)
          .withPokemons(pokemons)
          .build();
@@ -924,12 +795,8 @@ export default class LetsGo {
          GymPokemon.builder()
             .withSortId(1)
             .withSpecies('Dugtrio')
-            .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/51.png'
-            )
-            .withSpriteUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/51.png'
-            )
+            .withIconUrl(Sprites.DUGTRIO.icon_url)
+            .withSpriteUrl(Sprites.DUGTRIO.sprite_url)
             .withTypes([PokemonType.GROUND])
             .withLevel(49)
             .withMoves([
@@ -961,12 +828,8 @@ export default class LetsGo {
          GymPokemon.builder()
             .withSortId(2)
             .withSpecies('Nidoqueen')
-            .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/31.png'
-            )
-            .withSpriteUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/31.png'
-            )
+            .withIconUrl(Sprites.NIDOQUEEN.icon_url)
+            .withSpriteUrl(Sprites.NIDOQUEEN.sprite_url)
             .withTypes([PokemonType.POISON, PokemonType.GROUND])
             .withLevel(49)
             .withMoves([
@@ -987,12 +850,8 @@ export default class LetsGo {
          GymPokemon.builder()
             .withSortId(3)
             .withSpecies('Nidoking')
-            .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/34.png'
-            )
-            .withSpriteUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/34.png'
-            )
+            .withIconUrl(Sprites.NIDOKING.icon_url)
+            .withSpriteUrl(Sprites.NIDOKING.sprite_url)
             .withTypes([PokemonType.POISON, PokemonType.GROUND])
             .withLevel(49)
             .withMoves([
@@ -1014,12 +873,8 @@ export default class LetsGo {
          GymPokemon.builder()
             .withSortId(4)
             .withSpecies('Rhydon')
-            .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/112.png'
-            )
-            .withSpriteUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/112.png'
-            )
+            .withIconUrl(Sprites.RHYDON.icon_url)
+            .withSpriteUrl(Sprites.RHYDON.sprite_url)
             .withTypes([PokemonType.GROUND, PokemonType.ROCK])
             .withLevel(50)
             .withMoves([
@@ -1044,18 +899,12 @@ export default class LetsGo {
          .withFlavorText('The Self-Proclaimed Strongest Trainer')
          .withSpritUrl('https://cdn.bulbagarden.net/upload/4/4a/VSGiovanni_PE.png')
          .build();
-      const badge = GymBadge.builder()
-         .withLabel('Earth Badge')
-         .withSpriteUrl(
-            'https://cdn.bulbagarden.net/upload/archive/7/78/20160212101002%21Earth_Badge.png'
-         )
-         .build();
       return Gym.builder()
          .withSortId(8)
          .withLabel('Viridian Gym')
          .withLocation('Viridian City')
          .withDominantType(PokemonType.GROUND)
-         .withBadge(badge)
+         .withBadge(GymBadges.EARTH)
          .withLeader(leader)
          .withPokemons(pokemons)
          .build();

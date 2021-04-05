@@ -1,11 +1,13 @@
 import Gym from '../Gym.js';
-import GymBadge from '../GymBadge.js';
+import GymBadges from '../GymBadges.js';
 import GymLeader from '../GymLeader.js';
 import GymPokemon from '../../pokemons/GymPokemon.js';
 import GymPokemonMove from '../GymPokemonMove.js';
 import PokemonType from '../../constants/PokemonType.js';
 import DamageClass from '../../constants/DamageClass.js';
 import MovePriority from '../../constants/MovePriority.js';
+import Sprites from '../../pokemons/Sprites.js';
+
 export default class RubySapphire {
    constructor() {
       this.gyms = [
@@ -52,13 +54,9 @@ export default class RubySapphire {
             .withSortId(1)
             .withLevel(14)
             .withAbility('Sturdy')
-            .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/74.png'
-            )
+            .withIconUrl(Sprites.GEODUDE.icon_url)
             .withSpecies('Geodude')
-            .withSpriteUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/74.png'
-            )
+            .withSpriteUrl(Sprites.GEODUDE.sprite_url)
             .withTypes(PokemonType.ROCK, PokemonType.GROUND)
             .withMoves(
                tackle,
@@ -77,13 +75,9 @@ export default class RubySapphire {
             .withSortId(2)
             .withLevel(15)
             .withAbility('Sturdy')
-            .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/299.png'
-            )
+            .withIconUrl(Sprites.NOSEPASS.icon_url)
             .withSpecies('Nosepass')
-            .withSpriteUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/299.png'
-            )
+            .withSpriteUrl(Sprites.NOSEPASS.sprite_url)
             .withTypes(PokemonType.ROCK)
             .withMoves(
                tackle,
@@ -99,17 +93,13 @@ export default class RubySapphire {
             )
             .build(),
       ];
-      const badge = GymBadge.builder()
-         .withLabel('Stone Badge')
-         .withSpriteUrl('https://cdn.bulbagarden.net/upload/6/63/Stone_Badge.png')
-         .build();
       const leader = GymLeader.builder()
          .withFlavorText('The Rock-Loving Honors Student')
          .withLabel('Roxanne')
          .withSpritUrl('https://cdn.bulbagarden.net/upload/e/ef/Spr_RS_Roxanne.png')
          .build();
       return Gym.builder()
-         .withBadge(badge)
+         .withBadge(GymBadges.STONE)
          .withDominantType(PokemonType.ROCK)
          .withLabel('Rustboro Gym')
          .withLeader(leader)
@@ -160,12 +150,8 @@ export default class RubySapphire {
                   .build()
             )
             .withTypes(PokemonType.FIGHTING)
-            .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/66.png'
-            )
-            .withSpriteUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/66.png'
-            )
+            .withIconUrl(Sprites.MACHOP.icon_url)
+            .withSpriteUrl(Sprites.MACHOP.sprite_url)
             .withSpecies('Machop')
             .build(),
          GymPokemon.builder()
@@ -204,26 +190,18 @@ export default class RubySapphire {
                   .build()
             )
             .withTypes(PokemonType.FIGHTING)
-            .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/296.png'
-            )
-            .withSpriteUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/296.png'
-            )
+            .withIconUrl(Sprites.MAKUHITA.icon_url)
+            .withSpriteUrl(Sprites.MAKUHITA.sprite_url)
             .withSpecies('Makuhita')
             .build(),
       ];
-      const badge = GymBadge.builder()
-         .withLabel('Knuckle Badge')
-         .withSpriteUrl('https://cdn.bulbagarden.net/upload/9/97/Knuckle_Badge.png')
-         .build();
       const leader = GymLeader.builder()
          .withFlavorText('A big wave in fighting')
          .withLabel('Brawly')
          .withSpritUrl('https://cdn.bulbagarden.net/upload/9/92/Spr_RS_Brawly.png')
          .build();
       return Gym.builder()
-         .withBadge(badge)
+         .withBadge(GymBadges.KNUCKLE)
          .withDominantType(PokemonType.FIGHTING)
          .withLabel('Dewford Gym')
          .withLeader(leader)
@@ -270,12 +248,8 @@ export default class RubySapphire {
             )
             .withSpecies('Magnemite')
             .withTypes(PokemonType.ELECTRIC, PokemonType.STEEL)
-            .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/81.png'
-            )
-            .withSpriteUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/81.png'
-            )
+            .withIconUrl(Sprites.MAGNEMITE.icon_url)
+            .withSpriteUrl(Sprites.MAGNEMITE.sprite_url)
             .build(),
          GymPokemon.builder()
             .withSortId(2)
@@ -313,12 +287,8 @@ export default class RubySapphire {
             )
             .withSpecies('Voltorb')
             .withTypes(PokemonType.ELECTRIC)
-            .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/100.png'
-            )
-            .withSpriteUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/100.png'
-            )
+            .withIconUrl(Sprites.VOLTORB.icon_url)
+            .withSpriteUrl(Sprites.VOLTORB.sprite_url)
             .build(),
          GymPokemon.builder()
             .withSortId(3)
@@ -341,25 +311,17 @@ export default class RubySapphire {
             )
             .withSpecies('Magneton')
             .withTypes(PokemonType.ELECTRIC, PokemonType.STEEL)
-            .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/82.png'
-            )
-            .withSpriteUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/82.png'
-            )
+            .withIconUrl(Sprites.MAGNETON.icon_url)
+            .withSpriteUrl(Sprites.MAGNETON.sprite_url)
             .build(),
       ];
-      const badge = GymBadge.builder()
-         .withLabel('Dynamo Badge')
-         .withSpriteUrl('https://cdn.bulbagarden.net/upload/3/34/Dynamo_Badge.png')
-         .build();
       const leader = GymLeader.builder()
          .withFlavorText('The cheerfully electrifying man!')
          .withLabel('Wattson')
          .withSpritUrl('https://cdn.bulbagarden.net/upload/b/b2/Spr_RS_Wattson.png')
          .build();
       return Gym.builder()
-         .withBadge(badge)
+         .withBadge(GymBadges.DYNAMO)
          .withDominantType(PokemonType.ELECTRIC)
          .withLabel('Mauville Gym')
          .withLeader(leader)
@@ -397,12 +359,8 @@ export default class RubySapphire {
                lightScreen,
                sunnyDay
             )
-            .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/218.png'
-            )
-            .withSpriteUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/218.png'
-            )
+            .withIconUrl(Sprites.SLUGMA.icon_url)
+            .withSpriteUrl(Sprites.SLUGMA.sprite_url)
             .withTypes(PokemonType.FIRE)
             .withSpecies('Slugma')
             .build(),
@@ -424,12 +382,8 @@ export default class RubySapphire {
                lightScreen,
                sunnyDay
             )
-            .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/218.png'
-            )
-            .withSpriteUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/218.png'
-            )
+            .withIconUrl(Sprites.SLUGMA.icon_url)
+            .withSpriteUrl(Sprites.SLUGMA.sprite_url)
             .withTypes(PokemonType.FIRE)
             .withSpecies('Slugma')
             .build(),
@@ -439,26 +393,18 @@ export default class RubySapphire {
             .withLevel(28)
             .withMoves(overheat, bodySlam, flail, attract)
             .withTypes(PokemonType.FIRE)
-            .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/324.png'
-            )
-            .withSpriteUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/324.png'
-            )
+            .withIconUrl(Sprites.TORKOAL.icon_url)
+            .withSpriteUrl(Sprites.TORKOAL.sprite_url)
             .withSpecies('Torkoal')
             .build(),
       ];
-      const badge = GymBadge.builder()
-         .withLabel('Heat Badge')
-         .withSpriteUrl('https://cdn.bulbagarden.net/upload/c/c4/Heat_Badge.png')
-         .build();
       const leader = GymLeader.builder()
          .withFlavorText('One with a fiery passion that burns!')
          .withLabel('Flannery')
          .withSpritUrl('https://cdn.bulbagarden.net/upload/b/be/Spr_RS_Flannery.png')
          .build();
       return Gym.builder()
-         .withBadge(badge)
+         .withBadge(GymBadges.HEAT)
          .withDominantType(PokemonType.FIRE)
          .withLabel('Lavaridge Gym')
          .withLeader(leader)
@@ -506,12 +452,8 @@ export default class RubySapphire {
             )
             .withSpecies('Slaking')
             .withTypes(PokemonType.NORMAL)
-            .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/289.png'
-            )
-            .withSpriteUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/289.png'
-            )
+            .withIconUrl(Sprites.SLAKING.icon_url)
+            .withSpriteUrl(Sprites.SLAKING.sprite_url)
             .build(),
          GymPokemon.builder()
             .withSortId(2)
@@ -535,12 +477,8 @@ export default class RubySapphire {
             )
             .withSpecies('Vigoroth')
             .withTypes(PokemonType.NORMAL)
-            .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/288.png'
-            )
-            .withSpriteUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/288.png'
-            )
+            .withIconUrl(Sprites.VIGOROTH.icon_url)
+            .withSpriteUrl(Sprites.VIGOROTH.sprite_url)
             .build(),
          GymPokemon.builder()
             .withSortId(3)
@@ -569,25 +507,17 @@ export default class RubySapphire {
             )
             .withSpecies('Slaking')
             .withTypes(PokemonType.NORMAL)
-            .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/289.png'
-            )
-            .withSpriteUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/289.png'
-            )
+            .withIconUrl(Sprites.SLAKING.icon_url)
+            .withSpriteUrl(Sprites.SLAKING.sprite_url)
             .build(),
       ];
-      const badge = GymBadge.builder()
-         .withLabel('Balance Badge')
-         .withSpriteUrl('https://cdn.bulbagarden.net/upload/6/63/Balance_Badge.png')
-         .build();
       const leader = GymLeader.builder()
          .withFlavorText('A man in pursuit of power!')
          .withLabel('Norman')
          .withSpritUrl('https://cdn.bulbagarden.net/upload/7/75/Spr_RS_Norman.png')
          .build();
       return Gym.builder()
-         .withBadge(badge)
+         .withBadge(GymBadges.BALANCE)
          .withDominantType(PokemonType.NORMAL)
          .withLabel('Petalburg Gym')
          .withLeader(leader)
@@ -642,12 +572,8 @@ export default class RubySapphire {
             )
             .withTypes(PokemonType.NORMAL, PokemonType.FLYING)
             .withSpecies('Swellow')
-            .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/277.png'
-            )
-            .withSpriteUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/277.png'
-            )
+            .withIconUrl(Sprites.SWELLOW.icon_url)
+            .withSpriteUrl(Sprites.SWELLOW.sprite_url)
             .build(),
          GymPokemon.builder()
             .withSortId(2)
@@ -678,12 +604,8 @@ export default class RubySapphire {
             )
             .withTypes(PokemonType.WATER, PokemonType.FLYING)
             .withSpecies('Pelipper')
-            .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/279.png'
-            )
-            .withSpriteUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/279.png'
-            )
+            .withIconUrl(Sprites.PELIPPER.icon_url)
+            .withSpriteUrl(Sprites.PELIPPER.sprite_url)
             .build(),
          GymPokemon.builder()
             .withSortId(3)
@@ -714,12 +636,8 @@ export default class RubySapphire {
             )
             .withTypes(PokemonType.STEEL, PokemonType.FLYING)
             .withSpecies('Skarmory')
-            .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/227.png'
-            )
-            .withSpriteUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/227.png'
-            )
+            .withIconUrl(Sprites.SKARMORY.icon_url)
+            .withSpriteUrl(Sprites.SKARMORY.sprite_url)
             .build(),
          GymPokemon.builder()
             .withSortId(4)
@@ -747,25 +665,17 @@ export default class RubySapphire {
             )
             .withTypes(PokemonType.DRAGON, PokemonType.FLYING)
             .withSpecies('Altaria')
-            .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/334.png'
-            )
-            .withSpriteUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/334.png'
-            )
+            .withIconUrl(Sprites.ALTARIA.icon_url)
+            .withSpriteUrl(Sprites.ALTARIA.sprite_url)
             .build(),
       ];
-      const badge = GymBadge.builder()
-         .withLabel('Feather Badge')
-         .withSpriteUrl('https://cdn.bulbagarden.net/upload/6/62/Feather_Badge.png')
-         .build();
       const leader = GymLeader.builder()
          .withFlavorText('The bird user taking flight into the world.')
          .withLabel('Winona')
          .withSpritUrl('https://cdn.bulbagarden.net/upload/0/0e/Spr_RS_Winona.png')
          .build();
       return Gym.builder()
-         .withBadge(badge)
+         .withBadge(GymBadges.FEATHER)
          .withDominantType(PokemonType.FLYING)
          .withLabel('Fortree Gym')
          .withLeader(leader)
@@ -810,12 +720,8 @@ export default class RubySapphire {
             )
             .withSpecies('Lunatone')
             .withTypes(PokemonType.ROCK, PokemonType.PSYCHIC)
-            .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/337.png'
-            )
-            .withSpriteUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/337.png'
-            )
+            .withIconUrl(Sprites.LUNATONE.icon_url)
+            .withSpriteUrl(Sprites.LUNATONE.sprite_url)
             .build(),
          GymPokemon.builder()
             .withSortId(2)
@@ -839,25 +745,17 @@ export default class RubySapphire {
             )
             .withSpecies('Solrock')
             .withTypes(PokemonType.ROCK, PokemonType.PSYCHIC)
-            .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/338.png'
-            )
-            .withSpriteUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/338.png'
-            )
+            .withIconUrl(Sprites.SOLROCK.icon_url)
+            .withSpriteUrl(Sprites.SOLROCK.sprite_url)
             .build(),
       ];
-      const badge = GymBadge.builder()
-         .withLabel('Mind Badge')
-         .withSpriteUrl('https://cdn.bulbagarden.net/upload/c/cc/Mind_Badge.png')
-         .build();
       const leader = GymLeader.builder()
          .withFlavorText('The mystic combination!')
          .withLabel('Tate & Liza')
          .withSpritUrl('https://cdn.bulbagarden.net/upload/3/38/Spr_RS_Tate_and_Liza.png')
          .build();
       return Gym.builder()
-         .withBadge(badge)
+         .withBadge(GymBadges.MIND)
          .withDominantType(PokemonType.PSYCHIC)
          .withLabel('Mossdeep Gym')
          .withLeader(leader)
@@ -904,12 +802,8 @@ export default class RubySapphire {
                waterPulse
             )
             .withTypes(PokemonType.WATER)
-            .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/370.png'
-            )
-            .withSpriteUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/370.png'
-            )
+            .withIconUrl(Sprites.LUVDISC.icon_url)
+            .withSpriteUrl(Sprites.LUVDISC.sprite_url)
             .withSpecies('Luvdisc')
             .build(),
          GymPokemon.builder()
@@ -931,12 +825,8 @@ export default class RubySapphire {
                waterPulse
             )
             .withTypes(PokemonType.ICE, PokemonType.WATER)
-            .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/364.png'
-            )
-            .withSpriteUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/364.png'
-            )
+            .withIconUrl(Sprites.SEALEO.icon_url)
+            .withSpriteUrl(Sprites.SEALEO.sprite_url)
             .withSpecies('Sealeo')
             .build(),
          GymPokemon.builder()
@@ -956,12 +846,8 @@ export default class RubySapphire {
                waterPulse
             )
             .withTypes(PokemonType.WATER)
-            .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/119.png'
-            )
-            .withSpriteUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/119.png'
-            )
+            .withIconUrl(Sprites.SEAKING.icon_url)
+            .withSpriteUrl(Sprites.SEAKING.sprite_url)
             .withSpecies('Seaking')
             .build(),
          GymPokemon.builder()
@@ -981,12 +867,8 @@ export default class RubySapphire {
                waterPulse
             )
             .withTypes(PokemonType.WATER, PokemonType.GROUND)
-            .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/340.png'
-            )
-            .withSpriteUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/340.png'
-            )
+            .withIconUrl(Sprites.WHISCASH.icon_url)
+            .withSpriteUrl(Sprites.WHISCASH.sprite_url)
             .withSpecies('Whiscash')
             .build(),
          GymPokemon.builder()
@@ -1022,26 +904,18 @@ export default class RubySapphire {
                waterPulse
             )
             .withTypes(PokemonType.WATER)
-            .withIconUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/350.png'
-            )
-            .withSpriteUrl(
-               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/350.png'
-            )
+            .withIconUrl(Sprites.MILOTIC.icon_url)
+            .withSpriteUrl(Sprites.MILOTIC.sprite_url)
             .withSpecies('Milotic')
             .build(),
       ];
-      const badge = GymBadge.builder()
-         .withLabel('Rain Badge')
-         .withSpriteUrl('https://cdn.bulbagarden.net/upload/9/9b/Rain_Badge.png')
-         .build();
       const leader = GymLeader.builder()
          .withFlavorText('Artist, and lover of water.')
          .withLabel('Wallace')
          .withSpritUrl('https://cdn.bulbagarden.net/upload/b/b1/Spr_RS_Wallace.png')
          .build();
       return Gym.builder()
-         .withBadge(badge)
+         .withBadge(GymBadges.RAIN)
          .withDominantType(PokemonType.WATER)
          .withLabel('Sootopolis Gym')
          .withLeader(leader)
