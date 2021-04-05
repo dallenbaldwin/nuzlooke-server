@@ -4,9 +4,9 @@ import GymPokemon from '../../pokemons/GymPokemon.js';
 import GymPokemonMove from '../GymPokemonMove.js';
 import PokemonType from '../../constants/PokemonType.js';
 import DamageClass from '../../constants/DamageClass.js';
-import GymBadge from '../GymBadges.js';
 import MovePriority from '../../constants/MovePriority.js';
 import Sprites from '../../pokemons/Sprites.js';
+import GymBadges from '../GymBadges.js';
 export default class FireredLeafgreen {
    constructor() {
       this.gyms = [
@@ -89,7 +89,7 @@ export default class FireredLeafgreen {
          .withLabel('Pewter Gym')
          .withLocation('Pewter City')
          .withDominantType(PokemonType.ROCK)
-         .withGymBadge(GymBadge.BOULDER)
+         .withBadge(GymBadges.BOULDER)
          .withLeader(leader)
          .withPokemons(pokemons)
          .build();
@@ -162,7 +162,7 @@ export default class FireredLeafgreen {
          .withLabel('Cerulean Gym')
          .withLocation('Cerulean City')
          .withDominantType(PokemonType.WATER)
-         .withGymBadge(GymBadge.CASCADE)
+         .withBadge(GymBadges.CASCADE)
          .withLeader(leader)
          .withPokemons(pokemons)
          .build();
@@ -274,7 +274,7 @@ export default class FireredLeafgreen {
          .withLabel('Vermilion Gym')
          .withLocation('Vermilion City')
          .withDominantType(PokemonType.ELECTRIC)
-         .withGymBadge(GymBadge.THUNDER)
+         .withBadge(GymBadges.THUNDER)
          .withLeader(leader)
          .withPokemons(pokemons)
          .build();
@@ -395,7 +395,7 @@ export default class FireredLeafgreen {
          .build();
       return Gym.builder()
          .withSortId(4)
-         .withGymBadge(GymBadge.RAINBOW)
+         .withBadge(GymBadges.RAINBOW)
          .withLabel('Celadon Gym')
          .withDominantType(PokemonType.GRASS)
          .withLocation('Celadon City')
@@ -517,7 +517,7 @@ export default class FireredLeafgreen {
          .withLabel('Fuchsia Gym')
          .withLocation('Fuchsia City')
          .withDominantType(PokemonType.POISON)
-         .withGymBadge(GymBadge.SOUL)
+         .withBadge(GymBadges.SOUL)
          .withLeader(leader)
          .withPokemons(pokemons)
          .build();
@@ -689,7 +689,7 @@ export default class FireredLeafgreen {
          .withLabel('Saffron Gym')
          .withLocation('Saffron City')
          .withDominantType(PokemonType.PSYCHIC)
-         .withGymBadge(GymBadge.MARSH)
+         .withBadge(GymBadges.MARSH)
          .withLeader(leader)
          .withPokemons(pokemons)
          .build();
@@ -811,7 +811,7 @@ export default class FireredLeafgreen {
          .withLabel('Cinnabar Gym')
          .withLocation('Cinnabar Island')
          .withDominantType(PokemonType.FIRE)
-         .withGymBadge(GymBadge.VOLCANO)
+         .withBadge(GymBadges.VOLCANO)
          .withLeader(leader)
          .withPokemons(pokemons)
          .build();
@@ -994,7 +994,7 @@ export default class FireredLeafgreen {
          .withLabel('Viridian Gym')
          .withLocation('Viridian City')
          .withDominantType(PokemonType.GROUND)
-         .withGymBadge(GymBadge.EARTH)
+         .withBadge(GymBadges.EARTH)
          .withLeader(leader)
          .withPokemons(pokemons)
          .build();
