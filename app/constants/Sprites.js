@@ -1,4 +1,4 @@
-import Sprite from './Sprite.js';
+import Sprite from '../models/pokemons/Sprite.js';
 
 export default Object.freeze({
    GEODUDE: new Sprite(74),

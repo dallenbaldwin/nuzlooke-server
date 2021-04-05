@@ -5,12 +5,6 @@ const client = pokeapi.client;
 
 const withBaseUrl = endpoint => `${pokeapi.baseURL}/${endpoint}/`;
 
-const normalize = str =>
-   str
-      .split(' ')
-      .map(s => s.toLowerCase())
-      .join('-');
-
 export const normalizeKabob = (string = '') =>
    string
       .split('-')

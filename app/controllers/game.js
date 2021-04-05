@@ -1,8 +1,8 @@
 import APIResponse from '../models/APIResponse.js';
 import Game from '../models/game/Game.js';
 import { isUndefined, toAWSItem } from '../util/UtilMethods.js';
-import GameVersions from '../models/game/GameVersions.js';
-import Version from '../models/constants/pokeapi/Version.js';
+import GameVersions from '../constants/GameVersions.js';
+import Version from '../constants/pokeapi/Version.js';
 
 export const createGame = (request, response) => {
    const errors = getErrors(request.body);

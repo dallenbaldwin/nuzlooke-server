@@ -1,8 +1,8 @@
-import Generation from '../models/constants/pokeapi/Generation.js';
+import Generation from '../constants/pokeapi/Generation.js';
 import Encounter from '../models/encounters/Encounter.js';
 import EncounterResult from '../models/encounters/EncounterResult.js';
 import Pokemon from '../models/pokemons/Pokemon.js';
-import EncounterResultConst from '../models/constants/EncounterResultConst.js';
+import EncounterResultConst from '../constants/EncounterResultConst.js';
 import * as pokeapi from '../controllers/pokeapi.js';
 import * as util from '../util/UtilMethods.js';
 import { cpus } from 'os';
@@ -20,17 +20,15 @@ export default class EncounterController {
    }
 
    get locations() {
-      return [...this.assembledLocations.values()];
-   }
-
-   sortLocationsByLabel() {
-      this.locations.sort((a, b) => {
+      const locations = [...this.assembledLocations.values()];
+      locations.sort((a, b) => {
          const labelA = a.label.toUpperCase();
          const labelB = b.label.toUpperCase();
          if (labelA > labelB) return 1;
          if (labelA < labelB) return -1;
          return 0;
       });
+      return locations;
    }
 
    async buildLocations() {

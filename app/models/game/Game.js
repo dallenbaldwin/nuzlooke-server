@@ -3,7 +3,6 @@ import { fromAWSItem, toAWSItem } from '../../util/UtilMethods.js';
 import { buildGyms } from '../../controllers/gyms.js';
 import { buildVersion, parseUpdateObject } from '../../controllers/game.js';
 import EncounterController from '../../controllers/encounters.js';
-import { getDefaultRules } from '../../controllers/gameRules.js';
 import uuid_pkg from 'uuid';
 const { v4: uuid } = uuid_pkg;
 
@@ -16,7 +15,7 @@ export default class Game {
       this.encounters = [];
       this.pokemons = [];
       this.gyms = buildGyms(this.version.version_group);
-      this.game_rules = getDefaultRules();
+      this.game_rules = [];
    }
    static async create(object, result) {
       try {
@@ -24,7 +23,6 @@ export default class Game {
          // can't make an internal function here... so it's ugly
          const encounterController = new EncounterController(game.version);
          await encounterController.buildLocations();
-         encounterController.sortLocationsByLabel();
          game.encounters = encounterController.locations;
          // convert to aws and put
          const item = toAWSItem(game);

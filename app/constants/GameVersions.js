@@ -1,9 +1,9 @@
-import GameVersion from './GameVersion.js';
-import Version from '../constants/pokeapi/Version.js';
-import Artwork from '../constants/bulbapedia/Artwork.js';
-import Generation from '../constants/pokeapi/Generation.js';
-import Region from '../constants/pokeapi/Region.js';
-import VersionGroup from '../constants/pokeapi/VersionGroup.js';
+import GameVersion from '../models/game/GameVersion.js';
+import Version from './pokeapi/Version.js';
+import Artwork from './bulbapedia/Artwork.js';
+import Generation from './pokeapi/Generation.js';
+import Region from './pokeapi/Region.js';
+import VersionGroup from './pokeapi/VersionGroup.js';
 
 export default Object.freeze({
    EMERALD: GameVersion.builder()

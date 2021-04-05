@@ -47,9 +47,7 @@ export default class User {
             UpdateExpression: parsedResult.updateExpression,
             ExpressionAttributeValues: parsedResult.expressionAttributeValues,
          }).promise();
-         result({
-            data: fromAWSItem(updated.Attributes),
-         });
+         result({ data: fromAWSItem(updated.Attributes) });
       } catch (err) {
          result({ error: err });
       }

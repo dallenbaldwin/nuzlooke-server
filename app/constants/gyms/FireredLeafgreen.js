@@ -1,12 +1,13 @@
-import Gym from '../Gym.js';
-import GymLeader from '../GymLeader.js';
-import GymPokemon from '../../pokemons/GymPokemon.js';
-import GymPokemonMove from '../GymPokemonMove.js';
-import PokemonType from '../../constants/PokemonType.js';
-import DamageClass from '../../constants/DamageClass.js';
-import MovePriority from '../../constants/MovePriority.js';
-import Sprites from '../../pokemons/Sprites.js';
+import Gym from '../../models/gyms/Gym.js';
 import GymBadges from '../GymBadges.js';
+import GymLeader from '../../models/gyms/GymLeader.js';
+import GymPokemon from '../../models/pokemons/GymPokemon.js';
+import GymPokemonMove from '../../models/gyms/GymPokemonMove.js';
+import PokemonType from '../PokemonType.js';
+import DamageClass from '../DamageClass.js';
+import MovePriority from '../MovePriority.js';
+import Sprites from '../Sprites.js';
+
 export default class FireredLeafgreen {
    constructor() {
       this.gyms = [

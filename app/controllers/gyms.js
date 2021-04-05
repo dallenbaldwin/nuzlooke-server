@@ -1,8 +1,8 @@
-import VersionGroup from '../models/constants/pokeapi/VersionGroup.js';
-import LetsGo from '../models/gyms/games/LetsGo.js';
-import Emerald from '../models/gyms/games/Emerald.js';
-import RubySapphire from '../models/gyms/games/RubySapphire.js';
-import FireredLeafgreen from '../models/gyms/games/FireredLeafgreen.js';
+import VersionGroup from '../constants/pokeapi/VersionGroup.js';
+import LetsGo from '../constants/gyms/LetsGo.js';
+import Emerald from '../constants/gyms/Emerald.js';
+import RubySapphire from '../constants/gyms/RubySapphire.js';
+import FireredLeafgreen from '../constants/gyms/FireredLeafgreen.js';
 
 export const buildGyms = versionGroup => {
    switch (versionGroup) {

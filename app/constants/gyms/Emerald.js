@@ -1,14 +1,14 @@
-import Gym from '../Gym.js';
+import Gym from '../../models/gyms/Gym.js';
 import GymBadges from '../GymBadges.js';
-import GymLeader from '../GymLeader.js';
-import GymPokemon from '../../pokemons/GymPokemon.js';
-import GymPokemonMove from '../GymPokemonMove.js';
-import PokemonType from '../../constants/PokemonType.js';
-import DamageClass from '../../constants/DamageClass.js';
-import MovePriority from '../../constants/MovePriority.js';
-import Sprites from '../../pokemons/Sprites.js';
+import GymLeader from '../../models/gyms/GymLeader.js';
+import GymPokemon from '../../models/pokemons/GymPokemon.js';
+import GymPokemonMove from '../../models/gyms/GymPokemonMove.js';
+import PokemonType from '../PokemonType.js';
+import DamageClass from '../DamageClass.js';
+import MovePriority from '../MovePriority.js';
+import Sprites from '../Sprites.js';
 
-export default class RubySapphire {
+export default class Emerald {
    constructor() {
       this.gyms = [
          this.getRoxanne(),
@@ -18,19 +18,10 @@ export default class RubySapphire {
          this.getNorman(),
          this.getWinona(),
          this.getTateLiza(),
-         this.getWallace(),
+         this.getJuan(),
       ];
    }
    getRoxanne() {
-      const tackle = GymPokemonMove.builder()
-         .withAccuracy(95)
-         .withDamageClass(DamageClass.PHYSICAL)
-         .withDescription(`Charges the foe with a full-body tackle.`)
-         .withLabel('Tackle')
-         .withPP(35)
-         .withPower(35)
-         .withType(PokemonType.NORMAL)
-         .build();
       const rockThrow = GymPokemonMove.builder()
          .withAccuracy(90)
          .withDamageClass(DamageClass.PHYSICAL)
@@ -49,38 +40,47 @@ export default class RubySapphire {
          .withPower(60)
          .withType(PokemonType.ROCK)
          .build();
+      const defenseCurl = GymPokemonMove.builder()
+         .withDescription(`Curls up to conceal weak spots and raise Defense.`)
+         .withLabel('Defense Curl')
+         .withPP(40)
+         .withDamageClass(DamageClass.STATUS)
+         .withType(PokemonType.NORMAL)
+         .build();
       const pokemons = [
          GymPokemon.builder()
             .withSortId(1)
-            .withLevel(14)
-            .withAbility('Sturdy')
-            .withIconUrl(Sprites.GEODUDE.icon_url)
+            .withAbility('Rock Head')
+            .withLevel(12)
+            .withMoves(tackle, defenseCurl, rockThrow, rockTomb)
             .withSpecies('Geodude')
+            .withIconUrl(Sprites.GEODUDE.icon_url)
             .withSpriteUrl(Sprites.GEODUDE.sprite_url)
             .withTypes(PokemonType.ROCK, PokemonType.GROUND)
-            .withMoves(
-               tackle,
-               GymPokemonMove.builder()
-                  .withDescription(`Curls up to conceal weak spots and raise Defense.`)
-                  .withLabel('Defense Curl')
-                  .withPP(40)
-                  .withDamageClass(DamageClass.STATUS)
-                  .withType(PokemonType.NORMAL)
-                  .build(),
-               rockThrow,
-               rockTomb
-            )
             .build(),
          GymPokemon.builder()
             .withSortId(2)
-            .withLevel(15)
+            .withAbility('Rock Head')
+            .withLevel(12)
+            .withMoves(tackle, defenseCurl, rockThrow, rockTomb)
+            .withSpecies('Geodude')
+            .withIconUrl(Sprites.GEODUDE.icon_url)
+            .withSpriteUrl(Sprites.GEODUDE.sprite_url)
+            .withTypes(PokemonType.ROCK, PokemonType.GROUND)
+            .build(),
+         GymPokemon.builder()
+            .withSortId(3)
             .withAbility('Sturdy')
-            .withIconUrl(Sprites.NOSEPASS.icon_url)
-            .withSpecies('Nosepass')
-            .withSpriteUrl(Sprites.NOSEPASS.sprite_url)
-            .withTypes(PokemonType.ROCK)
+            .withHeldItem('Oran Berry')
+            .withLevel(15)
             .withMoves(
-               tackle,
+               GymPokemonMove.builder()
+                  .withDamageClass(DamageClass.STATUS)
+                  .withDescription(`Blocks the foe's way to prevent escape.`)
+                  .withLabel('Block')
+                  .withPP(5)
+                  .withType(PokemonType.NORMAL)
+                  .build(),
                GymPokemonMove.builder()
                   .withLabel('Harden')
                   .withDamageClass(DamageClass.STATUS)
@@ -88,9 +88,13 @@ export default class RubySapphire {
                   .withPP(30)
                   .withType(PokemonType.NORMAL)
                   .build(),
-               rockThrow,
+               tackle,
                rockTomb
             )
+            .withIconUrl(Sprites.NOSEPASS.icon_url)
+            .withSpecies('Nosepass')
+            .withSpriteUrl(Sprites.NOSEPASS.sprite_url)
+            .withTypes(PokemonType.ROCK)
             .build(),
       ];
       const leader = GymLeader.builder()
@@ -120,17 +124,8 @@ export default class RubySapphire {
          GymPokemon.builder()
             .withSortId(1)
             .withAbility('Guts')
-            .withLevel(17)
+            .withLevel(16)
             .withMoves(
-               bulkUp,
-               GymPokemonMove.builder()
-                  .withLabel('Leer')
-                  .withType(PokemonType.NORMAL)
-                  .withDamageClass(DamageClass.STATUS)
-                  .withPP(30)
-                  .withAccuracy(100)
-                  .withDescription('Frightens the foe with a leer to lower Defense.')
-                  .build(),
                GymPokemonMove.builder()
                   .withLabel('Karate Chop')
                   .withType(PokemonType.FIGHTING)
@@ -141,13 +136,22 @@ export default class RubySapphire {
                   .withDescription('A chopping attack with a high critical-hit ratio.')
                   .build(),
                GymPokemonMove.builder()
+                  .withLabel('Low Kick')
+                  .withType(PokemonType.FIGHTING)
+                  .withDamageClass(DamageClass.PHYSICAL)
+                  .withPP(20)
+                  .withAccuracy(100)
+                  .withDescription(`A kick that inflicts more damage on heavier foes.`)
+                  .build(),
+               GymPokemonMove.builder()
                   .withLabel('Seismic Toss')
                   .withType(PokemonType.FIGHTING)
                   .withDamageClass(DamageClass.PHYSICAL)
                   .withPP(20)
                   .withAccuracy(100)
                   .withDescription(`Inflicts damage identical to the user's level.`)
-                  .build()
+                  .build(),
+               bulkUp
             )
             .withTypes(PokemonType.FIGHTING)
             .withIconUrl(Sprites.MACHOP.icon_url)
@@ -156,18 +160,43 @@ export default class RubySapphire {
             .build(),
          GymPokemon.builder()
             .withSortId(2)
-            .withAbility('Guts')
-            .withLevel(18)
+            .withLevel(16)
+            .withAbility('Pure Power')
             .withMoves(
-               bulkUp,
                GymPokemonMove.builder()
-                  .withLabel('Knock Off')
-                  .withType(PokemonType.DARK)
+                  .withLabel('Focus Punch')
+                  .withType(PokemonType.FIGHTING)
                   .withDamageClass(DamageClass.PHYSICAL)
                   .withPP(20)
-                  .withPower(20)
-                  .withDescription(`Knocks down the foe's held item to prevent its use.`)
+                  .withPower(150)
+                  .withAccuracy(100)
+                  .withPriority(MovePriority.MINUS3)
+                  .withDescription(`Powerful, but makes the user flinch if hit by foe.`)
                   .build(),
+               lightScreen,
+               GymPokemonMove.builder()
+                  .withLabel('Reflect')
+                  .withType(PokemonType.PSYCHIC)
+                  .withDamageClass(DamageClass.STATUS)
+                  .withPP(20)
+                  .withDescription(
+                     `Creates a wall of light that weakens physical attacks.`
+                  )
+                  .withType(PokemonType.PSYCHIC)
+                  .build(),
+               bulkUp
+            )
+            .withSpecies('Meditite')
+            .withIconUrl(Sprites.MEDITITE.icon_url)
+            .withSpriteUrl(Sprites.MEDITITE.sprite_url)
+            .withTypes(PokemonType.FIGHTING, PokemonType.PSYCHIC)
+            .build(),
+         GymPokemon.builder()
+            .withSortId(3)
+            .withAbility('Guts')
+            .withLevel(19)
+            .withHeldItem('Sitrus Berry')
+            .withMoves(
                GymPokemonMove.builder()
                   .withLabel('Arm Thrust')
                   .withType(PokemonType.FIGHTING)
@@ -180,14 +209,23 @@ export default class RubySapphire {
                   )
                   .build(),
                GymPokemonMove.builder()
-                  .withLabel('Sand-Attack')
-                  .withType(PokemonType.GROUND)
-                  .withDamageClass(DamageClass.STATUS)
+                  .withLabel('Vital Throw')
+                  .withType(PokemonType.FIGHTING)
+                  .withDamageClass(DamageClass.PHYSICAL)
+                  .withPP(10)
+                  .withPower(70)
+                  .withPriority(MovePriority.MINUS1)
+                  .withDescription(`Makes the user's move last, but it never misses.`)
+                  .build(),
+               GymPokemonMove.builder()
+                  .withLabel('Reversal')
+                  .withType(PokemonType.FIGHTING)
+                  .withDamageClass(DamageClass.PHYSICAL)
+                  .withPP(15)
                   .withAccuracy(100)
-                  .withDescription(
-                     `Reduces the foe's accuracy by hurling sand in its face.`
-                  )
-                  .build()
+                  .withDescription(`Inflicts more damage when the user's HP is down.`)
+                  .build(),
+               bulkUp
             )
             .withTypes(PokemonType.FIGHTING)
             .withIconUrl(Sprites.MAKUHITA.icon_url)
@@ -211,13 +249,23 @@ export default class RubySapphire {
          .build();
    }
    getWattson() {
-      const sonicBoom = GymPokemonMove.builder()
-         .withLabel('SonicBoom')
-         .withType(PokemonType.NORMAL)
+      const shockWave = GymPokemonMove.builder()
+         .withLabel('Shock Wave')
+         .withType(PokemonType.ELECTRIC)
          .withDamageClass(DamageClass.SPECIAL)
          .withPP(20)
-         .withAccuracy(90)
-         .withDescription('Launches shock waves that always inflict 20 HP damage.')
+         .withPower(60)
+         .withDescription(`Zaps the foe with a jolt of electricity that never misses.`)
+         .build();
+      const quickAttack = GymPokemonMove.builder()
+         .withLabel('Quick Attack')
+         .withType(PokemonType.NORMAL)
+         .withDamageClass(DamageClass.PHYSICAL)
+         .withPP(30)
+         .withPower(40)
+         .withAccuracy(100)
+         .withPriority(MovePriority.PLUS1)
+         .withDescription(`An extremely fast attack that always strikes first.`)
          .build();
       const thunderWave = GymPokemonMove.builder()
          .withLabel('Thunder Wave')
@@ -227,32 +275,16 @@ export default class RubySapphire {
          .withAccuracy(100)
          .withDescription('A weak jolt of electricity that paralyzes the foe.')
          .build();
+      const howl = GymPokemonMove.builder()
+         .withLabel('Howl')
+         .withType(PokemonType.ELECTRIC)
+         .withDamageClass(DamageClass.STATUS)
+         .withPP(40)
+         .withDescription(`Howls to raise the spirit and boosts Attack.`)
+         .build();
       const pokemons = [
          GymPokemon.builder()
             .withSortId(1)
-            .withAbility('Magnet Pull')
-            .withLevel(22)
-            .withMoves(
-               GymPokemonMove.builder()
-                  .withLabel('ThunderShock')
-                  .withType(PokemonType.ELECTRIC)
-                  .withAccuracy(100)
-                  .withPP(30)
-                  .withDamageClass(DamageClass.SPECIAL)
-                  .withPower(40)
-                  .withDescription(`An electrical attack that may paralyze the foe.`)
-                  .build(),
-               supersonic,
-               sonicBoom,
-               thunderWave
-            )
-            .withSpecies('Magnemite')
-            .withTypes(PokemonType.ELECTRIC, PokemonType.STEEL)
-            .withIconUrl(Sprites.MAGNEMITE.icon_url)
-            .withSpriteUrl(Sprites.MAGNEMITE.sprite_url)
-            .build(),
-         GymPokemon.builder()
-            .withSortId(2)
             .withAbility('Soundproof')
             .withLevel(20)
             .withMoves(
@@ -274,7 +306,6 @@ export default class RubySapphire {
                   .withAccuracy(100)
                   .withDescription(`An electrified tackle that may paralyze the foe.`)
                   .build(),
-               sonicBoom,
                GymPokemonMove.builder()
                   .withLabel('Selfdestruct')
                   .withType(PokemonType.NORMAL)
@@ -283,36 +314,58 @@ export default class RubySapphire {
                   .withPower(200)
                   .withAccuracy(100)
                   .withDescription(`Inflicts severe damage but makes the user faint.`)
-                  .build()
+                  .build(),
+               shockWave
             )
             .withSpecies('Voltorb')
-            .withTypes(PokemonType.ELECTRIC)
             .withIconUrl(Sprites.VOLTORB.icon_url)
             .withSpriteUrl(Sprites.VOLTORB.sprite_url)
+            .withTypes(PokemonType.ELECTRIC)
+            .build(),
+         GymPokemon.builder()
+            .withSortId(2)
+            .withAbility('Static')
+            .withLevel(20)
+            .withMoves(shockWave, leer, quickAttack, howl)
+            .withSpecies('Electrike')
+            .withIconUrl(Sprites.ELECTRIKE.icon_url)
+            .withSpriteUrl(Sprites.ELECTRIKE.sprite_url)
+            .withTypes(PokemonType.ELECTRIC)
             .build(),
          GymPokemon.builder()
             .withSortId(3)
             .withAbility('Magnet Pull')
-            .withLevel(23)
+            .withLevel(22)
             .withMoves(
+               supersonic,
+               shockWave,
+               thunderWave,
                GymPokemonMove.builder()
-                  .withLabel('Shock Wave')
-                  .withType(PokemonType.ELECTRIC)
+                  .withLabel('SonicBoom')
+                  .withType(PokemonType.NORMAL)
                   .withDamageClass(DamageClass.SPECIAL)
                   .withPP(20)
-                  .withPower(60)
+                  .withAccuracy(90)
                   .withDescription(
-                     `Zaps the foe with a jolt of electricity that never misses.`
+                     'Launches shock waves that always inflict 20 HP damage.'
                   )
-                  .build(),
-               supersonic,
-               sonicBoom,
-               thunderWave
+                  .build()
             )
             .withSpecies('Magneton')
-            .withTypes(PokemonType.ELECTRIC, PokemonType.STEEL)
             .withIconUrl(Sprites.MAGNETON.icon_url)
             .withSpriteUrl(Sprites.MAGNETON.sprite_url)
+            .withTypes(PokemonType.ELECTRIC, PokemonType.STEEL)
+            .build(),
+         GymPokemon.builder()
+            .withSortId(4)
+            .withAbility('Static')
+            .withLevel(24)
+            .withHeldItem('Sitrus Berry')
+            .withMoves(quickAttack, thunderWave, shockWave, howl)
+            .withTypes(PokemonType.ELECTRIC)
+            .withIconUrl(Sprites.MANECTRIC.icon_url)
+            .withSpriteUrl(Sprites.MANECTRIC.sprite_url)
+            .withSpecies('Manectric')
             .build(),
       ];
       const leader = GymLeader.builder()
@@ -343,8 +396,38 @@ export default class RubySapphire {
       const pokemons = [
          GymPokemon.builder()
             .withSortId(1)
+            .withAbility('Oblivious')
+            .withLevel(24)
+            .withMoves(
+               overheat,
+               GymPokemonMove.builder()
+                  .withLabel('Take Down')
+                  .withType(PokemonType.NORMAL)
+                  .withDamageClass(DamageClass.PHYSICAL)
+                  .withPP(20)
+                  .withPower(90)
+                  .withAccuracy(85)
+                  .withDescription(`A reckless charge attack that also hurts the user.`)
+                  .build(),
+               GymPokemonMove.builder()
+                  .withLabel('Magnitude')
+                  .withType(PokemonType.GROUND)
+                  .withDamageClass(DamageClass.PHYSICAL)
+                  .withPP(30)
+                  .withAccuracy(100)
+                  .withDescription(`A ground-shaking attack of random intensity.`)
+                  .build(),
+               sunnyDay
+            )
+            .withIconUrl(Sprites.NUMEL.icon_url)
+            .withSpriteUrl(Sprites.NUMEL.sprite_url)
+            .withSpecies('Numel')
+            .withTypes(PokemonType.FIRE, PokemonType.GROUND)
+            .build(),
+         GymPokemon.builder()
+            .withSortId(2)
             .withAbility('Magma Armor')
-            .withLevel(26)
+            .withLevel(24)
             .withMoves(
                overheat,
                GymPokemonMove.builder()
@@ -365,33 +448,21 @@ export default class RubySapphire {
             .withSpecies('Slugma')
             .build(),
          GymPokemon.builder()
-            .withSortId(2)
+            .withSortId(3)
             .withAbility('Magma Armor')
             .withLevel(26)
-            .withMoves(
-               flamethrower,
-               GymPokemonMove.builder()
-                  .withLabel('Rock Slide')
-                  .withType(PokemonType.ROCK)
-                  .withDamageClass(DamageClass.PHYSICAL)
-                  .withPP(10)
-                  .withPower(75)
-                  .withAccuracy(90)
-                  .withDescription(`Large boulders are hurled. May cause flinching.`)
-                  .build(),
-               lightScreen,
-               sunnyDay
-            )
-            .withIconUrl(Sprites.SLUGMA.icon_url)
-            .withSpriteUrl(Sprites.SLUGMA.sprite_url)
-            .withTypes(PokemonType.FIRE)
-            .withSpecies('Slugma')
+            .withMoves(overheat, tackle, sunnyDay, attract)
+            .withIconUrl(Sprites.CAMERUPT.icon_url)
+            .withSpriteUrl(Sprites.CAMERUPT.sprite_url)
+            .withSpecies('Camerupt')
+            .withTypes(PokemonType.FIRE, PokemonType.GROUND)
             .build(),
          GymPokemon.builder()
-            .withSortId(3)
+            .withSortId(4)
             .withAbility('White Smoke')
-            .withLevel(28)
-            .withMoves(overheat, bodySlam, flail, attract)
+            .withHeldItem('White Herb')
+            .withLevel(29)
+            .withMoves(overheat, sunnyDay, bodySlam, attract)
             .withTypes(PokemonType.FIRE)
             .withIconUrl(Sprites.TORKOAL.icon_url)
             .withSpriteUrl(Sprites.TORKOAL.sprite_url)
@@ -423,6 +494,15 @@ export default class RubySapphire {
          .withAccuracy(100)
          .withDescription(`Raises Attack when poisoned, burned, or paralyzed.`)
          .build();
+      const slash = GymPokemonMove.builder()
+         .withLabel('Slash')
+         .withType(PokemonType.NORMAL)
+         .withDamageClass(DamageClass.PHYSICAL)
+         .withPP(20)
+         .withPower(70)
+         .withAccuracy(100)
+         .withDescription(`Slashes with claws, etc. Has a high critical-hit ratio.`)
+         .build();
       const faintAttack = GymPokemonMove.builder()
          .withLabel('Faint Attack')
          .withType(PokemonType.DARK)
@@ -434,11 +514,88 @@ export default class RubySapphire {
       const pokemons = [
          GymPokemon.builder()
             .withSortId(1)
-            .withAbility('Truant')
-            .withLevel(28)
+            .withAbility('Own Tempo')
+            .withLevel(27)
             .withMoves(
-               encore,
+               GymPokemonMove.builder()
+                  .withLabel('Teeter Dance')
+                  .withType(PokemonType.NORMAL)
+                  .withDamageClass(DamageClass.STATUS)
+                  .withPP(20)
+                  .withAccuracy(100)
+                  .withDescription(`Confuses all Pokémon on the scene.`)
+                  .build(),
+               GymPokemonMove.builder()
+                  .withLabel('Psybeam')
+                  .withType(PokemonType.PSYCHIC)
+                  .withDamageClass(DamageClass.SPECIAL)
+                  .withPP(20)
+                  .withPower(65)
+                  .withAccuracy(100)
+                  .withDescription(`Fires a peculiar ray that may confuse the foe.`)
+                  .build(),
                facade,
+               encore
+            )
+            .withSpecies('Spinda')
+            .withTypes(PokemonType.NORMAL)
+            .withIconUrl(Sprites.SPINDA.icon_url)
+            .withSpriteUrl(Sprites.SPINDA.sprite_url)
+            .build(),
+         GymPokemon.builder()
+            .withSortId(2)
+            .withAbility('Vital Spirit')
+            .withLevel(27)
+            .withMoves(slash, facade, encore, faintAttack)
+            .withSpecies('Vigoroth')
+            .withTypes(PokemonType.NORMAL)
+            .withIconUrl(Sprites.VIGOROTH.icon_url)
+            .withSpriteUrl(Sprites.VIGOROTH.sprite_url)
+            .build(),
+         GymPokemon.builder()
+            .withSortId(3)
+            .withAbility('Pickup')
+            .withLevel(29)
+            .withMoves(
+               slash,
+               GymPokemonMove.builder()
+                  .withLabel('Belly Drum')
+                  .withType(PokemonType.NORMAL)
+                  .withDamageClass(DamageClass.STATUS)
+                  .withPP(10)
+                  .withDescription(`Maximizes Attack while sacrificing HP.`)
+                  .build(),
+               facade,
+               GymPokemonMove.builder()
+                  .withLabel('Headbutt')
+                  .withType(PokemonType.NORMAL)
+                  .withDamageClass(DamageClass.PHYSICAL)
+                  .withPP(15)
+                  .withPower(70)
+                  .withAccuracy(100)
+                  .withDescription(`A ramming attack that may cause flinching.`)
+                  .build()
+            )
+            .withSpecies('Linoone')
+            .withTypes(PokemonType.NORMAL)
+            .withIconUrl(Sprites.LINOONE.icon_url)
+            .withSpriteUrl(Sprites.LINOONE.sprite_url)
+            .build(),
+         GymPokemon.builder()
+            .withSortId(4)
+            .withAbility('Truant')
+            .withLevel(31)
+            .withHeldItem('Sitrus Berry')
+            .withMoves(
+               GymPokemonMove.builder()
+                  .withLabel('Counter')
+                  .withType(PokemonType.FIGHTING)
+                  .withDamageClass(DamageClass.PHYSICAL)
+                  .withPP(20)
+                  .withAccuracy(100)
+                  .withPriority(MovePriority.MINUS5)
+                  .withDescription(`Retaliates any physical hit with double the power.`)
+                  .build(),
                GymPokemonMove.builder()
                   .withLabel('Yawn')
                   .withType(PokemonType.NORMAL)
@@ -447,60 +604,6 @@ export default class RubySapphire {
                   .withDescription(
                      `Lulls the foe into yawning, then sleeping the next turn.`
                   )
-                  .build(),
-               faintAttack
-            )
-            .withSpecies('Slaking')
-            .withTypes(PokemonType.NORMAL)
-            .withIconUrl(Sprites.SLAKING.icon_url)
-            .withSpriteUrl(Sprites.SLAKING.sprite_url)
-            .build(),
-         GymPokemon.builder()
-            .withSortId(2)
-            .withAbility('Vital Spirit')
-            .withLevel(30)
-            .withMoves(
-               GymPokemonMove.builder()
-                  .withLabel('Slash')
-                  .withType(PokemonType.NORMAL)
-                  .withDamageClass(DamageClass.PHYSICAL)
-                  .withPP(20)
-                  .withPower(70)
-                  .withAccuracy(100)
-                  .withDescription(
-                     `Slashes with claws, etc. Has a high critical-hit ratio.`
-                  )
-                  .build(),
-               faintAttack,
-               facade,
-               encore
-            )
-            .withSpecies('Vigoroth')
-            .withTypes(PokemonType.NORMAL)
-            .withIconUrl(Sprites.VIGOROTH.icon_url)
-            .withSpriteUrl(Sprites.VIGOROTH.sprite_url)
-            .build(),
-         GymPokemon.builder()
-            .withSortId(3)
-            .withAbility('Truant')
-            .withLevel(31)
-            .withMoves(
-               GymPokemonMove.builder()
-                  .withLabel('Focus Punch')
-                  .withType(PokemonType.FIGHTING)
-                  .withDamageClass(DamageClass.PHYSICAL)
-                  .withPP(20)
-                  .withPower(150)
-                  .withAccuracy(100)
-                  .withPriority(MovePriority.MINUS3)
-                  .withDescription(`Powerful, but makes the user flinch if hit by foe.`)
-                  .build(),
-               GymPokemonMove.builder()
-                  .withLabel('Slack Off')
-                  .withType(PokemonType.NORMAL)
-                  .withDamageClass(DamageClass.STATUS)
-                  .withPP(10)
-                  .withDescription(`Slacks off and restores half the maximum HP.`)
                   .build(),
                facade,
                faintAttack
@@ -538,45 +641,60 @@ export default class RubySapphire {
       const pokemons = [
          GymPokemon.builder()
             .withSortId(1)
-            .withAbility('Guts')
-            .withLevel(31)
+            .withAbility('Natural Cure')
+            .withLevel(29)
             .withMoves(
                GymPokemonMove.builder()
-                  .withLabel('Quick Attack')
-                  .withType(PokemonType.NORMAL)
-                  .withDamageClass(DamageClass.PHYSICAL)
-                  .withPP(30)
-                  .withPower(40)
-                  .withAccuracy(100)
-                  .withPriority(MovePriority.PLUS1)
-                  .withDescription(`An extremely fast attack that always strikes first.`)
-                  .build(),
-               aerialAce,
-               GymPokemonMove.builder()
-                  .withLabel('Double Team')
+                  .withLabel('Perish Song')
                   .withType(PokemonType.NORMAL)
                   .withDamageClass(DamageClass.STATUS)
-                  .withPP(15)
-                  .withDescription(`Creates illusory copies to raise evasiveness.`)
+                  .withPP(5)
+                  .withDescription(`Any Pokémon hearing this song faints in 3 turns.`)
                   .build(),
                GymPokemonMove.builder()
-                  .withLabel('Endeavor')
+                  .withLabel('Mirror Move')
+                  .withType(PokemonType.FLYING)
+                  .withDamageClass(DamageClass.STATUS)
+                  .withPP(20)
+                  .withDescription(`Counters the foe's attack with the same move.`)
+                  .build(),
+               GymPokemonMove.builder()
+                  .withLabel('Safeguard')
                   .withType(PokemonType.NORMAL)
-                  .withDamageClass(DamageClass.PHYSICAL)
-                  .withPP(5)
-                  .withAccuracy(100)
-                  .withDescription(
-                     `Gains power if the user's HP is lower than the foe's HP.`
-                  )
-                  .build()
+                  .withDamageClass(DamageClass.STATUS)
+                  .withPP(25)
+                  .withDescription(`A mystical force prevents all status problems.`)
+                  .build(),
+               aerialAce
             )
+            .withSpecies('Swablu')
             .withTypes(PokemonType.NORMAL, PokemonType.FLYING)
-            .withSpecies('Swellow')
-            .withIconUrl(Sprites.SWELLOW.icon_url)
-            .withSpriteUrl(Sprites.SWELLOW.sprite_url)
+            .withIconUrl(Sprites.SWABLU.icon_url)
+            .withSpriteUrl(Sprites.SWABLU.sprite_url)
             .build(),
          GymPokemon.builder()
             .withSortId(2)
+            .withAbility('Chlorophyll')
+            .withLevel(29)
+            .withMoves(
+               sunnyDay,
+               aerialAce,
+               solarbeam,
+               GymPokemonMove.builder()
+                  .withLabel('Synthesis')
+                  .withType(PokemonType.GRASS)
+                  .withDamageClass(DamageClass.STATUS)
+                  .withPP(5)
+                  .withDescription(`Restores HP. The amount varies with the weather.`)
+                  .build()
+            )
+            .withSpecies('Tropius')
+            .withTypes(PokemonType.GRASS, PokemonType.FLYING)
+            .withIconUrl(Sprites.TROPIUS.icon_url)
+            .withSpriteUrl(Sprites.TROPIUS.sprite_url)
+            .build(),
+         GymPokemon.builder()
+            .withSortId(3)
             .withAbility('Keen Eye')
             .withLevel(30)
             .withMoves(
@@ -608,9 +726,9 @@ export default class RubySapphire {
             .withSpriteUrl(Sprites.PELIPPER.sprite_url)
             .build(),
          GymPokemon.builder()
-            .withSortId(3)
+            .withSortId(4)
             .withAbility('Keen Eye')
-            .withLevel(32)
+            .withLevel(31)
             .withMoves(
                GymPokemonMove.builder()
                   .withLabel('Sand Attack')
@@ -622,7 +740,15 @@ export default class RubySapphire {
                      `Reduces the foe's accuracy by hurling sand in its face.`
                   )
                   .build(),
-               furyAttack,
+               GymPokemonMove.builder()
+                  .withLabel('Fury Attack')
+                  .withType(PokemonType.NORMAL)
+                  .withDamageClass(DamageClass.PHYSICAL)
+                  .withPP(20)
+                  .withPower(15)
+                  .withAccuracy(85)
+                  .withDescription(`Jabs the foe 2 to 5 times with sharp horns, etc.`)
+                  .build(),
                GymPokemonMove.builder()
                   .withLabel('Steel Wing')
                   .withType(PokemonType.STEEL)
@@ -640,9 +766,10 @@ export default class RubySapphire {
             .withSpriteUrl(Sprites.SKARMORY.sprite_url)
             .build(),
          GymPokemon.builder()
-            .withSortId(4)
+            .withSortId(5)
             .withAbility('Natural Cure')
             .withLevel(33)
+            .withHeldItem('Oran Berry')
             .withMoves(
                earthquake,
                GymPokemonMove.builder()
@@ -694,11 +821,63 @@ export default class RubySapphire {
          .withAccuracy(100)
          .withDescription(`A powerful psychic attack that may lower Sp. Def.`)
          .build();
+      const calmMind = GymPokemonMove.builder()
+         .withLabel('Calm Mind')
+         .withType(PokemonType.PSYCHIC)
+         .withDamageClass(DamageClass.STATUS)
+         .withPP(20)
+         .withDescription(`Raises Sp. Atk and Sp. Def by focusing the mind.`)
+         .build();
       const pokemons = [
          GymPokemon.builder()
             .withSortId(1)
+            .withLevel(41)
             .withAbility('Levitate')
+            .withMoves(
+               earthquake,
+               GymPokemonMove.builder()
+                  .withLabel('AncientPower')
+                  .withType(PokemonType.ROCK)
+                  .withDamageClass(DamageClass.SPECIAL)
+                  .withPP(5)
+                  .withPower(60)
+                  .withAccuracy(100)
+                  .withDescription(`An attack that may raise all stats.`)
+                  .build(),
+               psychic,
+               lightScreen
+            )
+            .withSpecies('Claydol')
+            .withTypes(PokemonType.GROUND, PokemonType.PSYCHIC)
+            .withIconUrl(Sprites.CLAYDOL.icon_url)
+            .withSpriteUrl(Sprites.CLAYDOL.sprite_url)
+            .build(),
+         GymPokemon.builder()
+            .withSortId(2)
+            .withLevel(41)
+            .withAbility('Synchronize')
+            .withMoves(
+               psychic,
+               sunnyDay,
+               GymPokemonMove.builder()
+                  .withLabel('Confuse Ray')
+                  .withType(PokemonType.GHOST)
+                  .withDamageClass(DamageClass.STATUS)
+                  .withAccuracy(100)
+                  .withDescription(`A sinister ray that confuses the foe.`)
+                  .build(),
+               calmMind
+            )
+            .withSpecies('Xatu')
+            .withTypes(PokemonType.PSYCHIC, PokemonType.FLYING)
+            .withIconUrl(Sprites.XATU.icon_url)
+            .withSpriteUrl(Sprites.XATU.sprite_url)
+            .build(),
+         GymPokemon.builder()
+            .withSortId(3)
             .withLevel(42)
+            .withAbility('Levitate')
+            .withHeldItem('Sitrus Berry')
             .withMoves(
                lightScreen,
                psychic,
@@ -710,13 +889,7 @@ export default class RubySapphire {
                   .withAccuracy(60)
                   .withDescription(`A hypnotizing move that may induce sleep.`)
                   .build(),
-               GymPokemonMove.builder()
-                  .withLabel('Calm Mind')
-                  .withType(PokemonType.PSYCHIC)
-                  .withDamageClass(DamageClass.STATUS)
-                  .withPP(20)
-                  .withDescription(`Raises Sp. Atk and Sp. Def by focusing the mind.`)
-                  .build()
+               calmMind
             )
             .withSpecies('Lunatone')
             .withTypes(PokemonType.ROCK, PokemonType.PSYCHIC)
@@ -724,24 +897,23 @@ export default class RubySapphire {
             .withSpriteUrl(Sprites.LUNATONE.sprite_url)
             .build(),
          GymPokemon.builder()
-            .withSortId(2)
-            .withAbility('Levitate')
+            .withSortId(4)
             .withLevel(42)
+            .withAbility('Levitate')
+            .withHeldItem('Sitrus Berry')
             .withMoves(
                sunnyDay,
-               GymPokemonMove.builder()
-                  .withLabel('SolarBeam')
-                  .withType(PokemonType.GRASS)
-                  .withDamageClass(DamageClass.SPECIAL)
-                  .withPP(10)
-                  .withPower(120)
-                  .withAccuracy(100)
-                  .withDescription(
-                     `Absorbs sunlight in the 1st turn, then attacks next turn.`
-                  )
-                  .build(),
+               solarbeam,
                psychic,
-               flamethrower
+               GymPokemonMove.builder()
+                  .withLabel('Flamethrower')
+                  .withType(PokemonType.FIRE)
+                  .withDamageClass(DamageClass.SPECIAL)
+                  .withPP(15)
+                  .withPower(95)
+                  .withAccuracy(100)
+                  .withDescription(`Looses a stream of fire that may burn the foe.`)
+                  .build()
             )
             .withSpecies('Solrock')
             .withTypes(PokemonType.ROCK, PokemonType.PSYCHIC)
@@ -764,7 +936,7 @@ export default class RubySapphire {
          .withSortId(7)
          .build();
    }
-   getWallace() {
+   getJuan() {
       const waterPulse = GymPokemonMove.builder()
          .withLabel('Water Pulse')
          .withType(PokemonType.WATER)
@@ -774,20 +946,13 @@ export default class RubySapphire {
          .withAccuracy(100)
          .withDescription(`Attacks with ultrasonic waves. May confuse the foe.`)
          .build();
-      const rainDance = GymPokemonMove.builder()
-         .withLabel('Rain Dance')
-         .withType(PokemonType.WATER)
-         .withDamageClass(DamageClass.STATUS)
-         .withPP(5)
-         .withDescription(`Raises the power of Water-type moves for 5 turns.`)
-         .build();
       const pokemons = [
          GymPokemon.builder()
             .withSortId(1)
-            .withLevel(40)
+            .withLevel(41)
             .withAbility('Swift Swim')
             .withMoves(
-               flail,
+               waterPulse,
                attract,
                GymPokemonMove.builder()
                   .withLabel('Sweet Kiss')
@@ -799,7 +964,14 @@ export default class RubySapphire {
                      `Demands a kiss with a cute look. May cause confusion.`
                   )
                   .build(),
-               waterPulse
+               GymPokemonMove.builder()
+                  .withLabel('Flail')
+                  .withType(PokemonType.NORMAL)
+                  .withDamageClass(DamageClass.PHYSICAL)
+                  .withPP(15)
+                  .withAccuracy(100)
+                  .withDescription(`Inflicts more damage when the user's HP is down.`)
+                  .build()
             )
             .withTypes(PokemonType.WATER)
             .withIconUrl(Sprites.LUVDISC.icon_url)
@@ -808,7 +980,34 @@ export default class RubySapphire {
             .build(),
          GymPokemon.builder()
             .withSortId(2)
-            .withLevel(40)
+            .withLevel(41)
+            .withAbility('Oblivious')
+            .withMoves(
+               GymPokemonMove.builder()
+                  .withLabel('Rain Dance')
+                  .withType(PokemonType.WATER)
+                  .withDamageClass(DamageClass.STATUS)
+                  .withPP(5)
+                  .withDescription(`Raises the power of Water-type moves for 5 turns.`)
+                  .build(),
+               waterPulse,
+               GymPokemonMove.builder()
+                  .withLabel('Amnesia')
+                  .withType(PokemonType.PSYCHIC)
+                  .withDamageClass(DamageClass.STATUS)
+                  .withPP(20)
+                  .withDescription(`Forgets about something and sharply raises Sp. Def.`)
+                  .build(),
+               earthquake
+            )
+            .withTypes(PokemonType.WATER, PokemonType.GROUND)
+            .withIconUrl(Sprites.WHISCASH.icon_url)
+            .withSpriteUrl(Sprites.WHISCASH.sprite_url)
+            .withSpecies('Whiscash')
+            .build(),
+         GymPokemon.builder()
+            .withSortId(3)
+            .withLevel(43)
             .withAbility('Thick Fat')
             .withMoves(
                encore,
@@ -830,67 +1029,50 @@ export default class RubySapphire {
             .withSpecies('Sealeo')
             .build(),
          GymPokemon.builder()
-            .withSortId(3)
-            .withLevel(42)
-            .withAbility('Swift Swim')
-            .withMoves(
-               GymPokemonMove.builder()
-                  .withLabel('Horn Drill')
-                  .withType(PokemonType.NORMAL)
-                  .withDamageClass(DamageClass.PHYSICAL)
-                  .withAccuracy(30)
-                  .withDescription(`A one-hit KO attack that uses a horn like a drill.`)
-                  .build(),
-               furyAttack,
-               rainDance,
-               waterPulse
-            )
-            .withTypes(PokemonType.WATER)
-            .withIconUrl(Sprites.SEAKING.icon_url)
-            .withSpriteUrl(Sprites.SEAKING.sprite_url)
-            .withSpecies('Seaking')
-            .build(),
-         GymPokemon.builder()
             .withSortId(4)
-            .withLevel(42)
-            .withAbility('Oblivious')
+            .withAbility('Hyper Cutter')
+            .withLevel(43)
             .withMoves(
+               waterPulse,
                GymPokemonMove.builder()
-                  .withLabel('Amnesia')
-                  .withType(PokemonType.PSYCHIC)
+                  .withLabel('Crabhammer')
+                  .withType(PokemonType.WATER)
+                  .withDamageClass(DamageClass.PHYSICAL)
+                  .withPP(10)
+                  .withPower(90)
+                  .withAccuracy(85)
+                  .withDescription(
+                     `Hammers with a pincer. Has a high critical-hit ratio.`
+                  )
+                  .build(),
+               GymPokemonMove.builder()
+                  .withLabel('Taunt')
+                  .withType(PokemonType.DARK)
                   .withDamageClass(DamageClass.STATUS)
                   .withPP(20)
-                  .withDescription(`Forgets about something and sharply raises Sp. Def.`)
+                  .withAccuracy(100)
+                  .withDescription(`Taunts the foe into only using attack moves.`)
                   .build(),
-               rainDance,
-               earthquake,
-               waterPulse
+               leer
             )
-            .withTypes(PokemonType.WATER, PokemonType.GROUND)
-            .withIconUrl(Sprites.WHISCASH.icon_url)
-            .withSpriteUrl(Sprites.WHISCASH.sprite_url)
-            .withSpecies('Whiscash')
+            .withSpecies('Crawdaunt')
+            .withIconUrl(Sprites.CRAWDAUNT.icon_url)
+            .withSpriteUrl(Sprites.CRAWDAUNT.sprite_url)
+            .withTypes(PokemonType.WATER, PokemonType.DARK)
             .build(),
          GymPokemon.builder()
             .withSortId(5)
-            .withLevel(43)
-            .withAbility('Marvel Scale')
+            .withAbility('Swift Swim')
+            .withHeldItem('Chesto Berry')
+            .withLevel(46)
             .withMoves(
+               waterPulse,
                GymPokemonMove.builder()
-                  .withLabel('Recover')
+                  .withLabel('Double Team')
                   .withType(PokemonType.NORMAL)
                   .withDamageClass(DamageClass.STATUS)
-                  .withPP(20)
-                  .withDescription(`Recovers up to half the user's maximum HP.`)
-                  .build(),
-               GymPokemonMove.builder()
-                  .withLabel('Twister')
-                  .withType(PokemonType.DRAGON)
-                  .withDamageClass(DamageClass.SPECIAL)
-                  .withPP(20)
-                  .withPower(40)
-                  .withAccuracy(100)
-                  .withDescription(`Whips up a vicious twister to tear at the foe.`)
+                  .withPP(15)
+                  .withDescription(`Creates illusory copies to raise evasiveness.`)
                   .build(),
                GymPokemonMove.builder()
                   .withLabel('Ice Beam')
@@ -901,18 +1083,26 @@ export default class RubySapphire {
                   .withAccuracy(100)
                   .withDescription(`Fires an icy cold beam that may freeze the foe.`)
                   .build(),
-               waterPulse
+               GymPokemonMove.builder()
+                  .withLabel('Rest')
+                  .withType(PokemonType.PSYCHIC)
+                  .withDamageClass(DamageClass.STATUS)
+                  .withPP(10)
+                  .withDescription(
+                     `The user sleeps for 2 turns, restoring HP and status.`
+                  )
+                  .build()
             )
-            .withTypes(PokemonType.WATER)
-            .withIconUrl(Sprites.MILOTIC.icon_url)
-            .withSpriteUrl(Sprites.MILOTIC.sprite_url)
-            .withSpecies('Milotic')
+            .withSpecies('Kingdra')
+            .withTypes(PokemonType.WATER, PokemonType.DRAGON)
+            .withIconUrl(Sprites.KINGDRA.icon_url)
+            .withSpriteUrl(Sprites.KINGDRA.sprite_url)
             .build(),
       ];
       const leader = GymLeader.builder()
-         .withFlavorText('Artist, and lover of water.')
-         .withLabel('Wallace')
-         .withSpritUrl('https://cdn.bulbagarden.net/upload/b/b1/Spr_RS_Wallace.png')
+         .withFlavorText('The Gym Leader with the beauty of pure water!')
+         .withLabel('Juan')
+         .withSpritUrl('https://cdn.bulbagarden.net/upload/1/16/Spr_E_Juan.png')
          .build();
       return Gym.builder()
          .withBadge(GymBadges.RAIN)
@@ -926,15 +1116,6 @@ export default class RubySapphire {
    }
 }
 
-const supersonic = GymPokemonMove.builder()
-   .withLabel('Supersonic')
-   .withType(PokemonType.NORMAL)
-   .withDamageClass(DamageClass.STATUS)
-   .withPP(20)
-   .withAccuracy(55)
-   .withDescription(`Emits bizarre sound waves that may confuse the foe.`)
-   .build();
-
 const lightScreen = GymPokemonMove.builder()
    .withLabel('Light Screen')
    .withType(PokemonType.PSYCHIC)
@@ -943,14 +1124,23 @@ const lightScreen = GymPokemonMove.builder()
    .withDescription(`Creates a wall of light that lowers Sp. Atk damage.`)
    .build();
 
-const flamethrower = GymPokemonMove.builder()
-   .withLabel('Flamethrower')
-   .withType(PokemonType.FIRE)
-   .withDamageClass(DamageClass.SPECIAL)
-   .withPP(15)
-   .withPower(95)
-   .withAccuracy(100)
-   .withDescription(`Looses a stream of fire that may burn the foe.`)
+const tackle = GymPokemonMove.builder()
+   .withAccuracy(95)
+   .withDamageClass(DamageClass.PHYSICAL)
+   .withDescription(`Charges the foe with a full-body tackle.`)
+   .withLabel('Tackle')
+   .withPP(35)
+   .withPower(35)
+   .withType(PokemonType.NORMAL)
+   .build();
+
+const supersonic = GymPokemonMove.builder()
+   .withLabel('Supersonic')
+   .withType(PokemonType.NORMAL)
+   .withDamageClass(DamageClass.STATUS)
+   .withPP(20)
+   .withAccuracy(55)
+   .withDescription(`Emits bizarre sound waves that may confuse the foe.`)
    .build();
 
 const sunnyDay = GymPokemonMove.builder()
@@ -961,13 +1151,24 @@ const sunnyDay = GymPokemonMove.builder()
    .withDescription(`Raises the power of Fire-type moves for 5 turns.`)
    .build();
 
-const flail = GymPokemonMove.builder()
-   .withLabel('Flail')
-   .withType(PokemonType.NORMAL)
+const earthquake = GymPokemonMove.builder()
+   .withLabel('Earthquake')
+   .withType(PokemonType.GROUND)
    .withDamageClass(DamageClass.PHYSICAL)
-   .withPP(15)
+   .withPP(10)
+   .withPower(100)
    .withAccuracy(100)
-   .withDescription(`Inflicts more damage when the user's HP is down.`)
+   .withDescription(`A powerful quake, but has no effect on flying foes.`)
+   .build();
+
+const solarbeam = GymPokemonMove.builder()
+   .withLabel('SolarBeam')
+   .withType(PokemonType.GRASS)
+   .withDamageClass(DamageClass.SPECIAL)
+   .withPP(10)
+   .withPower(120)
+   .withAccuracy(100)
+   .withDescription(`Absorbs sunlight in the 1st turn, then attacks next turn.`)
    .build();
 
 const attract = GymPokemonMove.builder()
@@ -998,22 +1199,11 @@ const bodySlam = GymPokemonMove.builder()
    .withDescription(`A full-body slam that may cause paralysis.`)
    .build();
 
-const furyAttack = GymPokemonMove.builder()
-   .withLabel('Fury Attack')
+const leer = GymPokemonMove.builder()
+   .withLabel('Leer')
    .withType(PokemonType.NORMAL)
-   .withDamageClass(DamageClass.PHYSICAL)
-   .withPP(20)
-   .withPower(15)
-   .withAccuracy(85)
-   .withDescription(`Jabs the foe 2 to 5 times with sharp horns, etc.`)
-   .build();
-
-const earthquake = GymPokemonMove.builder()
-   .withLabel('Earthquake')
-   .withType(PokemonType.GROUND)
-   .withDamageClass(DamageClass.PHYSICAL)
-   .withPP(10)
-   .withPower(100)
+   .withDamageClass(DamageClass.STATUS)
+   .withPP(30)
    .withAccuracy(100)
-   .withDescription(`A powerful quake, but has no effect on flying foes.`)
+   .withDescription(`Frightens the foe with a leer to lower Defense.`)
    .build();
