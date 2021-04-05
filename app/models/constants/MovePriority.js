@@ -5,4 +5,5 @@ export default Object.freeze({
    MINUS1: '-1',
    MINUS5: '-5',
    PLUS3: '+3',
+   MINUS6: '-6',
 });
