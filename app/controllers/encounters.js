@@ -5,6 +5,8 @@ import Pokemon from '../models/pokemons/Pokemon.js';
 import EncounterResultConst from '../models/constants/EncounterResultConst.js';
 import * as pokeapi from '../controllers/pokeapi.js';
 import * as util from '../util/UtilMethods.js';
+import { cpus } from 'os';
+import cluster from 'cluster';
 
 export default class EncounterController {
    constructor(versionObject) {
@@ -32,31 +34,51 @@ export default class EncounterController {
    }
 
    async buildLocations() {
+      await this.getAPILocations();
+      await this.assembleLocations();
+      await this.fillPokedex();
+      this.applyPokedex();
+      console.log('done!');
+   }
+
+   async buildLocations2() {
       // TODO try and add a pm/dev pattern to this
-      try {
-         console.group('getting api locations...');
+      if (cluster.isMaster) {
          await this.getAPILocations();
-         console.groupEnd();
-         console.group('assembling location data...');
-         await this.assembleLocations();
-         console.groupEnd();
-         console.group('filling pokedex...');
-         await this.fillPokedex();
-         console.groupEnd();
-         console.group('appling pokedex...');
-         this.applyPokedex();
-         console.groupEnd();
-         console.log('done!');
-         return;
-      } catch (err) {
-         console.log(err.message, err.stack);
+         let numDone = 0;
+         for (let cpu in cpus()) {
+            const dev = cluster.fork();
+            dev.on('message', payload => {
+               console.log(`${payload.name}...`);
+               this.assembledLocations.set(payload.name, payload.encounter);
+            });
+            dev.on('exit', () => {
+               numDone++;
+               if (numDone === cpus().length) {
+                  this.fillPokedex().then(() => {
+                     this.applyPokedex();
+                     return;
+                  });
+               }
+            });
+         }
+      } else if (cluster.isWorker) {
+         const workerId = cluster.worker.id;
+         for (let url of this.apiLocations) {
+            let i = this.apiLocations.indexOf(url) + 1;
+            if (i % workerId === 0) {
+               const location = await this.assembleLocation(url);
+               if (location) process.send(location);
+            }
+         }
+         process.kill(process.pid);
       }
    }
 
-   async assembleLocations() {
-      for (let url of this.apiLocations) {
+   async assembleLocation(url) {
+      try {
          const location = await pokeapi.get(url);
-         console.log(location.name, `${location.areas.length} locations...`);
+         // console.log(location.name, `${location.areas.length} locations...`);
          if (location.areas.length > 0) {
             let english = location.names.find(n => n.language.name === 'en');
             const result = EncounterResult.builder()
@@ -87,20 +109,71 @@ export default class EncounterController {
                   this.pokedex.set(pokemon.species, pokemon.url);
                });
                encounter.pokemons = pokemons.map(p => p.species);
+               return { name: location.name, encounter: encounter };
+            }
+         }
+         return undefined;
+      } catch (err) {
+         return { name: 'error', encounter: JSON.stringify(err) };
+      }
+   }
+
+   async assembleLocations() {
+      console.group('assembling locations...');
+      for (let url of this.apiLocations) {
+         const location = await pokeapi.get(url);
+         if (location.areas.length > 0) {
+            let english = location.names.find(n => n.language.name === 'en');
+            const result = EncounterResult.builder()
+               .withConstant(EncounterResultConst.AVAILABLE)
+               .build();
+            const encounter = Encounter.builder()
+               .withResult(result)
+               .withLabel(english ? english.name : location.name)
+               .withSortId(location.id)
+               .build();
+            let pokemons = [];
+            for (let area of location.areas) {
+               const locationArea = await pokeapi.get(area.url);
+               let areaPokemons = locationArea.pokemon_encounters
+                  .map(pe =>
+                     Object({
+                        species: pe.pokemon.name,
+                        url: pe.pokemon.url,
+                        versions: pe.version_details.map(vd => vd.version.name),
+                     })
+                  )
+                  .filter(p => p.versions.includes(this.version));
+               pokemons.push(...areaPokemons);
+            }
+            pokemons = util.uniquify(pokemons);
+            // BUG rock tunnel has duplicate pokemons in firered/leafgreen
+            if (pokemons.length > 0) {
+               pokemons.forEach(pokemon => {
+                  this.pokedex.set(pokemon.species, pokemon.url);
+               });
+               console.log(location.name, `with ${location.areas.length} locations...`);
+               encounter.pokemons = pokemons.map(p => p.species);
                this.assembledLocations.set(location.name, encounter);
             }
          }
       }
+      console.log(this.assembledLocations.length);
+      console.groupEnd();
    }
 
    async getAPILocations() {
+      console.group('getting api locations...');
       for (let name of this.regions) {
          const region = await pokeapi.getRegion(name);
          this.apiLocations.push(...region.locations.map(l => l.url));
       }
+      console.log(this.apiLocations.length);
+      console.groupEnd();
    }
 
    async fillPokedex() {
+      console.group('filling pokedex...');
       for (let [key, url] of this.pokedex) {
          const pokemon = await pokeapi.get(url);
          const species = await pokeapi.get(pokemon.species.url);
@@ -112,23 +185,28 @@ export default class EncounterController {
             .withSpriteUrl(pokemon.sprites.front_default)
             .withSpecies(english ? english.name : pokemon.species.name)
             .build();
-         console.log(`set ${key}`);
+         console.log(`setting ${key}...`);
          this.pokedex.set(key, encounterPokemon);
       }
+      console.log(this.pokedex.size);
+      console.groupEnd();
    }
 
    applyPokedex() {
+      console.group('applying pokdex...');
       for (let [key, encounter] of this.assembledLocations) {
          let toTransform = encounter.pokemons;
          encounter.pokemons = toTransform.map(p => this.pokedex.get(p));
          this.assembledLocations.set(key, encounter);
       }
+      console.groupEnd();
    }
 }
 
 // import fs from 'fs';
-// const ec = new EncounterController(GameVersion.EMERALD.api_data);
-// ec.buildLocations().then(() => {
+// import { buildVersion } from './game.js';
+// const ec = new EncounterController(buildVersion('emerald'));
+// ec.run().then(() => {
 //    fs.writeFileSync(
 //       `./testingoutput/results${new Date().toUTCString()}.json`,
 //       JSON.stringify([...ec.assembledLocations.values()], undefined, 2)

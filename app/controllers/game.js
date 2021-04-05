@@ -1,12 +1,8 @@
 import APIResponse from '../models/APIResponse.js';
 import Game from '../models/game/Game.js';
 import { isUndefined, toAWSItem } from '../util/UtilMethods.js';
-import GameVersion from '../models/game/GameVersion.js';
+import GameVersions from '../models/game/GameVersions.js';
 import Version from '../models/constants/pokeapi/Version.js';
-import Artwork from '../models/constants/bulbapedia/Artwork.js';
-import Generation from '../models/constants/pokeapi/Generation.js';
-import Region from '../models/constants/pokeapi/Region.js';
-import VersionGroup from '../models/constants/pokeapi/VersionGroup.js';
 
 export const createGame = (request, response) => {
    const errors = getErrors(request.body);
@@ -121,68 +117,19 @@ export const parseUpdateObject = object => {
 export const buildVersion = version => {
    switch (version) {
       case Version.EMERALD:
-         return GameVersion.builder()
-            .withArtworkUrl(Artwork.EMERALD)
-            .withGeneration(Generation.GEN3)
-            .withLabel('Emerald')
-            .withRegions(Region.HOENN)
-            .withVersion(Version.EMERALD)
-            .withVersionGroup(VersionGroup.EMERALD)
-            .build();
+         return GameVersions.EMERALD;
       case Version.RUBY:
-         return GameVersion.builder()
-            .withArtworkUrl(Artwork.RUBY)
-            .withGeneration(Generation.GEN3)
-            .withLabel('Ruby')
-            .withRegions(Region.HOENN)
-            .withVersion(Version.RUBY)
-            .withVersionGroup(VersionGroup.RUBYSAPPHIRE)
-            .build();
+         return GameVersions.RUBY;
       case Version.SAPPHIRE:
-         return GameVersion.builder()
-            .withArtworkUrl(Artwork.SAPPHIRE)
-            .withGeneration(Generation.GEN3)
-            .withLabel('Sapphire')
-            .withRegions(Region.HOENN)
-            .withVersion(Version.SAPPHIRE)
-            .withVersionGroup(VersionGroup.RUBYSAPPHIRE)
-            .build();
+         return GameVersions.SAPPHIRE;
       case Version.FIRERED:
-         return GameVersion.builder()
-            .withArtworkUrl(Artwork.FIRERED)
-            .withGeneration(Generation.GEN3)
-            .withLabel('FireRed')
-            .withRegions(Region.KANTO)
-            .withVersion(Version.FIRERED)
-            .withVersionGroup(VersionGroup.FIREREDLEAFGREEN)
-            .build();
+         return GameVersions.FIRERED;
       case Version.LEAFGREEN:
-         return GameVersion.builder()
-            .withArtworkUrl(Artwork.LEAFGREEN)
-            .withGeneration(Generation.GEN3)
-            .withLabel('LeafGreen')
-            .withRegions(Region.KANTO)
-            .withVersion(Version.LEAFGREEN)
-            .withVersionGroup(VersionGroup.FIREREDLEAFGREEN)
-            .build();
+         return GameVersions.LEAFGREEN;
       case Version.LETSGOEEVEE:
-         return GameVersion.builder()
-            .withArtworkUrl(Artwork.LETSGOEEVEE)
-            .withGeneration(Generation.GEN7)
-            .withLabel(`Let's Go Eevee`)
-            .withRegions(Region.KANTO)
-            .withVersion(Version.LETSGOEEVEE)
-            .withVersionGroup(VersionGroup.LETSGO)
-            .build();
+         return GameVersions.LETSGOEEVEE;
       case Version.LETSGOPIKACHU:
-         return GameVersion.builder()
-            .withArtworkUrl(Artwork.LETSGOPIKACHU)
-            .withGeneration(Generation.GEN7)
-            .withLabel(`Let's Go Pikachu`)
-            .withRegions(Region.KANTO)
-            .withVersion(Version.LETSGOPIKACHU)
-            .withVersionGroup(VersionGroup.LETSGO)
-            .build();
+         return GameVersions.LETSGOPIKACHU;
       default:
          return null;
    }

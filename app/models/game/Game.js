@@ -4,7 +4,6 @@ import { buildGyms } from '../../controllers/gyms.js';
 import { buildVersion, parseUpdateObject } from '../../controllers/game.js';
 import EncounterController from '../../controllers/encounters.js';
 import { getDefaultRules } from '../../controllers/gameRules.js';
-import Version from '../constants/pokeapi/Version.js';
 import uuid_pkg from 'uuid';
 const { v4: uuid } = uuid_pkg;
 
