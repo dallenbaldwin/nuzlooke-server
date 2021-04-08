@@ -153,6 +153,8 @@ export default class EncounterController {
                console.log(location.name, `with ${location.areas.length} locations...`);
                encounter.pokemons = pokemons.map(p => p.species);
                this.assembledLocations.set(location.name, encounter);
+            } else {
+               console.log(`No Pokemon available for ${location.name}...`);
             }
          }
       }
