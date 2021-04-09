@@ -158,7 +158,7 @@ export default class EncounterController {
             }
          }
       }
-      console.log(this.assembledLocations.length);
+      console.log(this.assembledLocations.size);
       console.groupEnd();
    }
 

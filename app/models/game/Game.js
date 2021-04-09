@@ -15,7 +15,7 @@ export default class Game {
       this.encounters = [];
       this.pokemons = [];
       this.gyms = buildGyms(this.version.version_group);
-      this.game_rules = [];
+      this.game_rules = object.game_rules || [];
    }
    static async create(object, result) {
       try {
