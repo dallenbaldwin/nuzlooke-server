@@ -89,6 +89,10 @@ export const parseUpdateObject = object => {
       sets.push('games = :games');
       values[':games'] = awsObject.games;
    }
+   if (!isUndefined(object.app_settings)) {
+      sets.push('app_settings = :app_settings');
+      values[':app_settings'] = awsObject.app_settings;
+   }
    const hasUpdates = sets.length > 0;
    return {
       updateExpression: hasUpdates ? `set ${sets.join(', ')}` : undefined,
