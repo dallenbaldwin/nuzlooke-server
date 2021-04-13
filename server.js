@@ -15,7 +15,7 @@ app.use(express.urlencoded({ extended: true, limit: '400mb' }));
 
 // check to see if database tables exist
 import runDiagnostics from './app/controllers/dataClient.js';
-runDiagnostics();
+// runDiagnostics();
 
 // set routes
 import gameRoutes from './app/routes/game.js';
