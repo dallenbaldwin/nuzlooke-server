@@ -1,2 +1,2 @@
-export const PORT = 3000; // change to 8080 eventually
+export const PORT = process.env.NODE_ENV === 'dev' ? 3000 : 8080;
 export const HOST = 'localhost';

@@ -3,8 +3,8 @@
    "version": "1.0.0",
    "main": "server.js",
    "scripts": {
-      "dev": "nodemon",
-      "serve": "node --delay 500ms server.js"
+      "dev": "nodemon --delay 500ms ",
+      "serve": "node server.js"
    },
    "author": "Dallen Baldwin",
    "license": "ISC",
