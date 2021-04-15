@@ -27,7 +27,7 @@ userRoutes(app);
 
 app.get('/', (req, res) => {
    res.status(200).send({
-      message: `welcome to the nuzlooke-server. server listening on http://${HOST}:${PORT}/ in ${process.env.NODE_ENV} mode`,
+      message: `welcome to the nuzlooke-server.`,
    });
 });
 
