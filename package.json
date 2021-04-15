@@ -4,7 +4,7 @@
    "main": "server.js",
    "scripts": {
       "dev": "nodemon -r dotenv/config --delay 500ms",
-      "serve": "NODE_ENV=production node -r dotenv/config server.js"
+      "start": "NODE_ENV=production node -r dotenv/config server.js"
    },
    "author": "Dallen Baldwin",
    "license": "ISC",
