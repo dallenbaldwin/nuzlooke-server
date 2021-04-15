@@ -4,6 +4,7 @@ import { buildGyms } from '../../controllers/gyms.js';
 import { buildVersion, parseUpdateObject } from '../../controllers/game.js';
 import EncounterController from '../../controllers/encounters.js';
 import uuid_pkg from 'uuid';
+import games from '../database/games.js';
 const { v4: uuid } = uuid_pkg;
 
 export default class Game {
@@ -27,7 +28,7 @@ export default class Game {
          // convert to aws and put
          const item = toAWSItem(game);
          const put = await DataClient.putItem({
-            TableName: 'games',
+            TableName: games.TableName,
             Item: item,
             ReturnConsumedCapacity: 'TOTAL',
          }).promise();
@@ -39,7 +40,7 @@ export default class Game {
    static async read(id, result) {
       try {
          const game = await DataClient.getItem({
-            TableName: 'games',
+            TableName: games.TableName,
             Key: { id: { S: id } },
          }).promise();
          result({ data: fromAWSItem(game.Item) });
@@ -51,7 +52,7 @@ export default class Game {
       try {
          const parsedResult = parseUpdateObject(attributes);
          const updated = await DataClient.updateItem({
-            TableName: 'games',
+            TableName: games.TableName,
             Key: { id: { S: gameId } },
             ReturnValues: 'ALL_NEW',
             UpdateExpression: parsedResult.updateExpression,
@@ -67,7 +68,7 @@ export default class Game {
    static async delete(id, result) {
       try {
          const response = await DataClient.deleteItem({
-            TableName: 'games',
+            TableName: games.TableName,
             Key: { id: { S: id } },
             // this lets you check to see if there was anything deleted.
             // by design, AWS successfully deletes something that doesn't exist

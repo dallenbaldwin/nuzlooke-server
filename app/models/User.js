@@ -2,6 +2,7 @@ import { fromAWSItem, toAWSItem } from '../util/UtilMethods.js';
 import { parseUpdateObject } from '../controllers/user.js';
 import DataClient from './DataClient.js';
 import uuid_pkg from 'uuid';
+import users from './database/users.js';
 const { v4: uuid } = uuid_pkg;
 
 export default class User {
@@ -17,7 +18,7 @@ export default class User {
          const user = new User(object);
          const item = toAWSItem(user);
          const put = await DataClient.putItem({
-            TableName: 'users',
+            TableName: users.TableName,
             Item: item,
             ReturnConsumedCapacity: 'TOTAL',
          }).promise();
@@ -29,7 +30,7 @@ export default class User {
    static async read(id, result) {
       try {
          const user = await DataClient.getItem({
-            TableName: 'users',
+            TableName: users.TableName,
             Key: { id: { S: id } },
          }).promise();
          result({ data: fromAWSItem(user.Item) });
@@ -41,7 +42,7 @@ export default class User {
       try {
          const parsedResult = parseUpdateObject(attributes);
          const updated = await DataClient.updateItem({
-            TableName: 'users',
+            TableName: users.TableName,
             Key: { id: { S: userId } },
             ReturnValues: 'ALL_NEW',
             UpdateExpression: parsedResult.updateExpression,

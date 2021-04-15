@@ -5,7 +5,7 @@ export default {
          AttributeType: 'S',
       },
    ],
-   TableName: 'games',
+   TableName: 'nuzlooke-games',
    ProvisionedThroughput: {
       ReadCapacityUnits: 5,
       WriteCapacityUnits: 5,

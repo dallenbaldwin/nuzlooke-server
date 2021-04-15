@@ -1,21 +1,22 @@
 import express from 'express';
 import cors from 'cors';
-import { PORT, HOST } from './app/config/server.js';
+import dotenv from 'dotenv';
+
+export const PORT = process.env.NODE_ENV === 'dev' ? 3000 : 8080;
+export const HOST = 'localhost';
 
 const app = express();
+dotenv.config();
 
 // TODO: customize cors
 app.use(cors());
-app.use(express.json({ limit: '400mb' }));
-app.use(express.urlencoded({ extended: true, limit: '400mb' }));
-
-// import DataClient from './app/models/DataClient.js';
-// DataClient.deleteTable({ TableName: 'users' }).promise().then(console.log);
-// DataClient.deleteTable({ TableName: 'games' }).promise().then(console.log);
+app.use(express.json({ limit: '400kb' }));
+app.use(express.urlencoded({ extended: true, limit: '400kb' }));
 
 // check to see if database tables exist
-import runDiagnostics from './app/controllers/dataClient.js';
-// runDiagnostics();
+import { runDiagnostics, deleteTables } from './app/controllers/dataClient.js';
+runDiagnostics();
+// deleteTables();
 
 // set routes
 import gameRoutes from './app/routes/game.js';
@@ -32,6 +33,7 @@ app.get('/', (req, res) => {
 
 app.listen(PORT, () => {
    console.log(`server listening on http://${HOST}:${PORT}/`);
+   console.log(`the server is in ${process.env.NODE_ENV} mode.`);
 });
 
 /*

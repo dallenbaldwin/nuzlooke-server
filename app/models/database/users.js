@@ -5,7 +5,7 @@ export default {
          AttributeType: 'S',
       },
    ],
-   TableName: 'users',
+   TableName: 'nuzlooke-users',
    ProvisionedThroughput: {
       ReadCapacityUnits: 5,
       WriteCapacityUnits: 5,

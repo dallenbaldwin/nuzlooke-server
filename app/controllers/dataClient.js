@@ -11,32 +11,38 @@ const getTables = async () => {
    }
 };
 
-const createGamesTable = async () => {
+const createTable = async tableDefinition => {
    try {
-      const gamesTable = await DataClient.createTable(games).promise();
-      console.log(gamesTable.TableDescription);
+      const response = await DataClient.createTable(tableDefinition).promise();
+      console.log(response.TableDescription);
    } catch (err) {
       console.error(err);
    }
 };
 
-const createUsersTable = async () => {
+const deleteTable = async tableName => {
    try {
-      const usersTable = await DataClient.createTable(users).promise();
-      console.log(usersTable.TableDescription);
+      const response = await DataClient.deleteTable({ TableName: tableName }).promise();
+      console.log(response.TableDescription);
    } catch (err) {
       console.error(err);
    }
 };
 
-export default async () => {
+export const deleteTables = async () => {
+   await deleteTable(games.TableName);
+   await deleteTable(users.TableName);
+};
+
+export const runDiagnostics = async () => {
    try {
       const tables = await getTables();
-      if (!tables.includes('users')) {
-         await createUsersTable();
+      if (!tables) throw 'tables is undefined';
+      if (!tables.includes(users.TableName)) {
+         await createTable(users);
       }
-      if (!tables.includes('games')) {
-         await createGamesTable();
+      if (!tables.includes(games.TableName)) {
+         await createTable(games);
       }
       console.log('Connected to DynamoDB with tables: ', tables);
    } catch (err) {
