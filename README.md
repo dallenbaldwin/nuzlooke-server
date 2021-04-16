@@ -11,4 +11,12 @@ welcome to the nuzlooke server repo! This is the server code for my capstone pro
 
 ## SSL
 
-<https://vahiwe.medium.com/setup-ssl-https-on-elastic-beanstalk-single-instance-environment-d748ea04437d>
+-  use Certificate Manager and follow instructions to create
+-  go to elastic beanstalk
+-  go to configuration > load balancer
+-  add listener
+   -  port 443
+   -  https
+   -  select the ssl cert from Certificate Manager
+   -  add
+-  apply
