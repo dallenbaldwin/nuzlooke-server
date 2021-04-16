@@ -2,7 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 
-export const PORT = process.env.NODE_ENV === 'dev' ? 3000 : 443;
+export const PORT = process.env.NODE_ENV === 'dev' ? 3000 : 8080;
 export const HOST = 'localhost';
 
 const app = express();
