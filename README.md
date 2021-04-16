@@ -20,3 +20,4 @@ welcome to the nuzlooke server repo! This is the server code for my capstone pro
    -  select the ssl cert from Certificate Manager
    -  add
 -  apply
+-  remember to go to the _https_ version of your elastic beanstalk deployment...
