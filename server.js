@@ -9,7 +9,12 @@ const app = express();
 dotenv.config();
 
 // TODO: customize cors
-app.use(cors());
+app.use(
+   cors({
+      origin: 'https://nuzlooke.netlify.app',
+      optionsSuccessStatus: 200,
+   })
+);
 app.use(express.json({ limit: '400kb' }));
 app.use(express.urlencoded({ extended: true, limit: '400kb' }));
 
