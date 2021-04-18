@@ -57,10 +57,10 @@ export const login = (request, response) => {
    User.readByEmail(request.body.email, res => {
       if (res.error) return response.status(500).send(APIResponse.withError(res.error));
 
-      if (res.data.length === 0)
-         return response
-            .status(404)
-            .send(APIResponse.withMissingObject('user', request.body.email));
+      if (res.data.length === 0) {
+         let message = `There are no users with the email ${request.body.email}. Please use an existing email or Register.`;
+         return response.status(404).send(APIResponse.withError(message));
+      }
 
       const sanitizedUser = res.data[0];
       const passwordIsValid = bcrypt.compareSync(
