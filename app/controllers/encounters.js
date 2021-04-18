@@ -8,6 +8,7 @@ import * as util from '../util/UtilMethods.js';
 import { cpus } from 'os';
 import cluster from 'cluster';
 
+// TODO add an api route for this
 export default class EncounterController {
    constructor(versionObject) {
       this.generation = versionObject.generation;

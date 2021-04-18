@@ -4,6 +4,8 @@ import Emerald from '../constants/gyms/Emerald.js';
 import RubySapphire from '../constants/gyms/RubySapphire.js';
 import FireredLeafgreen from '../constants/gyms/FireredLeafgreen.js';
 
+// TODO add an api route for this?
+
 export const buildGyms = versionGroup => {
    switch (versionGroup) {
       case VersionGroup.LETSGO:
