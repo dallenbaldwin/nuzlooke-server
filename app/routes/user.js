@@ -1,8 +1,8 @@
-import { createUser, readUser, updateUser, readUserGames } from '../controllers/user.js';
+import { createUser, readUser, updateUser } from '../controllers/user.js';
+import { verifyToken } from '../controllers/auth.js';
 
 export default app => {
-   app.post('/api/users', createUser);
-   app.get('/api/users/:id', readUser);
-   app.put('/api/users/:id', updateUser);
-   app.get('/api/users/games/:id', readUserGames);
+   app.post('/api/users', verifyToken, createUser);
+   app.get('/api/users/:id', verifyToken, readUser);
+   app.put('/api/users/:id', verifyToken, updateUser);
 };

@@ -10,8 +10,7 @@ export const createGame = (request, response) => {
       return response.status(400).send(APIResponse.withError(errors));
 
    Game.create(request.body, res => {
-      if (res.error)
-         return response.status(500).send(APIResponse.withError(res.error.stack));
+      if (res.error) return response.status(500).send(APIResponse.withError(res.error));
 
       return response.status(201).send(APIResponse.withResponse(res.data));
    });
@@ -19,8 +18,7 @@ export const createGame = (request, response) => {
 
 export const readGame = (request, response) => {
    Game.read(request.params.id, res => {
-      if (res.error)
-         return response.status(500).send(APIResponse.withError(res.error.stack));
+      if (res.error) return response.status(500).send(APIResponse.withError(res.error));
 
       if (!res.data.id)
          return response
@@ -41,7 +39,7 @@ export const updateGame = (request, response) => {
          // want to make sure we don't accidentally call this, so explicit else
          Game.update(request.params.id, request.body, res => {
             if (res.error)
-               return response.status(500).send(APIResponse.withError(res.error.stack));
+               return response.status(500).send(APIResponse.withError(res.error));
 
             return response.status(200).send(APIResponse.withResponse(res.data));
          });
@@ -51,8 +49,7 @@ export const updateGame = (request, response) => {
 
 export const deleteGame = (request, response) => {
    Game.delete(request.params.id, res => {
-      if (res.error)
-         return response.status(500).send(APIResponse.withError(res.error.stack));
+      if (res.error) return response.status(500).send(APIResponse.withError(res.error));
 
       if (res.data.code)
          return response

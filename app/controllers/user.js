@@ -11,40 +11,25 @@ export const createUser = (request, response) => {
       return response.status(400).send(APIResponse.withError(errors));
 
    User.create(request.body, res => {
-      if (res.error)
-         return response.status(500).send(APIResponse.withError(res.error.stack));
+      if (res.error) return response.status(500).send(APIResponse.withError(res.error));
 
       return response.status(201).send(APIResponse.withResponse(res.data));
    });
 };
 
 export const readUser = (request, response) => {
-   const token = request.headers['x-auth-token'];
-   if (!token)
-      return response
-         .status(401)
-         .send(APIResponse.withError('No x-auth-token was provided'));
+   User.read(request.params.id, res => {
+      if (res.error) return response.status(500).send(APIResponse.withError(res.error));
 
-   jwt.verify(token, secret, (err, decoded) => {
-      if (err)
+      if (!res.data.id)
          return response
-            .status(500)
-            .send(APIResponse.withError('Failed to authenticate token'));
+            .status(404)
+            .send(APIResponse.withMissingObject('user', request.params.id));
 
-      User.read(decoded.id, res => {
-         if (res.error)
-            return response.status(500).send(APIResponse.withError(res.error.stack));
+      const sanitizedUser = res.data;
+      sanitizedUser.password = undefined;
 
-         if (!res.data.id)
-            return response
-               .status(404)
-               .send(APIResponse.withMissingObject('user', request.params.id));
-
-         const sanitizedUser = res.data;
-         sanitizedUser.password = undefined;
-
-         return response.status(200).send(APIResponse.withResponse(sanitizedUser));
-      });
+      return response.status(200).send(APIResponse.withResponse(sanitizedUser));
    });
 };
 
@@ -58,28 +43,15 @@ export const updateUser = (request, response) => {
          // want to make sure we don't accidentally call this, so explicit else
          User.update(request.params.id, request.body, res => {
             if (res.error)
-               return response.status(500).send(APIResponse.withError(res.error.stack));
+               return response.status(500).send(APIResponse.withError(res.error));
 
-            return response.status(200).send(APIResponse.withResponse(res.data));
+            const sanitizedUser = res.data;
+            sanitizedUser.password = undefined;
+            return response.status(200).send(APIResponse.withResponse(sanitizedUser));
          });
       }
    });
 };
-
-export const readUserGames = (request, response) => {
-   User.read(request.params.id, res => {
-      if (res.error) return response.status(500).send(APIResponse.withError(res.error));
-
-      if (!res.data.id)
-         return response
-            .status(404)
-            .send(APIResponse.withMissingObject('user', request.params.id));
-
-      return response.status(200).send(APIResponse.withResponse(res.data));
-   });
-};
-
-// export const authenticate = async (request, response) => {}
 
 export const getCreateErrors = user => {
    const errors = [];
