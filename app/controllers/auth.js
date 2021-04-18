@@ -32,14 +32,10 @@ export const register = (request, response) => {
       if (readRes.error)
          return response.status(500).send(APIResponse.withError(readRes.error));
 
-      if (readRes.data.length !== 0)
-         return response
-            .status(403)
-            .send(
-               APIResponse.withError(
-                  `A user already exists with email: ${request.body.email}`
-               )
-            );
+      if (readRes.data.length !== 0) {
+         let message = `${request.body.email} is already being used by another user. Please use another email or Sign In.`;
+         return response.status(403).send(APIResponse.withError(message));
+      }
 
       request.body.password = bcrypt.hashSync(request.body.password, 8);
       User.create(request.body, createRes => {
@@ -71,7 +67,10 @@ export const login = (request, response) => {
          request.body.password,
          sanitizedUser.password
       );
-      if (!passwordIsValid) return response.status(401).send({ token: null });
+      if (!passwordIsValid) {
+         let message = `${request.body.password} is not the correct password for the user associated with ${request.body.email}. Please contact our support team to get your password changed`;
+         return response.status(401).send(APIResponse.withError(message));
+      }
 
       sanitizedUser.password = undefined;
       sanitizedUser.token = jwt.sign({ id: sanitizedUser.id }, secret, {
