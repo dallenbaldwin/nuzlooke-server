@@ -38,6 +38,26 @@ export default class User {
          result({ error: err });
       }
    }
+   static async readByEmail(email, result) {
+      try {
+         const user = await DataClient.scan({
+            TableName: 'nuzlooke-users',
+            ConsistentRead: false,
+            FilterExpression: '#a88b0 = :a88b0',
+            ExpressionAttributeValues: {
+               ':a88b0': {
+                  S: email,
+               },
+            },
+            ExpressionAttributeNames: {
+               '#a88b0': 'email',
+            },
+         }).promise();
+         result({ data: user.Items.map(fromAWSItem) });
+      } catch (err) {
+         result({ error: err });
+      }
+   }
    static async update(userId, attributes, result) {
       try {
          const parsedResult = parseUpdateObject(attributes);

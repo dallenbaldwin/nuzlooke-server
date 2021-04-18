@@ -9,7 +9,7 @@ export default class APIResponse {
    static withResponse(data) {
       return new APIResponse(data, null);
    }
-   static withMissingObject(object, id) {
-      return new APIResponse(null, `No ${object} with id: ${id}`);
+   static withMissingObject(object, value) {
+      return new APIResponse(null, `No ${object} found with value: ${value}`);
    }
 }

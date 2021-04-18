@@ -1,6 +1,9 @@
 import User from '../models/User.js';
 import APIResponse from '../models/APIResponse.js';
 import { isUndefined, toAWSItem } from '../util/UtilMethods.js';
+import jwt from 'jsonwebtoken';
+
+const secret = process.env.JWT_SECRET;
 
 export const createUser = (request, response) => {
    const errors = getCreateErrors(request.body);
@@ -16,16 +19,32 @@ export const createUser = (request, response) => {
 };
 
 export const readUser = (request, response) => {
-   User.read(request.params.id, res => {
-      if (res.error)
-         return response.status(500).send(APIResponse.withError(res.error.stack));
+   const token = request.headers['x-auth-token'];
+   if (!token)
+      return response
+         .status(401)
+         .send(APIResponse.withError('No x-auth-token was provided'));
 
-      if (!res.data.id)
+   jwt.verify(token, secret, (err, decoded) => {
+      if (err)
          return response
-            .status(404)
-            .send(APIResponse.withMissingObject('user', request.params.id));
+            .status(500)
+            .send(APIResponse.withError('Failed to authenticate token'));
 
-      return response.status(200).send(APIResponse.withResponse(res.data));
+      User.read(decoded.id, res => {
+         if (res.error)
+            return response.status(500).send(APIResponse.withError(res.error.stack));
+
+         if (!res.data.id)
+            return response
+               .status(404)
+               .send(APIResponse.withMissingObject('user', request.params.id));
+
+         const sanitizedUser = res.data;
+         sanitizedUser.password = undefined;
+
+         return response.status(200).send(APIResponse.withResponse(sanitizedUser));
+      });
    });
 };
 
@@ -62,7 +81,7 @@ export const readUserGames = (request, response) => {
 
 // export const authenticate = async (request, response) => {}
 
-const getCreateErrors = user => {
+export const getCreateErrors = user => {
    const errors = [];
    if (!user.email) errors.push('Missing user email');
    if (!user.password) errors.push('Missing user password');

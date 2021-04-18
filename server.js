@@ -4,7 +4,7 @@ import dotenv from 'dotenv';
 
 let port = 3000;
 let host = 'localhost';
-let origin = 'localhost';
+let origin = `http://localhost:8080`;
 
 if (process.env.NODE_ENV === 'production') {
    port = 8080;
@@ -34,6 +34,9 @@ gameRoutes(app);
 
 import userRoutes from './app/routes/user.js';
 userRoutes(app);
+
+import authRoutes from './app/routes/auth.js';
+authRoutes(app);
 
 app.get('/', (req, res) => {
    res.status(200).send({
