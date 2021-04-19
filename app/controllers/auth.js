@@ -4,6 +4,7 @@ import * as userController from './user.js';
 import { isUndefined } from '../util/UtilMethods.js';
 import APIResponse from '../models/APIResponse.js';
 import User from '../models/User.js';
+import { OAuth2Client } from 'google-auth-library';
 
 const secret = process.env.JWT_SECRET;
 const oneDay = 86400; // expire tokens in 24 hours
@@ -54,6 +55,10 @@ export const register = (request, response) => {
 };
 
 export const login = (request, response) => {
+   const errors = userController.getCreateErrors(request.body);
+   if (!request.body || !isUndefined(errors))
+      return response.status(500).send(APIResponse.withError(errors));
+
    User.readByEmail(request.body.email, res => {
       if (res.error) return response.status(500).send(APIResponse.withError(res.error));
 
@@ -79,3 +84,48 @@ export const login = (request, response) => {
       response.status(200).send(APIResponse.withResponse(sanitizedUser));
    });
 };
+
+export const oauth = (request, response) => {
+   if (!request.body)
+      return response.status(500).send(APIResponse.withError('No data sent'));
+   if (request.params.provider === 'google') return withGoogle(request.body, response);
+   else if (request.params.provider === 'facebook')
+      return withFacebook(request.body, response);
+};
+
+const withGoogle = async (body, response) => {
+   const appId = process.env.GOOGLE_AUTH_CLIENT_ID;
+   const client = new OAuth2Client(appId);
+   const ticket = await client.verifyIdToken({
+      idToken: body.tc.id_token,
+      audience: appId,
+   });
+   const payload = ticket.getPayload();
+   User.readByEmail(payload.email, readRes => {
+      if (readRes.error)
+         return response.status(500).send(APIResponse.withError(readRes.error.stack));
+
+      let user;
+      if (readRes.data.length === 0) {
+         const userPayload = {
+            email: payload.email,
+            username: payload.name,
+         };
+         User.create(userPayload, createRes => {
+            if (createRes.error)
+               return response
+                  .status(500)
+                  .send(APIResponse.withError(createRes.error.stack));
+            user = createRes.data;
+            user.token = jwt.sign({ id: user.id }, secret, { expiresIn: oneDay });
+            return response.status(201).send(APIResponse.withResponse(user));
+         });
+      } else {
+         user = readRes.data[0];
+         user.token = jwt.sign({ id: user.id }, secret, { expiresIn: oneDay });
+         return response.status(201).send(APIResponse.withResponse(user));
+      }
+   });
+};
+
+const withFacebook = (body, response) => {};
