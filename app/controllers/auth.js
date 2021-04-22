@@ -94,10 +94,12 @@ export const oauth = (request, response) => {
 };
 
 const withGoogle = async (body, response) => {
+   // FIXME: this looks like it might need to go to the client...
+   // https://developers.google.com/identity/protocols/oauth2/javascript-implicit-flow#creatingcred
    const appId = process.env.GOOGLE_AUTH_CLIENT_ID;
    const client = new OAuth2Client(appId);
    const ticket = await client.verifyIdToken({
-      idToken: body.tc.id_token,
+      idToken: body.qc.id_token,
       audience: appId,
    });
    const payload = ticket.getPayload();

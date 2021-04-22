@@ -3,7 +3,7 @@
    "version": "1.0.0",
    "main": "server.js",
    "scripts": {
-      "dev": "nodemon -r dotenv/config --delay 500ms",
+      "dev": "nodemon -r dotenv/config --delay 1000ms",
       "start": "NODE_ENV=production node -r dotenv/config server.js"
    },
    "author": "Dallen Baldwin",
