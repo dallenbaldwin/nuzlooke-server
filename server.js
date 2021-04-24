@@ -38,6 +38,9 @@ userRoutes(app);
 import authRoutes from './app/routes/auth.js';
 authRoutes(app);
 
+import encounterRoutes from './app/routes/encounters.js';
+encounterRoutes(app);
+
 app.get('/', (req, res) => {
    res.status(200).send({
       message: `welcome to the nuzlooke-server.`,

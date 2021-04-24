@@ -18,3 +18,5 @@ export const uniquify = array => {
    const transformed = new Set(array.map(a => JSON.stringify(a)));
    return [...transformed].map(t => JSON.parse(t));
 };
+
+export const getEnglish = names => names.find(name => name.language.name === 'en');

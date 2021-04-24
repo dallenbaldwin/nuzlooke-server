@@ -2,7 +2,6 @@ import DataClient from '../DataClient.js';
 import { fromAWSItem, toAWSItem } from '../../util/UtilMethods.js';
 import { buildGyms } from '../../controllers/gyms.js';
 import { buildVersion, parseUpdateObject } from '../../controllers/game.js';
-import EncounterController from '../../controllers/encounters.js';
 import uuid_pkg from 'uuid';
 import games from '../database/games.js';
 const { v4: uuid } = uuid_pkg;
@@ -21,10 +20,6 @@ export default class Game {
    static async create(object, result) {
       try {
          const game = new Game(object);
-         // can't make an internal function here... so it's ugly
-         const encounterController = new EncounterController(game.version);
-         await encounterController.buildLocations();
-         game.encounters = encounterController.locations;
          // convert to aws and put
          const item = toAWSItem(game);
          const put = await DataClient.putItem({
