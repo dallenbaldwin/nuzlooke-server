@@ -76,12 +76,14 @@ class EncounterController {
                      // add location to locations map
                      // and pokemon to pokedex map
                      if (results.error) console.log(results.error);
-                     if (results === 'timed out') resolve();
-                     for (let result of results) {
-                        if (result.label) {
-                           this.locations.set(result.label, result);
-                           for (let url of result.pokemons) {
-                              this.pokedex.set(url, url);
+                     else if (results === 'timed out') resolve();
+                     else {
+                        for (let result of results) {
+                           if (result.label) {
+                              this.locations.set(result.label, result);
+                              for (let url of result.pokemons) {
+                                 this.pokedex.set(url, url);
+                              }
                            }
                         }
                      }
@@ -117,10 +119,12 @@ class EncounterController {
                   } else {
                      this.finished += results.length;
                      if (results.error) console.log(results.error);
-                     if (results === 'timed out') resolve();
-                     // set pokedex with new data
-                     for (let result of results) {
-                        this.pokedex.set(result.url, result.pokemon);
+                     else if (results === 'timed out') resolve();
+                     else {
+                        // set pokedex with new data
+                        for (let result of results) {
+                           this.pokedex.set(result.url, result.pokemon);
+                        }
                      }
                      // log progress
                      this.getStatus();

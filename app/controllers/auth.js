@@ -10,13 +10,13 @@ const secret = process.env.JWT_SECRET;
 const oneDay = 86400; // expire tokens in 24 hours
 
 export const verifyToken = (request, response, next) => {
-   const token = request.headers['x-auth-token'];
-   if (isUndefined(token))
-      return response
-         .status(403)
-         .send(APIResponse.withError('No x-auth-token was provided'));
-
    if (process.env.NODE_ENV === 'production') {
+      const token = request.headers['x-auth-token'];
+      if (isUndefined(token))
+         return response
+            .status(403)
+            .send(APIResponse.withError('No x-auth-token was provided'));
+
       jwt.verify(token, secret, (err, decoded) => {
          if (err) return response.status(500).send(APIResponse.withError(err));
 
