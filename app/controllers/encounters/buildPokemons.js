@@ -12,17 +12,20 @@ const fallback = setTimeout(() => {
    process.kill(process.pid);
 }, 30 * 1000);
 
-process.on('message', payload => {
-   buildPokemon(payload.url)
-      .then(pokemon => {
-         process.send(pokemon);
-         process.kill(process.pid);
-      })
-      .catch(err => {
-         process.send({ error: err });
-         process.kill(process.pid);
-      });
+process.on('message', async payload => {
+   const results = await buildPokemons(payload);
+   process.send(results);
+   process.kill(process.pid);
 });
+
+const buildPokemons = async payload => {
+   const pokemons = [];
+   for (let url of payload.urls) {
+      const response = await buildPokemon(url);
+      pokemons.push(response);
+   }
+   return pokemons;
+};
 
 const buildPokemon = async url => {
    try {
@@ -36,7 +39,7 @@ const buildPokemon = async url => {
          .withSpecies(pokeapi.normalizeKabob(pokemon.species.name))
          .withSpecies(english ? english.name : pokemon.species.name)
          .build();
-      return encounterPokemon;
+      return { url: url, pokemon: encounterPokemon };
    } catch (err) {
       throw err.stack;
    }

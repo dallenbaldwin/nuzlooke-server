@@ -13,17 +13,20 @@ const fallback = setTimeout(() => {
    process.kill(process.pid);
 }, 30 * 1000);
 
-process.on('message', payload => {
-   assembleLocation(payload.url, payload.gameVersion)
-      .then(location => {
-         process.send(location);
-         process.kill(process.pid);
-      })
-      .catch(err => {
-         process.send({ error: err });
-         process.kill(process.pid);
-      });
+process.on('message', async payload => {
+   const results = await assembleLocations(payload);
+   process.send(results);
+   process.kill(process.pid);
 });
+
+const assembleLocations = async payload => {
+   const locations = [];
+   for (let url of payload.urls) {
+      const location = await assembleLocation(url, payload.gameVersion);
+      locations.push(location);
+   }
+   return locations;
+};
 
 const assembleLocation = async (url, gameVersion) => {
    try {
