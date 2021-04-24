@@ -1,10 +1,17 @@
-import Generation from '../../constants/pokeapi/Generation.js';
 import Encounter from '../../models/encounters/Encounter.js';
 import EncounterResult from '../../models/encounters/EncounterResult.js';
-import Pokemon from '../../models/pokemons/Pokemon.js';
 import EncounterResultConst from '../../constants/EncounterResultConst.js';
 import * as pokeapi from '../pokeapi.js';
 import * as util from '../../util/UtilMethods.js';
+
+setTimeout(() => {
+   process.send('ready');
+}, 1000);
+
+const fallback = setTimeout(() => {
+   process.send({ error: `timed out` });
+   process.kill(process.pid);
+}, 30 * 1000);
 
 process.on('message', payload => {
    assembleLocation(payload.url, payload.gameVersion)
@@ -44,7 +51,7 @@ const assembleLocation = async (url, gameVersion) => {
                      versions: pe.version_details.map(vd => vd.version.name),
                   })
                )
-               .filter(p => p.versions.includes(gameVersion.version));
+               .filter(p => p.versions.includes(gameVersion));
             for (let pokemon of areaPokemons) {
                // should take care of dups. pokemon will have same url
                pokemons.set(pokemon.species, pokemon.url);
@@ -62,7 +69,7 @@ const assembleLocation = async (url, gameVersion) => {
          return emptyArea(apiLocation);
       }
    } catch (err) {
-      return emptyArea({ name: 'error' });
+      throw err.stack;
    }
 };
 
