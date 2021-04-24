@@ -11,7 +11,8 @@ export const createUser = (request, response) => {
       return response.status(400).send(APIResponse.withError(errors));
 
    User.create(request.body, res => {
-      if (res.error) return response.status(500).send(APIResponse.withError(res.error));
+      if (res.error)
+         return response.status(500).send(APIResponse.withError(res.error.stack));
 
       return response.status(201).send(APIResponse.withResponse(res.data));
    });
@@ -19,7 +20,8 @@ export const createUser = (request, response) => {
 
 export const readUser = (request, response) => {
    User.read(request.params.id, res => {
-      if (res.error) return response.status(500).send(APIResponse.withError(res.error));
+      if (res.error)
+         return response.status(500).send(APIResponse.withError(res.error.stack));
 
       if (!res.data.id)
          return response
@@ -43,7 +45,7 @@ export const updateUser = (request, response) => {
          // want to make sure we don't accidentally call this, so explicit else
          User.update(request.params.id, request.body, res => {
             if (res.error)
-               return response.status(500).send(APIResponse.withError(res.error));
+               return response.status(500).send(APIResponse.withError(res.error.stack));
 
             const sanitizedUser = res.data;
             sanitizedUser.password = undefined;

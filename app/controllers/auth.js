@@ -64,7 +64,8 @@ export const login = (request, response) => {
       return response.status(500).send(APIResponse.withError(errors));
 
    User.readByEmail(request.body.email, res => {
-      if (res.error) return response.status(500).send(APIResponse.withError(res.error));
+      if (res.error)
+         return response.status(500).send(APIResponse.withError(res.error.stack));
 
       if (res.data.length === 0) {
          let message = `There are no users with the email ${request.body.email}. Please use an existing email or Register.`;
