@@ -16,12 +16,16 @@ export const verifyToken = (request, response, next) => {
          .status(403)
          .send(APIResponse.withError('No x-auth-token was provided'));
 
-   jwt.verify(token, secret, (err, decoded) => {
-      if (err) return response.status(500).send(APIResponse.withError(err));
+   if (process.env.NODE_ENV === 'production') {
+      jwt.verify(token, secret, (err, decoded) => {
+         if (err) return response.status(500).send(APIResponse.withError(err));
 
-      request._user_id = decoded.id;
+         request._user_id = decoded.id;
+         next();
+      });
+   } else {
       next();
-   });
+   }
 };
 
 export const register = (request, response) => {
@@ -38,7 +42,7 @@ export const register = (request, response) => {
          return response.status(403).send(APIResponse.withError(message));
       }
 
-      request.body.password = bcrypt.hashSync(request.body.password, 8);
+      request.body.password = bcrypt.hashSync(request.body.password, 10);
       User.create(request.body, createRes => {
          if (createRes.error)
             return response.status(500).send(APIResponse.withError(createRes.error));
