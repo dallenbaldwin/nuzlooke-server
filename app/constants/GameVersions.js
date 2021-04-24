@@ -46,20 +46,20 @@ export default Object.freeze({
       .withVersion(Version.LEAFGREEN)
       .withVersionGroup(VersionGroup.FIREREDLEAFGREEN)
       .build(),
-   LETSGOEEVEE: GameVersion.builder()
-      .withArtworkUrl(Artwork.LETSGOEEVEE)
-      .withGeneration(Generation.GEN7)
-      .withLabel(`Let's Go Eevee`)
-      .withRegions(Region.KANTO)
-      .withVersion(Version.LETSGOEEVEE)
-      .withVersionGroup(VersionGroup.LETSGO)
-      .build(),
-   LETSGOPIKACHU: GameVersion.builder()
-      .withArtworkUrl(Artwork.LETSGOPIKACHU)
-      .withGeneration(Generation.GEN7)
-      .withLabel(`Let's Go Pikachu`)
-      .withRegions(Region.KANTO)
-      .withVersion(Version.LETSGOPIKACHU)
-      .withVersionGroup(VersionGroup.LETSGO)
-      .build(),
+   // LETSGOEEVEE: GameVersion.builder()
+   //    .withArtworkUrl(Artwork.LETSGOEEVEE)
+   //    .withGeneration(Generation.GEN7)
+   //    .withLabel(`Let's Go Eevee`)
+   //    .withRegions(Region.KANTO)
+   //    .withVersion(Version.LETSGOEEVEE)
+   //    .withVersionGroup(VersionGroup.LETSGO)
+   //    .build(),
+   // LETSGOPIKACHU: GameVersion.builder()
+   //    .withArtworkUrl(Artwork.LETSGOPIKACHU)
+   //    .withGeneration(Generation.GEN7)
+   //    .withLabel(`Let's Go Pikachu`)
+   //    .withRegions(Region.KANTO)
+   //    .withVersion(Version.LETSGOPIKACHU)
+   //    .withVersionGroup(VersionGroup.LETSGO)
+   //    .build(),
 });
