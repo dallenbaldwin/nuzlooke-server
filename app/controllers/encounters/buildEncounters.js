@@ -6,10 +6,10 @@ import * as util from '../../util/UtilMethods.js';
 
 setTimeout(() => {
    process.send('ready');
-}, 1000);
+}, 500);
 
 const fallback = setTimeout(() => {
-   process.send({ error: `timed out` });
+   process.send(`timed out`);
    process.kill(process.pid);
 }, 30 * 1000);
 

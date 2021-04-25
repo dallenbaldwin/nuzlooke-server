@@ -41,13 +41,17 @@ class EncounterController {
       this.stage = undefined;
    }
    buildLocations = async () => {
-      console.time('built encounters');
-      await this.getAPILocations();
-      await this.fillLocations();
-      await this.fillPokedex();
-      this.applyPokedex();
-      console.timeEnd('built encounters');
-      return [...this.locations.values()];
+      try {
+         console.time('built encounters');
+         await this.getAPILocations();
+         await this.fillLocations();
+         await this.fillPokedex();
+         this.applyPokedex();
+         console.timeEnd('built encounters');
+         return [...this.locations.values()];
+      } catch (err) {
+         throw { stack: err };
+      }
    };
    getAPILocations = async () => {
       for (let name of this.regions) {
@@ -58,7 +62,7 @@ class EncounterController {
    fillLocations = () => {
       this.stage = 'locations';
       this.finished = 0;
-      console.group('building locations');
+      console.group(`building locations for ${this.version}`);
       console.time(`built locations`);
       return new Promise((resolve, reject) => {
          // get the cpu based chunk map so we don't fork 100 times
@@ -75,8 +79,8 @@ class EncounterController {
                      this.finished += results.length;
                      // add location to locations map
                      // and pokemon to pokedex map
-                     if (results.error) console.log(results.error);
-                     else if (results === 'timed out') resolve();
+                     if (results.error) reject(results.error);
+                     else if (results === 'timed out') reject(`chunk ${key} timed out`);
                      else {
                         for (let result of results) {
                            if (result.label) {
@@ -89,8 +93,8 @@ class EncounterController {
                      }
                      // log progress
                      this.getStatus();
-                     if (this.finished === this.apiLocations.length) {
-                        console.groupEnd('building locations');
+                     if (this.finished >= this.apiLocations.length) {
+                        console.groupEnd(`building locations for ${this.version}`);
                         console.timeEnd(`built locations`);
                         resolve();
                      }
@@ -118,8 +122,8 @@ class EncounterController {
                      child.send({ urls: chunk });
                   } else {
                      this.finished += results.length;
-                     if (results.error) console.log(results.error);
-                     else if (results === 'timed out') resolve();
+                     if (results.error) reject(results.error);
+                     else if (results === 'timed out') reject(`chunk ${key} timed out`);
                      else {
                         // set pokedex with new data
                         for (let result of results) {
@@ -128,7 +132,7 @@ class EncounterController {
                      }
                      // log progress
                      this.getStatus();
-                     if (this.finished === this.pokedex.size) {
+                     if (this.finished >= this.pokedex.size) {
                         console.groupEnd('filling pokedex');
                         console.timeEnd('filled pokedex');
                         resolve();
