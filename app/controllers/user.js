@@ -1,9 +1,6 @@
 import User from '../models/User.js';
 import APIResponse from '../models/APIResponse.js';
 import { isUndefined, toAWSItem } from '../util/UtilMethods.js';
-import jwt from 'jsonwebtoken';
-
-const secret = process.env.JWT_SECRET;
 
 export const createUser = (request, response) => {
    const errors = getCreateErrors(request.body);
