@@ -62,7 +62,9 @@ class EncounterController {
    fillLocations = () => {
       this.stage = 'locations';
       this.finished = 0;
-      console.group(`building locations for ${this.version}`);
+      console.group(
+         `building locations for ${this.version} with ${cpus().length} chunks`
+      );
       console.time(`built locations`);
       return new Promise((resolve, reject) => {
          // get the cpu based chunk map so we don't fork 100 times
@@ -94,7 +96,11 @@ class EncounterController {
                      // log progress
                      this.getStatus();
                      if (this.finished >= this.apiLocations.length) {
-                        console.groupEnd(`building locations for ${this.version}`);
+                        console.groupEnd(
+                           `building locations for ${this.version} with ${
+                              cpus().length
+                           } chunks`
+                        );
                         console.timeEnd(`built locations`);
                         resolve();
                      }
