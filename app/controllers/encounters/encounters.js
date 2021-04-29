@@ -39,6 +39,7 @@ class EncounterController {
       this.finished = 0;
       this.percentComplete = 0;
       this.stage = undefined;
+      this.cpus = 16; // cpus().length;
    }
    buildLocations = async () => {
       try {
@@ -62,9 +63,7 @@ class EncounterController {
    fillLocations = () => {
       this.stage = 'locations';
       this.finished = 0;
-      console.group(
-         `building locations for ${this.version} with ${cpus().length} chunks`
-      );
+      console.group(`building locations for ${this.version} with ${this.cpus} chunks`);
       console.time(`built locations`);
       return new Promise((resolve, reject) => {
          // get the cpu based chunk map so we don't fork 100 times
@@ -97,9 +96,7 @@ class EncounterController {
                      this.getStatus();
                      if (this.finished >= this.apiLocations.length) {
                         console.groupEnd(
-                           `building locations for ${this.version} with ${
-                              cpus().length
-                           } chunks`
+                           `building locations for ${this.version} with ${this.cpus} chunks`
                         );
                         console.timeEnd(`built locations`);
                         resolve();
@@ -113,7 +110,9 @@ class EncounterController {
    fillPokedex = () => {
       this.stage = 'pokedex';
       this.finished = 0;
-      console.group('filling pokedex');
+      console.group(
+         `filling pokedex for ${this.pokedex.size} pokemon with ${this.cpus} chunks`
+      );
       console.time('filled pokedex');
       return new Promise((resolve, reject) => {
          // get the cpu based chunk map so we don't fork 100 times
@@ -139,7 +138,9 @@ class EncounterController {
                      // log progress
                      this.getStatus();
                      if (this.finished >= this.pokedex.size) {
-                        console.groupEnd('filling pokedex');
+                        console.groupEnd(
+                           `filling pokedex for ${this.pokedex.size} pokemon with ${this.cpus} chunks`
+                        );
                         console.timeEnd('filled pokedex');
                         resolve();
                      }
@@ -169,9 +170,9 @@ class EncounterController {
    transformUrls = url => this.pokedex.get(url);
    getChunkMap = items => {
       let clone = Array.of(...items);
-      const size = Math.ceil(clone.length / cpus().length);
+      const size = Math.ceil(clone.length / this.cpus);
       const map = new Map();
-      for (let cpu in cpus()) {
+      for (let cpu = 0; cpu < this.cpus; cpu++) {
          map.set(cpu, clone.splice(0, size));
       }
       return map;
