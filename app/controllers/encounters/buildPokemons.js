@@ -2,11 +2,11 @@ import Generation from '../../constants/pokeapi/Generation.js';
 import Pokemon from '../../models/pokemons/Pokemon.js';
 import * as pokeapi from '../pokeapi.js';
 import * as util from '../../util/UtilMethods.js';
-import { sixtyTimeout } from './timers.js';
+import { thirtyTimeout } from './timers.js';
 
 setTimeout(() => {
    process.send('ready');
-   sixtyTimeout(process.pid);
+   thirtyTimeout(process.pid);
 }, 500);
 
 process.on('message', async payload => {
