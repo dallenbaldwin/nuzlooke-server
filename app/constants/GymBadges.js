@@ -1,7 +1,6 @@
 import GymBadge from '../models/gyms/GymBadge.js';
 
 export default Object.freeze({
-   // TODO get higher resolution images for kanto badges and see how they come out
    BOULDER: GymBadge.builder()
       .withLabel('Boulder Badge')
       .withSpriteUrl(

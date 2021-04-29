@@ -59,21 +59,6 @@ export const register = (request, response) => {
 };
 
 export const login = (request, response) => {
-   // FIXME niche issue, but when using login route for google users (no password), error
-   /*
-   google user: 
-   {
-      "email": "dallen.baldwin@gmail.com",
-      "password": "letsgopikachu"
-   }
-
-   Error: Illegal arguments: string, undefined
-      at Object.bcrypt.compareSync (/var/app/current/node_modules/bcryptjs/dist/bcrypt.js:265:19)
-      at file:///var/app/current/app/controllers/auth.js:76:38
-      at Function.readByEmail (file:///var/app/current/app/models/User.js:56:10)
-      at processTicksAndRejections (internal/process/task_queues.js:93:5)
-   */
-
    const errors = userController.getCreateErrors(request.body);
    if (!request.body || !isUndefined(errors))
       return response.status(500).send(APIResponse.withError(errors));
@@ -114,7 +99,6 @@ export const oauth = (request, response) => {
 };
 
 const withGoogle = async (body, response) => {
-   // FIXME: this looks like it might need to go to the client...
    // https://developers.google.com/identity/protocols/oauth2/javascript-implicit-flow#creatingcred
    const appId = process.env.GOOGLE_AUTH_CLIENT_ID;
    const client = new OAuth2Client(appId);
