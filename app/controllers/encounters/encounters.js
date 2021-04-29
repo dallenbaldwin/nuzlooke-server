@@ -39,7 +39,7 @@ class EncounterController {
       this.finished = 0;
       this.percentComplete = 0;
       this.stage = undefined;
-      this.processes = 20; // cpus().length;
+      this.processes = 16; // cpus().length;
    }
    buildLocations = async () => {
       try {
