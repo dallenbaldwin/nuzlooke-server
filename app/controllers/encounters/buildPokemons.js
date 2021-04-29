@@ -2,15 +2,12 @@ import Generation from '../../constants/pokeapi/Generation.js';
 import Pokemon from '../../models/pokemons/Pokemon.js';
 import * as pokeapi from '../pokeapi.js';
 import * as util from '../../util/UtilMethods.js';
+import { sixtyTimeout } from './timers.js';
 
 setTimeout(() => {
    process.send('ready');
+   sixtyTimeout(process.pid);
 }, 500);
-
-const fallback = setTimeout(() => {
-   process.send(`timed out`);
-   process.kill(process.pid);
-}, 30 * 1000);
 
 process.on('message', async payload => {
    const results = await buildPokemons(payload);

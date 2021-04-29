@@ -3,15 +3,12 @@ import EncounterResult from '../../models/encounters/EncounterResult.js';
 import EncounterResultConst from '../../constants/EncounterResultConst.js';
 import * as pokeapi from '../pokeapi.js';
 import * as util from '../../util/UtilMethods.js';
+import { sixtyTimeout } from './timers.js';
 
 setTimeout(() => {
    process.send('ready');
+   sixtyTimeout(process.pid);
 }, 500);
-
-const fallback = setTimeout(() => {
-   process.send(`timed out`);
-   process.kill(process.pid);
-}, 30 * 1000);
 
 process.on('message', async payload => {
    const results = await assembleLocations(payload);
