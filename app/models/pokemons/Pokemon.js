@@ -1,23 +1,19 @@
 import { arrayify } from '../../util/UtilMethods.js';
 
 export default class Pokemon {
-   constructor(api_name, species, icon_url, sprite_url, types) {
-      this.api_name = api_name;
+   constructor(species, icon_url, sprite_url, types, api_name) {
       this.species = species;
       this.icon_url = icon_url;
       this.sprite_url = sprite_url;
       this.types = types;
+      this.api_name = api_name;
    }
    static builder() {
-      this.api_name = undefined;
       this.species = undefined;
       this.icon_url = undefined;
       this.sprite_url = undefined;
       this.types = undefined;
-      return this;
-   }
-   static withAPIName(val) {
-      this.api_name = val;
+      this.api_name = undefined;
       return this;
    }
    static withSpecies(val) {
@@ -36,13 +32,17 @@ export default class Pokemon {
       this.types = arrayify(...vals);
       return this;
    }
+   static withAPIName(val) {
+      this.api_name = val;
+      return this;
+   }
    static build() {
       return new Pokemon(
-         this.api_name,
          this.species,
          this.icon_url,
          this.sprite_url,
-         this.types
+         this.types,
+         this.api_name
       );
    }
 }

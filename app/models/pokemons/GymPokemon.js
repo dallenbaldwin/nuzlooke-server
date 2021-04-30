@@ -7,13 +7,14 @@ export default class GymPokemon extends Pokemon {
       icon_url,
       sprite_url,
       types,
+      api_name,
       sort_id,
       level,
       ability,
       held_item,
       moves
    ) {
-      super(species, icon_url, sprite_url, types);
+      super(species, icon_url, sprite_url, types, api_name);
       this.sort_id = sort_id;
       this.level = level;
       this.ability = ability;
@@ -25,6 +26,7 @@ export default class GymPokemon extends Pokemon {
       this.icon_url = undefined;
       this.sprite_url = undefined;
       this.types = undefined;
+      this.api_name = undefined;
       this.sort_id = undefined;
       this.level = undefined;
       this.ability = undefined;
@@ -58,6 +60,7 @@ export default class GymPokemon extends Pokemon {
          this.icon_url,
          this.sprite_url,
          this.types,
+         this.api_name,
          this.sort_id,
          this.level,
          this.ability,
