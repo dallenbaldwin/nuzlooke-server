@@ -9,6 +9,8 @@ import { OAuth2Client } from 'google-auth-library';
 const secret = process.env.JWT_SECRET;
 const oneDay = 86400; // expire tokens in 24 hours
 
+const buildToken = id => jwt.sign({ id: id }, secret, { expiresIn: oneDay });
+
 export const verifyToken = (request, response, next) => {
    if (process.env.NODE_ENV === 'production') {
       const token = request.headers['x-auth-token'];
@@ -49,9 +51,7 @@ export const register = (request, response) => {
 
          const sanitizedUser = createRes.data;
          sanitizedUser.password = undefined;
-         sanitizedUser.token = jwt.sign({ id: sanitizedUser.id }, secret, {
-            expiresIn: oneDay,
-         });
+         sanitizedUser.token = buildToken(sanitizedUser.id);
 
          return response.status(201).send(APIResponse.withResponse(sanitizedUser));
       });
@@ -73,19 +73,23 @@ export const login = (request, response) => {
       }
 
       const sanitizedUser = res.data[0];
+
+      if (!sanitizedUser.password) {
+         let message = `${sanitizedUser.email} doesn't have an associated password. Please log in using the 3rd Party provider you registered with.`;
+         return response.status(418).send(APIResponse.withError(message));
+      }
+
       const passwordIsValid = bcrypt.compareSync(
          request.body.password,
          sanitizedUser.password
       );
       if (!passwordIsValid) {
-         let message = `${request.body.password} is not the correct password for the user associated with ${request.body.email}. Please contact our support team to get your password changed`;
+         let message = `${request.body.password} is not the correct password for the user associated with ${sanitizedUser.email}. Please contact our support team to get your password changed`;
          return response.status(401).send(APIResponse.withError(message));
       }
 
       sanitizedUser.password = undefined;
-      sanitizedUser.token = jwt.sign({ id: sanitizedUser.id }, secret, {
-         expiresIn: oneDay,
-      });
+      sanitizedUser.token = buildToken(sanitizedUser.id);
       response.status(200).send(APIResponse.withResponse(sanitizedUser));
    });
 };
@@ -123,12 +127,12 @@ const withGoogle = async (body, response) => {
                   .status(500)
                   .send(APIResponse.withError(createRes.error.stack));
             user = createRes.data;
-            user.token = jwt.sign({ id: user.id }, secret, { expiresIn: oneDay });
+            user.token = buildToken(user.id);
             return response.status(201).send(APIResponse.withResponse(user));
          });
       } else {
          user = readRes.data[0];
-         user.token = jwt.sign({ id: user.id }, secret, { expiresIn: oneDay });
+         user.token = buildToken(user.id);
          return response.status(201).send(APIResponse.withResponse(user));
       }
    });
