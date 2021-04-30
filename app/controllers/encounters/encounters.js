@@ -39,7 +39,7 @@ class EncounterController {
       this.finished = 0;
       this.percentComplete = 0;
       this.stage = undefined;
-      this.processes = 16; // cpus().length;
+      this.processes = 16; // cpus().length; // t2Micro has 1 cpu... so hardcode 16...
    }
    buildLocations = async () => {
       try {
@@ -83,7 +83,7 @@ class EncounterController {
                      // add location to locations map
                      // and pokemon to pokedex map
                      if (results.error) reject(results.error);
-                     else if (results === 'timed out') reject(`chunk ${key} timed out`);
+                     else if (results === 'timed out') reject(`process ${key} timed out`);
                      else {
                         for (let result of results) {
                            if (result.label) {
@@ -130,7 +130,7 @@ class EncounterController {
                   } else {
                      this.finished += results.length;
                      if (results.error) reject(results.error);
-                     else if (results === 'timed out') reject(`chunk ${key} timed out`);
+                     else if (results === 'timed out') reject(`process ${key} timed out`);
                      else {
                         // set pokedex with new data
                         for (let result of results) {
