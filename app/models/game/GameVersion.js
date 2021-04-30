@@ -1,9 +1,9 @@
 import { arrayify } from '../../util/UtilMethods.js';
 
 export default class Version {
-   constructor(label, artwork_url, generation, version, version_group, regions) {
+   constructor(label, cover_art, generation, version, version_group, regions) {
       this.label = label;
-      this.artwork_url = artwork_url;
+      this.cover_art = cover_art;
       this.generation = generation;
       this.version = version;
       this.version_group = version_group;
@@ -11,7 +11,7 @@ export default class Version {
    }
    static builder() {
       this.label = undefined;
-      this.artwork_url = undefined;
+      this.cover_art = undefined;
       this.generation = undefined;
       this.version = undefined;
       this.version_group = undefined;
@@ -22,8 +22,8 @@ export default class Version {
       this.label = val;
       return this;
    }
-   static withArtworkUrl(val) {
-      this.artwork_url = val;
+   static withCoverArt(val) {
+      this.cover_art = val;
       return this;
    }
    static withGeneration(val) {
@@ -45,7 +45,7 @@ export default class Version {
    static build() {
       return new Version(
          this.label,
-         this.artwork_url,
+         this.cover_art,
          this.generation,
          this.version,
          this.version_group,

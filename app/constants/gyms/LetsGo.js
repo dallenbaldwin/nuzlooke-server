@@ -81,7 +81,7 @@ export default class LetsGo {
       const leader = GymLeader.builder()
          .withLabel('Brock')
          .withFlavorText('The Rock-Solid Pokémon Trainer!')
-         .withSpritUrl('https://cdn.bulbagarden.net/upload/e/e2/VSBrock_PE.png')
+         .withSpritUrl('https://cdn2.bulbagarden.net/upload/e/e2/VSBrock_PE.png')
          .build();
       return Gym.builder()
          .withSortId(1)
@@ -170,7 +170,7 @@ export default class LetsGo {
       const leader = GymLeader.builder()
          .withLabel('Misty')
          .withFlavorText('The Tomboyish Mermaid!')
-         .withSpritUrl('https://cdn.bulbagarden.net/upload/0/0c/VSMisty_PE.png')
+         .withSpritUrl('https://cdn2.bulbagarden.net/upload/0/0c/VSMisty_PE.png')
          .build();
       return Gym.builder()
          .withSortId(2)
@@ -265,7 +265,7 @@ export default class LetsGo {
       const leader = GymLeader.builder()
          .withLabel('Lt. Surge')
          .withFlavorText('Lightning Lieutenant')
-         .withSpritUrl('https://cdn.bulbagarden.net/upload/c/c6/VSLt_Surge_PE.png')
+         .withSpritUrl('https://cdn2.bulbagarden.net/upload/c/c6/VSLt_Surge_PE.png')
          .build();
       return Gym.builder()
          .withSortId(3)
@@ -334,7 +334,7 @@ export default class LetsGo {
       const leader = GymLeader.builder()
          .withLabel('Erika')
          .withFlavorText('The Nature-Loving Princess!')
-         .withSpritUrl('https://cdn.bulbagarden.net/upload/3/35/VSErika_PE.png')
+         .withSpritUrl('https://cdn2.bulbagarden.net/upload/3/35/VSErika_PE.png')
          .build();
       return Gym.builder()
          .withSortId(4)
@@ -473,7 +473,7 @@ export default class LetsGo {
       ];
       const leader = GymLeader.builder()
          .withLabel('Koga')
-         .withSpritUrl('https://cdn.bulbagarden.net/upload/d/d8/VSKoga_PE.png')
+         .withSpritUrl('https://cdn2.bulbagarden.net/upload/d/d8/VSKoga_PE.png')
          .withFlavorText('The Poisonous Ninja Master')
          .build();
       return Gym.builder()
@@ -617,7 +617,7 @@ export default class LetsGo {
       const leader = GymLeader.builder()
          .withLabel('Sabrina')
          .withFlavorText('The Master of Psychic Pokémon!')
-         .withSpritUrl('https://cdn.bulbagarden.net/upload/2/20/VSSabrina_PE.png')
+         .withSpritUrl('https://cdn2.bulbagarden.net/upload/2/20/VSSabrina_PE.png')
          .build();
       return Gym.builder()
          .withSortId(6)
@@ -755,7 +755,7 @@ export default class LetsGo {
       const leader = GymLeader.builder()
          .withLabel('Blaine')
          .withFlavorText('The Hotheaded Quiz Master!')
-         .withSpritUrl('https://cdn.bulbagarden.net/upload/1/11/VSBlaine_PE.png')
+         .withSpritUrl('https://cdn2.bulbagarden.net/upload/1/11/VSBlaine_PE.png')
          .build();
       return Gym.builder()
          .withSortId(7)
@@ -896,7 +896,7 @@ export default class LetsGo {
       const leader = GymLeader.builder()
          .withLabel('Giovanni')
          .withFlavorText('The Self-Proclaimed Strongest Trainer')
-         .withSpritUrl('https://cdn.bulbagarden.net/upload/4/4a/VSGiovanni_PE.png')
+         .withSpritUrl('https://cdn2.bulbagarden.net/upload/4/4a/VSGiovanni_PE.png')
          .build();
       return Gym.builder()
          .withSortId(8)

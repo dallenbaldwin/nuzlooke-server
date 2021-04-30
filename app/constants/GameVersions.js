@@ -1,13 +1,13 @@
 import GameVersion from '../models/game/GameVersion.js';
 import Version from './pokeapi/Version.js';
-import Artwork from './bulbapedia/Artwork.js';
+import CoverArt from './bulbapedia/CoverArt.js';
 import Generation from './pokeapi/Generation.js';
 import Region from './pokeapi/Region.js';
 import VersionGroup from './pokeapi/VersionGroup.js';
 
 export default Object.freeze({
    EMERALD: GameVersion.builder()
-      .withArtworkUrl(Artwork.EMERALD)
+      .withCoverArt(CoverArt.EMERALD)
       .withGeneration(Generation.GEN3)
       .withLabel('Emerald')
       .withRegions(Region.HOENN)
@@ -15,7 +15,7 @@ export default Object.freeze({
       .withVersionGroup(VersionGroup.EMERALD)
       .build(),
    RUBY: GameVersion.builder()
-      .withArtworkUrl(Artwork.RUBY)
+      .withCoverArt(CoverArt.RUBY)
       .withGeneration(Generation.GEN3)
       .withLabel('Ruby')
       .withRegions(Region.HOENN)
@@ -23,7 +23,7 @@ export default Object.freeze({
       .withVersionGroup(VersionGroup.RUBYSAPPHIRE)
       .build(),
    SAPPHIRE: GameVersion.builder()
-      .withArtworkUrl(Artwork.SAPPHIRE)
+      .withCoverArt(CoverArt.SAPPHIRE)
       .withGeneration(Generation.GEN3)
       .withLabel('Sapphire')
       .withRegions(Region.HOENN)
@@ -31,7 +31,7 @@ export default Object.freeze({
       .withVersionGroup(VersionGroup.RUBYSAPPHIRE)
       .build(),
    FIRERED: GameVersion.builder()
-      .withArtworkUrl(Artwork.FIRERED)
+      .withCoverArt(CoverArt.FIRERED)
       .withGeneration(Generation.GEN3)
       .withLabel('FireRed')
       .withRegions(Region.KANTO)
@@ -39,7 +39,7 @@ export default Object.freeze({
       .withVersionGroup(VersionGroup.FIREREDLEAFGREEN)
       .build(),
    LEAFGREEN: GameVersion.builder()
-      .withArtworkUrl(Artwork.LEAFGREEN)
+      .withCoverArt(CoverArt.LEAFGREEN)
       .withGeneration(Generation.GEN3)
       .withLabel('LeafGreen')
       .withRegions(Region.KANTO)
@@ -47,7 +47,7 @@ export default Object.freeze({
       .withVersionGroup(VersionGroup.FIREREDLEAFGREEN)
       .build(),
    LETSGOEEVEE: GameVersion.builder()
-      .withArtworkUrl(Artwork.LETSGOEEVEE)
+      .withCoverArt(CoverArt.LETSGOEEVEE)
       .withGeneration(Generation.GEN7)
       .withLabel(`Let's Go Eevee`)
       .withRegions(Region.KANTO)
@@ -55,7 +55,7 @@ export default Object.freeze({
       .withVersionGroup(VersionGroup.LETSGO)
       .build(),
    LETSGOPIKACHU: GameVersion.builder()
-      .withArtworkUrl(Artwork.LETSGOPIKACHU)
+      .withCoverArt(CoverArt.LETSGOPIKACHU)
       .withGeneration(Generation.GEN7)
       .withLabel(`Let's Go Pikachu`)
       .withRegions(Region.KANTO)

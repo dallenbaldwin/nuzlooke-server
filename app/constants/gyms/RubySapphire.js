@@ -96,7 +96,7 @@ export default class RubySapphire {
       const leader = GymLeader.builder()
          .withFlavorText('The Rock-Loving Honors Student')
          .withLabel('Roxanne')
-         .withSpritUrl('https://cdn.bulbagarden.net/upload/e/ef/Spr_RS_Roxanne.png')
+         .withSpritUrl('https://cdn2.bulbagarden.net/upload/e/ef/Spr_RS_Roxanne.png')
          .build();
       return Gym.builder()
          .withBadge(GymBadges.STONE)
@@ -198,7 +198,7 @@ export default class RubySapphire {
       const leader = GymLeader.builder()
          .withFlavorText('A big wave in fighting')
          .withLabel('Brawly')
-         .withSpritUrl('https://cdn.bulbagarden.net/upload/9/92/Spr_RS_Brawly.png')
+         .withSpritUrl('https://cdn2.bulbagarden.net/upload/9/92/Spr_RS_Brawly.png')
          .build();
       return Gym.builder()
          .withBadge(GymBadges.KNUCKLE)
@@ -318,7 +318,7 @@ export default class RubySapphire {
       const leader = GymLeader.builder()
          .withFlavorText('The cheerfully electrifying man!')
          .withLabel('Wattson')
-         .withSpritUrl('https://cdn.bulbagarden.net/upload/b/b2/Spr_RS_Wattson.png')
+         .withSpritUrl('https://cdn2.bulbagarden.net/upload/b/b2/Spr_RS_Wattson.png')
          .build();
       return Gym.builder()
          .withBadge(GymBadges.DYNAMO)
@@ -401,7 +401,7 @@ export default class RubySapphire {
       const leader = GymLeader.builder()
          .withFlavorText('One with a fiery passion that burns!')
          .withLabel('Flannery')
-         .withSpritUrl('https://cdn.bulbagarden.net/upload/b/be/Spr_RS_Flannery.png')
+         .withSpritUrl('https://cdn2.bulbagarden.net/upload/b/be/Spr_RS_Flannery.png')
          .build();
       return Gym.builder()
          .withBadge(GymBadges.HEAT)
@@ -514,7 +514,7 @@ export default class RubySapphire {
       const leader = GymLeader.builder()
          .withFlavorText('A man in pursuit of power!')
          .withLabel('Norman')
-         .withSpritUrl('https://cdn.bulbagarden.net/upload/7/75/Spr_RS_Norman.png')
+         .withSpritUrl('https://cdn2.bulbagarden.net/upload/7/75/Spr_RS_Norman.png')
          .build();
       return Gym.builder()
          .withBadge(GymBadges.BALANCE)
@@ -672,7 +672,7 @@ export default class RubySapphire {
       const leader = GymLeader.builder()
          .withFlavorText('The bird user taking flight into the world.')
          .withLabel('Winona')
-         .withSpritUrl('https://cdn.bulbagarden.net/upload/0/0e/Spr_RS_Winona.png')
+         .withSpritUrl('https://cdn2.bulbagarden.net/upload/0/0e/Spr_RS_Winona.png')
          .build();
       return Gym.builder()
          .withBadge(GymBadges.FEATHER)
@@ -752,7 +752,9 @@ export default class RubySapphire {
       const leader = GymLeader.builder()
          .withFlavorText('The mystic combination!')
          .withLabel('Tate & Liza')
-         .withSpritUrl('https://cdn.bulbagarden.net/upload/3/38/Spr_RS_Tate_and_Liza.png')
+         .withSpritUrl(
+            'https://cdn2.bulbagarden.net/upload/3/38/Spr_RS_Tate_and_Liza.png'
+         )
          .build();
       return Gym.builder()
          .withBadge(GymBadges.MIND)
@@ -912,7 +914,7 @@ export default class RubySapphire {
       const leader = GymLeader.builder()
          .withFlavorText('Artist, and lover of water.')
          .withLabel('Wallace')
-         .withSpritUrl('https://cdn.bulbagarden.net/upload/b/b1/Spr_RS_Wallace.png')
+         .withSpritUrl('https://cdn2.bulbagarden.net/upload/b/b1/Spr_RS_Wallace.png')
          .build();
       return Gym.builder()
          .withBadge(GymBadges.RAIN)

@@ -83,7 +83,7 @@ export default class FireredLeafgreen {
       const leader = GymLeader.builder()
          .withLabel('Brock')
          .withFlavorText('The Rock-Solid Pokémon Trainer!')
-         .withSpritUrl('https://cdn.bulbagarden.net/upload/7/7c/Spr_FRLG_Brock.png')
+         .withSpritUrl('https://cdn2.bulbagarden.net/upload/7/7c/Spr_FRLG_Brock.png')
          .build();
       return Gym.builder()
          .withSortId(1)
@@ -156,7 +156,7 @@ export default class FireredLeafgreen {
       const leader = GymLeader.builder()
          .withLabel('Misty')
          .withFlavorText('The Tomboyish Mermaid!')
-         .withSpritUrl('https://cdn.bulbagarden.net/upload/2/2c/Spr_FRLG_Misty.png')
+         .withSpritUrl('https://cdn2.bulbagarden.net/upload/2/2c/Spr_FRLG_Misty.png')
          .build();
       return Gym.builder()
          .withSortId(2)
@@ -268,7 +268,7 @@ export default class FireredLeafgreen {
       const leader = GymLeader.builder()
          .withLabel('Lt. Surge')
          .withFlavorText('Lightning Lieutenant')
-         .withSpritUrl('https://cdn.bulbagarden.net/upload/5/5c/Spr_FRLG_Lt_Surge.png')
+         .withSpritUrl('https://cdn2.bulbagarden.net/upload/5/5c/Spr_FRLG_Lt_Surge.png')
          .build();
       return Gym.builder()
          .withSortId(3)
@@ -392,7 +392,7 @@ export default class FireredLeafgreen {
       const leader = GymLeader.builder()
          .withLabel('Erika')
          .withFlavorText('The Nature-Loving Princess!')
-         .withSpritUrl('https://cdn.bulbagarden.net/upload/c/c9/Spr_FRLG_Erika.png')
+         .withSpritUrl('https://cdn2.bulbagarden.net/upload/c/c9/Spr_FRLG_Erika.png')
          .build();
       return Gym.builder()
          .withSortId(4)
@@ -510,7 +510,7 @@ export default class FireredLeafgreen {
       ];
       const leader = GymLeader.builder()
          .withLabel('Koga')
-         .withSpritUrl('https://cdn.bulbagarden.net/upload/0/02/Spr_FRLG_Koga.png')
+         .withSpritUrl('https://cdn2.bulbagarden.net/upload/0/02/Spr_FRLG_Koga.png')
          .withFlavorText('The Poisonous Ninja Master')
          .build();
       return Gym.builder()
@@ -683,7 +683,7 @@ export default class FireredLeafgreen {
       const leader = GymLeader.builder()
          .withLabel('Sabrina')
          .withFlavorText('The Master of Psychic Pokémon!')
-         .withSpritUrl('https://cdn.bulbagarden.net/upload/d/dd/Spr_FRLG_Sabrina.png')
+         .withSpritUrl('https://cdn2.bulbagarden.net/upload/d/dd/Spr_FRLG_Sabrina.png')
          .build();
       return Gym.builder()
          .withSortId(6)
@@ -805,7 +805,7 @@ export default class FireredLeafgreen {
       const leader = GymLeader.builder()
          .withLabel('Blaine')
          .withFlavorText('The Hotheaded Quiz Master!')
-         .withSpritUrl('https://cdn.bulbagarden.net/upload/6/6d/Spr_FRLG_Blaine.png')
+         .withSpritUrl('https://cdn2.bulbagarden.net/upload/6/6d/Spr_FRLG_Blaine.png')
          .build();
       return Gym.builder()
          .withSortId(7)
@@ -988,7 +988,7 @@ export default class FireredLeafgreen {
       const leader = GymLeader.builder()
          .withLabel('Giovanni')
          .withFlavorText('The Self-Proclaimed Strongest Trainer')
-         .withSpritUrl('https://cdn.bulbagarden.net/upload/4/41/Spr_FRLG_Giovanni.png')
+         .withSpritUrl('https://cdn2.bulbagarden.net/upload/4/41/Spr_FRLG_Giovanni.png')
          .build();
       return Gym.builder()
          .withSortId(8)
