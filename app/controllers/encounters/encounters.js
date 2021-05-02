@@ -63,10 +63,7 @@ class EncounterController {
    fillLocations = () => {
       this.stage = 'locations';
       this.finished = 0;
-      console.group(
-         `building locations for ${this.version} with ${this.processes} processes`
-      );
-      console.time(`built locations`);
+      this.startLocationGroup();
       return new Promise((resolve, reject) => {
          // get the cpu based chunk map so we don't fork 100 times
          const chunkMap = this.getChunkMap(this.apiLocations);
@@ -82,9 +79,13 @@ class EncounterController {
                      this.finished += results.length;
                      // add location to locations map
                      // and pokemon to pokedex map
-                     if (results.error) reject(results.error);
-                     else if (results === 'timed out') reject(`process ${key} timed out`);
-                     else {
+                     if (results.error) {
+                        reject(results.error);
+                        this.closeLocationGroup();
+                     } else if (results === 'timed out') {
+                        reject(`process ${key} timed out. Try again`);
+                        this.closeLocationGroup();
+                     } else {
                         for (let result of results) {
                            if (result.label) {
                               this.locations.set(result.label, result);
@@ -97,10 +98,7 @@ class EncounterController {
                      // log progress
                      this.getStatus();
                      if (this.finished >= this.apiLocations.length) {
-                        console.groupEnd(
-                           `building locations for ${this.version} with ${this.processes} processes`
-                        );
-                        console.timeEnd(`built locations`);
+                        this.closeLocationGroup();
                         resolve();
                      }
                   }
@@ -112,10 +110,7 @@ class EncounterController {
    fillPokedex = () => {
       this.stage = 'pokedex';
       this.finished = 0;
-      console.group(
-         `filling pokedex for ${this.pokedex.size} pokemon with ${this.processes} processes`
-      );
-      console.time('filled pokedex');
+      this.startPokedexGroup();
       return new Promise((resolve, reject) => {
          // get the cpu based chunk map so we don't fork 100 times
          const chunkMap = this.getChunkMap([...this.pokedex.values()]);
@@ -129,9 +124,13 @@ class EncounterController {
                      child.send({ urls: chunk });
                   } else {
                      this.finished += results.length;
-                     if (results.error) reject(results.error);
-                     else if (results === 'timed out') reject(`process ${key} timed out`);
-                     else {
+                     if (results.error) {
+                        reject(results.error);
+                        this.closePokedexGroup();
+                     } else if (results === 'timed out') {
+                        reject(`process ${key} timed out`);
+                        this.closePokedexGroup();
+                     } else {
                         // set pokedex with new data
                         for (let result of results) {
                            this.pokedex.set(result.url, result.pokemon);
@@ -140,10 +139,7 @@ class EncounterController {
                      // log progress
                      this.getStatus();
                      if (this.finished >= this.pokedex.size) {
-                        console.groupEnd(
-                           `filling pokedex for ${this.pokedex.size} pokemon with ${this.processes} processes`
-                        );
-                        console.timeEnd('filled pokedex');
+                        this.closePokedexGroup();
                         resolve();
                      }
                   }
@@ -179,4 +175,28 @@ class EncounterController {
       }
       return map;
    };
+   startLocationGroup() {
+      console.group(
+         `building locations for ${this.version} with ${this.processes} processes`
+      );
+      console.time(`built locations`);
+   }
+   closeLocationGroup() {
+      console.groupEnd(
+         `building locations for ${this.version} with ${this.processes} processes`
+      );
+      console.timeEnd(`built locations`);
+   }
+   startPokedexGroup() {
+      console.group(
+         `filling pokedex for ${this.pokedex.size} pokemon with ${this.processes} processes`
+      );
+      console.time('filled pokedex');
+   }
+   closePokedexGroup() {
+      console.groupEnd(
+         `filling pokedex for ${this.pokedex.size} pokemon with ${this.processes} processes`
+      );
+      console.timeEnd('filled pokedex');
+   }
 }

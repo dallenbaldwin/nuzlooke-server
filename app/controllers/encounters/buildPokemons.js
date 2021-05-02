@@ -34,7 +34,6 @@ const buildPokemon = async url => {
          .withTypes(pokemon.types.map(t => pokeapi.normalizeKabob(t.type.name)))
          .withIconUrl(pokemon.sprites.versions[Generation.GEN7].icons.front_default)
          .withSpriteUrl(pokemon.sprites.front_default)
-         .withSpecies(pokeapi.normalizeKabob(pokemon.species.name))
          .withSpecies(english ? english.name : pokemon.species.name)
          .build();
       return { url: url, pokemon: encounterPokemon };
