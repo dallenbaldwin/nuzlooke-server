@@ -5,6 +5,7 @@ import { isUndefined } from '../util/UtilMethods.js';
 import APIResponse from '../models/APIResponse.js';
 import User from '../models/User.js';
 import { OAuth2Client } from 'google-auth-library';
+import FacebookAPI from '../models/FacebookAPI.js';
 
 const secret = process.env.JWT_SECRET;
 const oneDay = 86400; // expire tokens in 24 hours
@@ -84,7 +85,7 @@ export const login = (request, response) => {
          sanitizedUser.password
       );
       if (!passwordIsValid) {
-         let message = `${request.body.password} is not the correct password for the user associated with ${sanitizedUser.email}. Please contact our support team to get your password changed`;
+         let message = `${request.body.password} is not the correct password for the user associated with ${sanitizedUser.email}. If you have forgotten your password, please contact our support team at babaldwin.codes@gmail.com to get your password changed`;
          return response.status(401).send(APIResponse.withError(message));
       }
 
@@ -95,22 +96,15 @@ export const login = (request, response) => {
 };
 
 export const oauth = (request, response) => {
-   if (!request.body)
-      return response.status(500).send(APIResponse.withError('No data sent'));
-   if (request.params.provider === 'google') return withGoogle(request.body, response);
+   if (!request.body.token)
+      return response.status(500).send(APIResponse.withError('Missing token'));
+   if (request.params.provider === 'google')
+      return withGoogle(request.body.token, response);
    else if (request.params.provider === 'facebook')
-      return withFacebook(request.body, response);
+      return withFacebook(request.body.token, response);
 };
 
-const withGoogle = async (body, response) => {
-   // https://developers.google.com/identity/protocols/oauth2/javascript-implicit-flow#creatingcred
-   const appId = process.env.GOOGLE_AUTH_CLIENT_ID;
-   const client = new OAuth2Client(appId);
-   const ticket = await client.verifyIdToken({
-      idToken: body.qc.id_token,
-      audience: appId,
-   });
-   const payload = ticket.getPayload();
+const loginWithPayload = async (payload, response) => {
    User.readByEmail(payload.email, readRes => {
       if (readRes.error)
          return response.status(500).send(APIResponse.withError(readRes.error.stack));
@@ -138,4 +132,52 @@ const withGoogle = async (body, response) => {
    });
 };
 
-const withFacebook = (body, response) => {};
+const withGoogle = async (token, response) => {
+   const appId = process.env.GOOGLE_AUTH_CLIENT_ID;
+   const client = new OAuth2Client(appId);
+   const ticket = await client.verifyIdToken({
+      idToken: token,
+      audience: appId,
+   });
+
+   const payload = ticket.getPayload();
+   if (!payload) {
+      let message = `There was an error getting user data from Google.`;
+      return response.status(500).send(APIResponse.withError(message));
+   }
+
+   if (!payload.email) {
+      let message = `This Google account does not have a valid email address associated with it.`;
+      return response.status(403).send(APIResponse.withError(message));
+   }
+
+   return loginWithPayload(payload, response);
+};
+
+const withFacebook = async (token, response) => {
+   const userData = await getFacebookData(token);
+
+   if (userData.error)
+      return response.status(500).send(APIResponse.withError(userData.error));
+
+   if (!userData.email) {
+      let message = `This Facebook account does not have a valid email address associated with it.`;
+      return response.status(403).send(APIResponse.withError(message));
+   }
+
+   return loginWithPayload(userData, response);
+};
+
+const getFacebookData = async token => {
+   try {
+      const response = await FacebookAPI.get(`/me`, {
+         params: {
+            fields: 'name,email',
+            access_token: token,
+         },
+      });
+      return response.data;
+   } catch (err) {
+      return { error: err.response.data.error };
+   }
+};
