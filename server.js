@@ -1,18 +1,17 @@
 import express from 'express';
 import cors from 'cors';
-import dotenv from 'dotenv';
+import Environment from './app/constants/Environment.js';
 
 let port = 3000;
 let host = 'localhost';
 let origin = `https://localhost:8080`;
 
-if (process.env.NODE_ENV === 'production') {
+if (Environment.IS_PROD) {
    port = 8080;
    origin = 'https://nuzlooke.netlify.app';
 }
 
 const app = express();
-dotenv.config();
 
 app.use(
    cors({
@@ -49,7 +48,7 @@ app.get('/', (req, res) => {
 
 app.listen(port, () => {
    console.log(`server listening on http://${host}:${port}/`);
-   console.log(`the server is in ${process.env.NODE_ENV} mode.`);
+   console.log(`the server is in ${Environment.NODE_ENV} mode.`);
 });
 
 /*

@@ -6,14 +6,15 @@ import APIResponse from '../models/APIResponse.js';
 import User from '../models/User.js';
 import { OAuth2Client } from 'google-auth-library';
 import FacebookAPI from '../models/FacebookAPI.js';
+import Environment from '../constants/Environment.js';
 
-const secret = process.env.JWT_SECRET;
+const secret = Environment.JWT_SECRET;
 const oneDay = 86400; // expire tokens in 24 hours
 
 const buildToken = id => jwt.sign({ id: id }, secret, { expiresIn: oneDay });
 
 export const verifyToken = (request, response, next) => {
-   if (process.env.NODE_ENV === 'production') {
+   if (Environment.IS_PROD) {
       const token = request.headers['x-auth-token'];
       if (isUndefined(token))
          return response
@@ -133,7 +134,7 @@ const loginWithPayload = async (payload, response) => {
 };
 
 const withGoogle = async (token, response) => {
-   const appId = process.env.GOOGLE_AUTH_CLIENT_ID;
+   const appId = Environment.GOOGLE_AUTH_CLIENT_ID;
    const client = new OAuth2Client(appId);
    const ticket = await client.verifyIdToken({
       idToken: token,
