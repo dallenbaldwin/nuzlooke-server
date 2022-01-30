@@ -3,8 +3,11 @@
    "version": "1.0.0",
    "main": "server.js",
    "scripts": {
-      "dev": "nodemon -r dotenv/config --delay 1000ms",
-      "start": "NODE_ENV=production node -r dotenv/config server.js"
+      "serve": "npm run dc:up && nodemon --delay 1000ms",
+      "start": "NODE_ENV=production node -r dotenv/config server.js",
+      "dc:up": "docker-compose up -d ",
+      "dc:down": "docker-compose down --remove-orphans",
+      "dc:logs": "docker-compose logs -f nuzlooke_localstack"
    },
    "author": "Dallen Baldwin",
    "license": "ISC",
@@ -15,6 +18,7 @@
       "bcryptjs": "^2.4.3",
       "cors": "^2.8.5",
       "dotenv": "^8.2.0",
+      "dotenv-expand": "^6.0.1",
       "express": "^4.17.1",
       "google-auth-library": "^7.0.4",
       "jsonwebtoken": "^8.5.1",
