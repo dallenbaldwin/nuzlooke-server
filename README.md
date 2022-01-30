@@ -5,7 +5,7 @@ welcome to the nuzlooke server repo! This is the server code for my capstone pro
 ## Post Graduation Update
 
 I was bumming off the goodwill and AWS billing of the professor in charge of my capstone.
-Consequently, this project will have to be modified a bit in order to deal with the lack of
+Consequently, this project will have to be modified a bit in order to deal with the lack of free
 access to Elastic Beanstalk.
 
 I have 25G of forever free DynamoDB (for now at least)... which means I might move most
