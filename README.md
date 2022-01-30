@@ -2,6 +2,16 @@
 
 welcome to the nuzlooke server repo! This is the server code for my capstone project at UVU Spring 2021
 
+## Post Graduation Update
+
+I was bumming off the goodwill and AWS billing of the professor in charge of my capstone.
+Consequently, this project will have to be modified a bit in order to deal with the lack of
+access to Elastic Beanstalk.
+
+I have 25G of forever free DynamoDB (for now at least)... which means I might move most
+of the server code to the client since it was mainly used to talk to Dynamo, something the
+client can easily do, and the real difficult stuff was actually just bad design...
+
 ## Local dev
 
 -  create a folder in the root called `.localstack`
