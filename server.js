@@ -4,7 +4,7 @@ import Environment from './app/constants/Environment.js';
 
 let port = 3000;
 let host = 'localhost';
-let origin = `https://localhost:8080`;
+let origin = `http://localhost:8080`;
 
 if (Environment.IS_PROD) {
    port = 8080;
