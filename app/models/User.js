@@ -3,6 +3,7 @@ import { parseUpdateObject } from '../controllers/user.js';
 import DataClient from './DataClient.js';
 import uuid_pkg from 'uuid';
 import users from './database/users.js';
+import { devLogger } from '../util/Logger.js';
 const { v4: uuid } = uuid_pkg;
 
 export default class User {
@@ -40,6 +41,7 @@ export default class User {
    }
    static async readByEmail(email, result) {
       try {
+         devLogger('scanning table for user');
          const user = await DataClient.scan({
             TableName: 'nuzlooke-users',
             ConsistentRead: false,
@@ -53,6 +55,7 @@ export default class User {
                '#a88b0': 'email',
             },
          }).promise();
+         devLogger('user:', user);
          result({ data: user.Items.map(fromAWSItem) });
       } catch (err) {
          result({ error: err });

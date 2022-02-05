@@ -11,6 +11,7 @@ const {
    GOOGLE_AUTH_CLIENT_ID,
    AWS_ACCESS_KEY_ID,
    AWS_SECRET_ACCESS_KEY,
+   VERBOSE,
 } = process.env;
 
 const Environment = Object.freeze({
@@ -20,6 +21,7 @@ const Environment = Object.freeze({
    GOOGLE_AUTH_CLIENT_ID,
    AWS_ACCESS_KEY_ID,
    AWS_SECRET_ACCESS_KEY,
+   VERBOSE,
 });
 
 export default Environment;

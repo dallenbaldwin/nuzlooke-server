@@ -7,6 +7,7 @@ import User from '../models/User.js';
 import { OAuth2Client } from 'google-auth-library';
 import FacebookAPI from '../models/FacebookAPI.js';
 import Environment from '../constants/Environment.js';
+import { devLogger } from '../util/Logger.js';
 
 const secret = Environment.JWT_SECRET;
 const oneDay = 86400; // expire tokens in 24 hours
@@ -37,6 +38,7 @@ export const register = (request, response) => {
    if (!request.body || !isUndefined(errors))
       return response.status(500).send(APIResponse.withError(errors));
 
+   devLogger(`Checking for email: ${request.body.email}`);
    User.readByEmail(request.body.email, readRes => {
       if (readRes.error)
          return response.status(500).send(APIResponse.withError(readRes.error));
@@ -46,6 +48,7 @@ export const register = (request, response) => {
          return response.status(403).send(APIResponse.withError(message));
       }
 
+      devLogger('Creating user');
       request.body.password = bcrypt.hashSync(request.body.password, 10);
       User.create(request.body, createRes => {
          if (createRes.error)
@@ -55,6 +58,7 @@ export const register = (request, response) => {
          sanitizedUser.password = undefined;
          sanitizedUser.token = buildToken(sanitizedUser.id);
 
+         devLogger(`Sending user: ${sanitizedUser}`);
          return response.status(201).send(APIResponse.withResponse(sanitizedUser));
       });
    });
@@ -65,6 +69,7 @@ export const login = (request, response) => {
    if (!request.body || !isUndefined(errors))
       return response.status(500).send(APIResponse.withError(errors));
 
+   devLogger(`Checking for email: ${request.body.email}`);
    User.readByEmail(request.body.email, res => {
       if (res.error)
          return response.status(500).send(APIResponse.withError(res.error.stack));
@@ -92,6 +97,7 @@ export const login = (request, response) => {
 
       sanitizedUser.password = undefined;
       sanitizedUser.token = buildToken(sanitizedUser.id);
+      devLogger(`sending sanitized user:`, sanitizedUser);
       response.status(200).send(APIResponse.withResponse(sanitizedUser));
    });
 };
