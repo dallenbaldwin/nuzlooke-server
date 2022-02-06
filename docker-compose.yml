@@ -1,15 +1,19 @@
-version: '3.2'
+version: '3.7'
 services:
-  nuzlooke_localstack:
-    image: localstack/localstack-full:latest
+  dynamodb-local:
+    image: amazon/dynamodb-local:latest
+    container_name: dynamodb-local
     ports:
-      - '4563-4599:4563-4599'
-      - '8055:8080'
+      - "8000:8000"
+
+  dynamodb-admin:
+    image: aaronshaf/dynamodb-admin
+    ports:
+      - "8001:8001"
     environment:
-      - SERVICES=s3,dynamodb
-      - DEBUG=1
-      - DATA_DIR=/tmp/localstack/data
-      - DISABLE_CORS_CHECKS=1
-    volumes:
-      - './.localstack:/tmp/localstack'
-      - '/var/run/docker.sock:/var/run/docker.sock'
+      DYNAMO_ENDPOINT: "http://dynamodb-local:8000"
+      AWS_REGION: "us-east-2"
+      AWS_ACCESS_KEY_ID: local
+      AWS_SECRET_ACCESS_KEY: local
+    depends_on:
+      - dynamodb-local

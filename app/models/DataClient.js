@@ -9,7 +9,7 @@ const options = {
    region: 'us-east-2',
 };
 
-if (!Environment.IS_PROD) options.endpoint = 'http://localhost:4566';
+if (!Environment.IS_PROD) options.endpoint = 'http://localhost:8000';
 
 const DataClient = new AWS.DynamoDB(options);
 devLogger('Created DynamoDB DataClient.', 'Configuration:', DataClient.config);
