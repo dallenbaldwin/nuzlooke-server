@@ -12,7 +12,7 @@ const options = {
 if (!Environment.IS_PROD) options.endpoint = 'http://localhost:8000';
 
 const DataClient = new AWS.DynamoDB(options);
-devLogger('Created DynamoDB DataClient.', 'Configuration:', DataClient.config);
+devLogger('Created DynamoDB DataClient.', `Endpoint: ${options.endpoint}`);
 // Max Object size is 400KB
 
 export default DataClient;
