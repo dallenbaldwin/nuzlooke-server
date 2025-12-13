@@ -27,5 +27,12 @@
   "type": "module",
   "devDependencies": {
     "prettier": "^3.7.4"
+  },
+  "prettier": {
+    "tabWidth": 3,
+    "useTabs": false,
+    "singleQuote": true,
+    "trailingComma": "es5",
+    "printWidth": 100
   }
 }
