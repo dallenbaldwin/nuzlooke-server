@@ -1,9 +1,8 @@
 import { arrayify } from '../../util/UtilMethods.js';
-import uuid_pkg from 'uuid';
-const { v4: uuid } = uuid_pkg;
+import { randomUUID } from 'crypto';
 export default class Encounter {
    constructor(label, sortId, result, pokemons) {
-      this.id = uuid();
+      this.id = randomUUID();
       this.label = label;
       this.sort_id = sortId;
       this.result = result;

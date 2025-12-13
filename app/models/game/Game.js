@@ -2,13 +2,12 @@ import DataClient from '../DataClient.js';
 import { fromAWSItem, toAWSItem } from '../../util/UtilMethods.js';
 import { buildGyms } from '../../controllers/gyms.js';
 import { buildVersion, parseUpdateObject } from '../../controllers/game.js';
-import uuid_pkg from 'uuid';
 import games from '../database/games.js';
-const { v4: uuid } = uuid_pkg;
+import { randomUUID } from 'crypto';
 
 export default class Game {
    constructor(object) {
-      this.id = uuid();
+      this.id = randomUUID();
       this.label = object.label;
       this.version = buildVersion(object.version);
       this.is_finished = false;

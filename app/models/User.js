@@ -1,14 +1,13 @@
+import { randomUUID } from 'crypto';
 import { fromAWSItem, toAWSItem } from '../util/UtilMethods.js';
 import { parseUpdateObject } from '../controllers/user.js';
 import DataClient from './DataClient.js';
-import uuid_pkg from 'uuid';
 import users from './database/users.js';
 import { devLogger } from '../util/Logger.js';
-const { v4: uuid } = uuid_pkg;
 
 export default class User {
    constructor(object) {
-      this.id = uuid();
+      this.id = randomUUID();
       this.email = object.email;
       this.password = object.password;
       this.username = object.username;
