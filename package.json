@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "server.js",
   "engines": {
-    "node": "lts/jod"
+    "node": "^v22"
   },
   "scripts": {
     "dev": "COMPOSE_PROFILES=localhost docker compose up -d && node --watch server.js",
