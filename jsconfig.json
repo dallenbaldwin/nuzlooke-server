@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "module": "node16",
+    "moduleResolution": "node16",
+  },
+  "include": [
+    "app/**/*.js"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
