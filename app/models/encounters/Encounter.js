@@ -1,5 +1,6 @@
 import { arrayify } from '../../util/UtilMethods.js';
 import { randomUUID } from 'crypto';
+
 export default class Encounter {
    constructor(label, sortId, result, pokemons) {
       this.id = randomUUID();
