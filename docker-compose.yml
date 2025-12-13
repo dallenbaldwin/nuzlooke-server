@@ -11,7 +11,7 @@ services:
     working_dir: /home/dynamodblocal
     user: root
     command: "-jar DynamoDBLocal.jar -sharedDb -dbPath ./data"
-   
+
   dynamodb-admin:
     container_name: dynamodb-admin
     image: aaronshaf/dynamodb-admin
@@ -22,7 +22,7 @@ services:
     networks:
       - nuzlook_network
     environment:
-      DYNAMO_ENDPOINT: "http://dynamodb-local:8000"
+      DYNAMO_ENDPOINT: http://dynamodb-local:8000
       AWS_REGION: local
       AWS_ACCESS_KEY_ID: local
       AWS_SECRET_ACCESS_KEY: local

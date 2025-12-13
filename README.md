@@ -14,20 +14,20 @@ client can easily do, and the real difficult stuff was actually just bad design.
 
 ## Local dev
 
--  create a folder in the root called `.localstack`
--  run the server: `npm run dev`
--  enjoy
--  run `npm run dc:down` when finished to turn off the containers
+- create a folder in the root called `.localstack`
+- run the server: `npm run dev`
+- enjoy
+- run `npm run dc:down` when finished to turn off the containers
 
 ## SSL
 
--  use Certificate Manager and follow instructions to create
--  go to elastic beanstalk
--  go to configuration > load balancer
--  add listener
-   -  port 443
-   -  https
-   -  select the ssl cert from Certificate Manager
-   -  add
--  apply
--  remember to go to the _https_ version of your elastic beanstalk deployment...
+- use Certificate Manager and follow instructions to create
+- go to elastic beanstalk
+- go to configuration > load balancer
+- add listener
+   - port 443
+   - https
+   - select the ssl cert from Certificate Manager
+   - add
+- apply
+- remember to go to the _https_ version of your elastic beanstalk deployment...

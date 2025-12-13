@@ -12,7 +12,7 @@ import { devLogger } from '../util/Logger.js';
 const secret = Environment.JWT_SECRET;
 const oneDay = 86400; // expire tokens in 24 hours
 
-const buildToken = id => jwt.sign({ id: id }, secret, { expiresIn: oneDay });
+const buildToken = (id) => jwt.sign({ id: id }, secret, { expiresIn: oneDay });
 
 export const verifyToken = (request, response, next) => {
    if (Environment.IS_PROD) {
@@ -39,7 +39,7 @@ export const register = (request, response) => {
       return response.status(500).send(APIResponse.withError(errors));
 
    devLogger(`Checking for email: ${request.body.email}`);
-   User.readByEmail(request.body.email, readRes => {
+   User.readByEmail(request.body.email, (readRes) => {
       if (readRes.error)
          return response.status(500).send(APIResponse.withError(readRes.error));
 
@@ -50,7 +50,7 @@ export const register = (request, response) => {
 
       devLogger('Creating user');
       request.body.password = bcrypt.hashSync(request.body.password, 10);
-      User.create(request.body, createRes => {
+      User.create(request.body, (createRes) => {
          if (createRes.error)
             return response.status(500).send(APIResponse.withError(createRes.error));
 
@@ -70,7 +70,7 @@ export const login = (request, response) => {
       return response.status(500).send(APIResponse.withError(errors));
 
    devLogger(`Checking for email: ${request.body.email}`);
-   User.readByEmail(request.body.email, res => {
+   User.readByEmail(request.body.email, (res) => {
       if (res.error)
          return response.status(500).send(APIResponse.withError(res.error.stack));
 
@@ -112,7 +112,7 @@ export const oauth = (request, response) => {
 };
 
 const loginWithPayload = async (payload, response) => {
-   User.readByEmail(payload.email, readRes => {
+   User.readByEmail(payload.email, (readRes) => {
       if (readRes.error)
          return response.status(500).send(APIResponse.withError(readRes.error.stack));
 
@@ -122,7 +122,7 @@ const loginWithPayload = async (payload, response) => {
             email: payload.email,
             username: payload.name,
          };
-         User.create(userPayload, createRes => {
+         User.create(userPayload, (createRes) => {
             if (createRes.error)
                return response
                   .status(500)
@@ -142,9 +142,9 @@ const loginWithPayload = async (payload, response) => {
 const withGoogle = async (token, response) => {
    const appId = Environment.GOOGLE_AUTH_CLIENT_ID;
    if (!appId) {
-    let message = `GOOGLE_AUTH_CLIENT_ID is undefined`
-    return response.status(500).send(APIResponse.withError(message))
-  }
+      let message = `GOOGLE_AUTH_CLIENT_ID is undefined`;
+      return response.status(500).send(APIResponse.withError(message));
+   }
    const client = new OAuth2Client(appId);
    const ticket = await client.verifyIdToken({
       idToken: token,
@@ -179,7 +179,7 @@ const withFacebook = async (token, response) => {
    return loginWithPayload(userData, response);
 };
 
-const getFacebookData = async token => {
+const getFacebookData = async (token) => {
    try {
       const response = await FacebookAPI.get(`/me`, {
          params: {
