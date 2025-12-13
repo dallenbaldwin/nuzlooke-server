@@ -1,3 +1,6 @@
+/**
+ * @see {@link https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_CreateTable.html}
+ */
 export default {
    AttributeDefinitions: [
       {
@@ -17,5 +20,3 @@ export default {
       },
    ],
 };
-
-// https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_CreateTable.html
