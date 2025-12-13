@@ -1,4 +1,5 @@
 @host=http://localhost:3000
+@pokeapi=https://pokeapi.co/api/v2
 
 ####
 # @name root
@@ -36,3 +37,21 @@ Content-Type: application/json
 @login_token={{login.response.body.data.token}}
 
 ###
+# @name regions
+
+get {{pokeapi}}/region
+
+###
+# @name region_by_name
+
+get {{pokeapi}}/region/kanto
+
+### 
+# @name pokemon
+
+get {{pokeapi}}/pokemon
+
+###
+# @name species
+
+get {{pokeapi}}/pokemon/25
