@@ -1,28 +1,31 @@
 {
-   "name": "nuzlooke-server",
-   "version": "1.0.0",
-   "main": "server.js",
-   "scripts": {
-      "serve": "npm run dc:up && nodemon",
-      "start": "NODE_ENV=production node -r dotenv/config server.js",
-      "dc:up": "docker-compose up -d ",
-      "dc:down": "docker-compose down --remove-orphans",
-      "dc:logs": "docker-compose logs -f dynamodb-local"
-   },
-   "author": "Dallen Baldwin",
-   "license": "ISC",
-   "dependencies": {
-      "@aws-sdk/client-dynamodb": "^3.8.0",
-      "aws-sdk": "^2.860.0",
-      "axios": "^0.21.1",
-      "bcryptjs": "^2.4.3",
-      "cors": "^2.8.5",
-      "dotenv": "^8.2.0",
-      "dotenv-expand": "^6.0.1",
-      "express": "^4.17.1",
-      "google-auth-library": "^7.0.4",
-      "jsonwebtoken": "^8.5.1",
-      "uuid": "^3.3.2"
-   },
-   "type": "module"
+  "name": "nuzlooke-server",
+  "version": "1.0.0",
+  "main": "server.js",
+  "engines": {
+    "node": "lts/jod"
+  },
+  "scripts": {
+    "dev": "COMPOSE_PROFILES=localhost docker compose up -d && node --watch server.js",
+    "start": "NODE_ENV=production node -r dotenv/config server.js"
+  },
+  "author": "Dallen Baldwin",
+  "license": "ISC",
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.8.0",
+    "aws-sdk": "^2.860.0",
+    "axios": "^0.21.1",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "dotenv-expand": "^6.0.1",
+    "express": "^4.17.1",
+    "google-auth-library": "^7.0.4",
+    "jsonwebtoken": "^8.5.1",
+    "uuid": "^3.3.2"
+  },
+  "type": "module",
+  "devDependencies": {
+    "prettier": "^3.7.4"
+  }
 }

@@ -141,6 +141,10 @@ const loginWithPayload = async (payload, response) => {
 
 const withGoogle = async (token, response) => {
    const appId = Environment.GOOGLE_AUTH_CLIENT_ID;
+   if (!appId) {
+    let message = `GOOGLE_AUTH_CLIENT_ID is undefined`
+    return response.status(500).send(APIResponse.withError(message))
+  }
    const client = new OAuth2Client(appId);
    const ticket = await client.verifyIdToken({
       idToken: token,

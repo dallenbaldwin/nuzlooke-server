@@ -15,7 +15,7 @@ client can easily do, and the real difficult stuff was actually just bad design.
 ## Local dev
 
 -  create a folder in the root called `.localstack`
--  run the server: `npm serve`
+-  run the server: `npm run dev`
 -  enjoy
 -  run `npm run dc:down` when finished to turn off the containers
 

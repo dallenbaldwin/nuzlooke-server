@@ -6,12 +6,17 @@ services:
       - 8000:8000
     networks:
       - nuzlook_network
+    volumes:
+      - dynamodb_data:/home/dynamodblocal/data
     working_dir: /home/dynamodblocal
+    user: root
     command: "-jar DynamoDBLocal.jar -sharedDb -dbPath ./data"
    
   dynamodb-admin:
-    container-name: dynamodb-admin
+    container_name: dynamodb-admin
     image: aaronshaf/dynamodb-admin
+    profiles:
+      - localhost
     ports:
       - 8001:8001
     networks:
