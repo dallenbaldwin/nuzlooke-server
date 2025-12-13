@@ -5,7 +5,6 @@ import { isUndefined } from '../util/UtilMethods.js';
 import APIResponse from '../models/APIResponse.js';
 import User from '../models/User.js';
 import { OAuth2Client } from 'google-auth-library';
-import FacebookAPI from '../models/FacebookAPI.js';
 import Environment from '../constants/Environment.js';
 import { devLogger } from '../util/Logger.js';
 
@@ -180,15 +179,11 @@ const withFacebook = async (token, response) => {
 };
 
 const getFacebookData = async (token) => {
-   try {
-      const response = await FacebookAPI.get(`/me`, {
-         params: {
-            fields: 'name,email',
-            access_token: token,
-         },
-      });
-      return response.data;
-   } catch (err) {
-      return { error: err.response.data.error };
-   }
+   const response = await fetch('https://graph.facebook.com/me', {
+      headers: new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' }),
+      body: new URLSearchParams({ fields: 'name,email', access_token: token }),
+   });
+   const json = await response.json();
+   if (json.error) return { error: json.error };
+   return json;
 };

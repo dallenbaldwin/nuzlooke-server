@@ -55,3 +55,12 @@ get {{pokeapi}}/pokemon
 # @name species
 
 get {{pokeapi}}/pokemon/25
+
+###
+# @name facebook_me
+
+get https://graph.facebook.com/me
+Content-Type: application/x-www-form-urlencoded
+
+?fields=name,email
+&access_token=token
