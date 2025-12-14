@@ -185,6 +185,9 @@
   },
   "active": "41c9dc01ad148673",
   "lastOpenFiles": [
+    "demo.bash",
+    "demo.sh",
+    "client.dockerfile",
     "tasks/move gyms to the client.md",
     "tasks/make finished better.md",
     "tasks/ivysaur can't evolve.md",
@@ -213,8 +216,6 @@
     "nuzlooke-server/app/models/gyms/GymPokemonMove.js",
     "nuzlooke-server/app/models/gyms/GymLeader.js",
     "nuzlooke-server/app/models/gyms/GymBadge.js",
-    "nuzlooke-server/app/models/gyms/Gym.js",
-    "nuzlooke-server/app/controllers/encounters/timers.js",
     "nuzlooke-server/README.md",
     "nuzlooke-client/public/img/icons/safari-pinned-tab.svg",
     "nuzlooke-client/public/img/icons/mstile-70x70.png",

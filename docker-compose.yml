@@ -1,3 +1,5 @@
+name: nuzlooke-vue
+
 services:
   dynamodb-local:
     container_name: dynamodb-local
@@ -11,6 +13,17 @@ services:
     working_dir: /home/dynamodblocal
     user: root
     command: "-jar DynamoDBLocal.jar -sharedDb -dbPath ./data"
+
+  nuzlooke-client:
+    container_name: nuzlooke-client
+    image: nuzlooke-client
+    build:
+      context: ../nuzlooke-client
+      dockerfile: Dockerfile
+    profiles:
+      - demo
+    ports:
+      - 8080:80
 
   dynamodb-admin:
     container_name: dynamodb-admin
