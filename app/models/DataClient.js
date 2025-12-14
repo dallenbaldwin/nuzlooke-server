@@ -7,9 +7,11 @@ const options = {
    accessKeyId: Environment.AWS_ACCESS_KEY_ID,
    secretAccessKey: Environment.AWS_SECRET_ACCESS_KEY,
    region: 'us-east-2',
+   endpoint: 'http://localhost:8000',
 };
 
-if (!Environment.IS_PROD) options.endpoint = 'http://localhost:8000';
+// we are no longer using dynamo in actual AWS
+// if (Environment.IS_PROD) delete options.endpoint;
 
 const DataClient = new AWS.DynamoDB(options);
 devLogger('Created DynamoDB DataClient.', `Endpoint: ${options.endpoint}`);

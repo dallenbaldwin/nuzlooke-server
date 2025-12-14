@@ -7,10 +7,11 @@ let port = 3000;
 let host = 'localhost';
 let origin = `http://localhost:8080`;
 
-if (Environment.IS_PROD) {
-   port = 8080;
-   origin = 'https://nuzlooke.netlify.app';
-}
+// we're not deploying this anymore
+// if (Environment.IS_PROD) {
+//    port = 8080;
+//    origin = 'https://nuzlooke.netlify.app';
+// }
 
 const app = express();
 
@@ -41,7 +42,7 @@ authRoutes(app);
 import encounterRoutes from './app/routes/encounters.js';
 encounterRoutes(app);
 
-app.get('/', (req, res) => {
+app.get('/', async (req, res) => {
    res.status(200).send({
       message: `welcome to the nuzlooke-server.`,
    });
