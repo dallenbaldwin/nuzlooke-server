@@ -64,3 +64,43 @@ Content-Type: application/x-www-form-urlencoded
 
 ?fields=name,email
 &access_token=token
+
+###
+
+@version=emerald
+
+###
+# @name create_game
+
+post {{host}}/api/games
+Content-Type: application/json
+
+{
+  "label": "hello emerald",
+  "version": "{{version}}"
+}
+
+###
+
+@game_id={{create_game.response.body.data.id}}
+
+###
+# @name read_game
+
+get {{host}}/api/games/{{game_id}}
+Accept: application/json
+
+###
+# @name update_game
+
+put {{host}}/api/games/{{game_id}}
+Content-Type: application/json
+
+{
+  "encounters": []
+}
+
+###
+# @name get_encounters
+
+get {{host}}/api/encounters/{{version}}
