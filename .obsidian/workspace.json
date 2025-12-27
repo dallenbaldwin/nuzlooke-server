@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "tasks/replace axios with fetch.md",
+                "file": "ISSUES.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "replace axios with fetch"
+              "title": "ISSUES"
             }
           }
         ]
@@ -53,7 +53,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "tag:bug",
+                "query": "tag:#typescript",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "tasks/_tasks.base",
+                "file": "ISSUES.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +104,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for _tasks"
+              "title": "Backlinks for ISSUES"
             }
           },
           {
@@ -165,12 +165,12 @@
               "title": "Outline of _tasks"
             }
           }
-        ]
+        ],
+        "currentTab": 2
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -185,6 +185,8 @@
   },
   "active": "41c9dc01ad148673",
   "lastOpenFiles": [
+    "README.md",
+    "ISSUES.md",
     "demo.bash",
     "demo.sh",
     "client.dockerfile",
@@ -193,7 +195,6 @@
     "tasks/ivysaur can't evolve.md",
     "tasks/replace axios with fetch.md",
     "tasks/_tasks.base",
-    "README.md",
     "tasks/move production.md",
     "tasks/error not thrown when same email used through different means.md",
     "tasks/sort by nickname doesn't work.md",
@@ -215,7 +216,6 @@
     "nuzlooke-server/app/models/pokemons/GymPokemon.js",
     "nuzlooke-server/app/models/gyms/GymPokemonMove.js",
     "nuzlooke-server/app/models/gyms/GymLeader.js",
-    "nuzlooke-server/app/models/gyms/GymBadge.js",
     "nuzlooke-server/README.md",
     "nuzlooke-client/public/img/icons/safari-pinned-tab.svg",
     "nuzlooke-client/public/img/icons/mstile-70x70.png",
