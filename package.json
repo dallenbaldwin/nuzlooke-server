@@ -6,9 +6,11 @@
     "node": "^v22"
   },
   "scripts": {
-    "dev": "COMPOSE_PROFILES=localhost docker compose up -d && node --watch server.js",
-    "start": "NODE_ENV=production node -r dotenv/config server.js",
-    "demo": "COMPOSE_PROFILES=demo NODE_ENV=production docker compose up -d && node -r dotenv/config server.js"
+    "dev": "docker compose --profile localhost up -d && node --watch server.js",
+    "start": "node server.js",
+    "start-old": "NODE_ENV=production node -r dotenv/config server.js",
+    "rebuild": "docker compose --profile demo build",
+    "demo": "docker compose --profile demo up"
   },
   "author": "Dallen Baldwin",
   "license": "ISC",

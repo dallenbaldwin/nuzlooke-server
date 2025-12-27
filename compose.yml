@@ -7,23 +7,43 @@ services:
     ports:
       - 8000:8000
     networks:
-      - nuzlook_network
+      - nuzlooke_network
     volumes:
       - dynamodb_data:/home/dynamodblocal/data
     working_dir: /home/dynamodblocal
     user: root
     command: "-jar DynamoDBLocal.jar -sharedDb -dbPath ./data"
 
+  nuzlooke-server:
+    container_name: nuzlooke-server
+    image: nuzlooke-server
+    build:
+      context: .
+      dockerfile: dockerfile
+    networks:
+      - nuzlooke_network
+    expose:
+      - 3000
+    profiles:
+      - demo
+    environment:
+      - NODE_ENV: production
+      - AWS_ACCESS_KEY_ID: local
+      - AWS_SECRET_ACCESS_KEY: local
+    command: "npm start"
+
   nuzlooke-client:
     container_name: nuzlooke-client
     image: nuzlooke-client
     build:
       context: ../nuzlooke-client
-      dockerfile: Dockerfile
+      dockerfile: dockerfile
     profiles:
       - demo
     ports:
       - 8080:80
+    networks:
+      - nuzlooke_network
 
   dynamodb-admin:
     container_name: dynamodb-admin
@@ -33,7 +53,7 @@ services:
     ports:
       - 8001:8001
     networks:
-      - nuzlook_network
+      - nuzlooke_network
     environment:
       DYNAMO_ENDPOINT: http://dynamodb-local:8000
       AWS_REGION: local
@@ -46,4 +66,4 @@ volumes:
   dynamodb_data:
 
 networks:
-  nuzlook_network:
+  nuzlooke_network:

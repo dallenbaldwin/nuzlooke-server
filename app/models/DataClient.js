@@ -7,7 +7,7 @@ const options = {
    accessKeyId: Environment.AWS_ACCESS_KEY_ID,
    secretAccessKey: Environment.AWS_SECRET_ACCESS_KEY,
    region: 'us-east-2',
-   endpoint: 'http://localhost:8000',
+   endpoint: 'http://dynamodb-local:8000',
 };
 
 // we are no longer using dynamo in actual AWS
