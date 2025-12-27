@@ -19,7 +19,7 @@ services:
       image: nuzlooke-server
       build:
          context: .
-         dockerfile: dockerfile
+         dockerfile: containerfile
       networks:
          - nuzlooke_network
       expose:
@@ -37,7 +37,7 @@ services:
       image: nuzlooke-client
       build:
          context: ../nuzlooke-client
-         dockerfile: dockerfile
+         dockerfile: containerfile
       profiles:
          - demo
       ports:

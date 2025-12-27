@@ -10,7 +10,7 @@ let origin = `http://localhost:8080`;
 if (Environment.IS_PROD) {
    // we're not deploying this to netlify anymore
    //  origin = 'https://nuzlooke.netlify.app';
-   origin = 'http://nuzlooke-client';
+   // origin = 'http://nuzlooke-client';
 }
 
 const app = express();

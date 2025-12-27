@@ -6,11 +6,11 @@
     "node": "^v22"
   },
   "scripts": {
-    "dev": "docker compose --profile localhost up -d && node --watch server.js",
+    "dev": "podman compose --profile localhost up -d && node --watch server.js",
     "start": "node server.js",
     "start-old": "NODE_ENV=production node -r dotenv/config server.js",
-    "rebuild": "docker compose --profile demo build",
-    "demo": "docker compose --profile demo up"
+    "rebuild": "podman compose --profile demo build --pull",
+    "demo": "podman compose --profile demo up"
   },
   "author": "Dallen Baldwin",
   "license": "ISC",
